@@ -2,7 +2,7 @@
 #include "core/instance.hpp"
 #include "core/device.hpp"
 #include "core/swapchain.hpp"
-#include "core/command_pool.hpp" // Incluir para unique_ptr
+#include "core/command_pool.hpp"
 #include "core/sync.hpp"
 #include "core/pipeline.hpp"
 #include "core/render_pass.hpp"
@@ -16,19 +16,42 @@
 #include <stdexcept>
 #include <iostream>
 #include <vector>
-#include <cstdlib> // EXIT_SUCCESS, EXIT_FAILURE
-#include <chrono>  // Para deltaTime
-#include <limits>  // Para numeric_limits
-#include <array>   // Para std::array
-#include <memory>  // Para std::unique_ptr
-#include <thread>  // Para std::this_thread
-#include <string>  // Para std::to_string
+#include <cstdlib>
+#include <chrono>
+#include <limits>
+#include <array>
+#include <memory>
+#include <thread>
+#include <string>
+#include <fstream>     // <-- Para ofstream
+#include <iomanip>     // <-- Para put_time, setprecision
+#include <sstream>     // <-- Para stringstream
+#include <filesystem>  // <-- Para path, exists, create_directory
+#include <algorithm>   // <-- Para min, replace (opcional)
+
+// <-- Headers específicos de plataforma -->
+#ifdef _WIN32
+    #define WIN32_LEAN_AND_MEAN
+    #include <windows.h> // <-- Para DWORD, MAX_COMPUTERNAME_LENGTH, GetComputerNameA
+    #include <Lmcons.h>  // <-- Para UNLEN, GetUserNameA
+#else // Linux / macOS
+    #include <unistd.h>
+    #include <limits.h> // Para HOST_NAME_MAX (o usar POSIX_HOST_NAME_MAX)
+    #include <pwd.h>    // Para getpwuid, getuid
+    // LOGIN_NAME_MAX puede necesitar <stdio.h> o estar definido en otro lugar
+    #ifndef LOGIN_NAME_MAX
+    #define LOGIN_NAME_MAX 256 // Definición común si no existe
+    #endif
+    #ifndef HOST_NAME_MAX
+    #define HOST_NAME_MAX 256 // Definición común si no existe
+    #endif
+#endif
 
 // --- Constantes ---
 const uint32_t WINDOW_WIDTH = 1920;
 const uint32_t WINDOW_HEIGHT = 1080;
 const int PARTICLE_COUNT = 10000;
-
+const std::string APP_VERSION = "1.0-OOP_Metrics";
 // --- Aplicación Principal ---
 class ParticleSimulationApp {
 public:
@@ -71,6 +94,7 @@ private:
     std::unique_ptr<particulas::CommandPool> commandPool_; // <-- Tipo Correcto
     std::vector<VkCommandBuffer> commandBuffers_;
     std::unique_ptr<particulas::Sync> sync_;
+    
 
     // --- Recursos de Simulación y Renderizado ---
     std::unique_ptr<particulas::ParticleSystem> particleSystem_;
@@ -84,6 +108,12 @@ private:
     // --- Estado ---
     bool framebufferResized_ = false;
     // uint32_t currentFrame_ = 0; // No necesario si usamos getter de Sync
+
+    // --- Miembros NUEVOS para Métricas ---
+    std::vector<float> frameTimesMs_;
+    std::chrono::time_point<std::chrono::system_clock> runStartTime_;
+    std::string gpuName_ = "Unknown";
+    bool metricsSaved_ = false;
 
     // --- Inicialización ---
     void initWindow() {
@@ -127,30 +157,32 @@ private:
     // --- Bucle Principal ---
     void mainLoop() {
         std::cout << "Starting Main Loop..." << std::endl;
+        runStartTime_ = std::chrono::system_clock::now(); // <-- Guardar hora inicio para archivo/metadata
         auto lastTime = std::chrono::high_resolution_clock::now();
+        frameTimesMs_.reserve(3600); // <-- Reservar espacio
 
         while (window_ && !window_->shouldClose()) {
             window_->pollEvents();
-
             auto currentTime = std::chrono::high_resolution_clock::now();
-            float deltaTime = std::chrono::duration<float, std::chrono::seconds::period>(currentTime - lastTime).count();
-            deltaTime = std::min(deltaTime, 0.1f);
+            // Usar high_resolution_clock para deltaTime también es más preciso
+            float deltaTime = std::chrono::duration<float>(currentTime - lastTime).count();
             lastTime = currentTime;
+            deltaTime = std::min(deltaTime, 0.1f); // Clamp
+
+            // --- NUEVO: Registrar Métrica ---
+            if (deltaTime > 1e-6f) { // Evitar valores inválidos
+                frameTimesMs_.push_back(deltaTime * 1000.0f); // Guardar en ms
+            }
+            // --------------------------------
 
             if (particleSystem_ && deltaTime > 0.0f) {
                  particleSystem_->update(deltaTime);
             }
-
             drawFrame();
         }
         std::cout << "Exiting Main Loop." << std::endl;
-
-        if(device_) {
-             vkDeviceWaitIdle(device_->getLogicalDevice());
-             std::cout << "GPU Idle." << std::endl;
-        }
+        if(device_) { vkDeviceWaitIdle(device_->getLogicalDevice()); std::cout << "GPU Idle." << std::endl; }
     }
-
     // --- Limpieza ---
     void cleanup() {
          std::cout << "Starting Cleanup..." << std::endl;
@@ -189,6 +221,11 @@ private:
         if (window_) { std::cout << "Cleaning up Window..." << std::endl; window_.reset(); }
         else { glfwTerminate(); }
         std::cout << "Cleanup Finished." << std::endl;
+
+            // --- Guardar métricas si no se han guardado ---
+            if (!metricsSaved_ && !frameTimesMs_.empty()) {
+                saveMetricsToFile();
+            }
     }
 
 
@@ -391,6 +428,119 @@ private:
     // --- Recreación del Swapchain ---
     void cleanupSwapchainRelated() { /* ... (código como antes) ... */ }
     void recreateSwapchain() { /* ... (código como antes) ... */ }
+
+    // --- Implementación de Funciones Auxiliares para Métricas --- NUEVO ---
+
+    std::string getTimestamp(const std::chrono::time_point<std::chrono::system_clock>& timePoint) {
+        auto timet = std::chrono::system_clock::to_time_t(timePoint);
+        #ifdef _MSC_VER // Manejo seguro para MSVC
+            std::tm tm_buf; localtime_s(&tm_buf, &timet);
+        #else // Otros compiladores
+            std::tm tm_buf = *std::localtime(&timet);
+        #endif
+        std::stringstream ss; ss << std::put_time(&tm_buf, "%Y%m%d_%H%M%S"); return ss.str();
+    }
+
+    std::string getUsername() {
+        #ifdef _WIN32
+            char username[UNLEN + 1]; DWORD username_len = UNLEN + 1;
+            return (GetUserNameA(username, &username_len)) ? std::string(username) : "unknown_user";
+        #else
+            char username[LOGIN_NAME_MAX]; if (getlogin_r(username, sizeof(username)) == 0) return std::string(username);
+            char* user_env = getenv("USER"); if (user_env != nullptr) return std::string(user_env);
+            struct passwd *pw = getpwuid(getuid()); if (pw) return std::string(pw->pw_name);
+            return "unknown_user";
+        #endif
+    }
+
+    std::string getHostname() {
+        #ifdef _WIN32
+            char hostname[MAX_COMPUTERNAME_LENGTH + 1]; DWORD hostname_len = MAX_COMPUTERNAME_LENGTH + 1;
+            return (GetComputerNameA(hostname, &hostname_len)) ? std::string(hostname) : "unknown_pc";
+        #else
+            char hostname[HOST_NAME_MAX]; return (gethostname(hostname, sizeof(hostname)) == 0) ? std::string(hostname) : "unknown_pc";
+        #endif
+    }
+
+    std::string generateFilename() {
+        std::string timestamp = getTimestamp(runStartTime_);
+        std::string username = getUsername();
+        std::string hostname = getHostname();
+        // Podrías reemplazar espacios u otros caracteres aquí si quieres
+        // std::replace(username.begin(), username.end(), ' ', '_');
+        return "metrics_" + timestamp + "_" + username + "@" + hostname + ".csv";
+    }
+
+    void saveMetricsToFile() {
+        std::cout << "[Metrics] Entering saveMetricsToFile(). "
+                  << "metricsSaved_ = " << std::boolalpha << metricsSaved_
+                  << ", frameTimesMs_.empty() = " << std::boolalpha << frameTimesMs_.empty()
+                  << ", frameTimesMs_.size() = " << frameTimesMs_.size() << std::endl;
+    
+        if (metricsSaved_ || frameTimesMs_.empty()) {
+            std::cout << "[Metrics] Skipping: " << (metricsSaved_ ? "Metrics already saved." : "No frame times recorded.") << std::endl;
+            return; // Salir si ya se guardó o no hay datos
+        }
+    
+        std::string filename = generateFilename();
+        std::string metricsDir = "metrics_output";
+        
+        try {
+            std::filesystem::path dirPath = metricsDir;
+            std::cout << "[Metrics] Checking directory existence: " << dirPath.string() << std::endl;
+    
+            if (!std::filesystem::exists(dirPath)) {
+                std::cout << "[Metrics] Directory does not exist. Attempting to create..." << std::endl;
+                if (std::filesystem::create_directory(dirPath)) {
+                    std::cout << "[Metrics] Created directory: " << dirPath.string() << std::endl;
+                } else {
+                    std::cerr << "[Metrics] Error: Could not create directory. Saving in the current directory." << std::endl;
+                    metricsDir = "."; // Fallback to current directory
+                    dirPath = metricsDir;
+                }
+            } else {
+                std::cout << "[Metrics] Directory exists." << std::endl;
+            }
+    
+            std::filesystem::path fullPath = dirPath / filename;
+            std::cout << "[Metrics] Full file path: " << fullPath.string() << std::endl;
+    
+            std::ofstream outFile(fullPath);
+            if (!outFile.is_open()) {
+                std::cerr << "[Metrics] Error opening file for writing: " << fullPath.string() << std::endl;
+                return;
+            } else {
+                std::cout << "[Metrics] File opened successfully." << std::endl;
+            }
+    
+            outFile << "# METRICS DATA\n" 
+                    << "# Run Start Timestamp: " << getTimestamp(runStartTime_) << "\n" 
+                    << "# Program Version: " << ::APP_VERSION << "\n"
+                    << "# User: " << getUsername() << "\n" 
+                    << "# Hostname: " << getHostname() << "\n" 
+                    << "# GPU: " << gpuName_ << "\n"
+                    << "# Requested Particle Count: " << PARTICLE_COUNT << "\n" 
+                    << "# Actual Particle Count: " << (particleSystem_ ? std::to_string(particleSystem_->getParticleCount()) : "N/A") << "\n"
+                    << "# Frame Count Recorded: " << frameTimesMs_.size() << "\n\n" 
+                    << "FrameTime_ms\n";
+    
+            outFile << std::fixed << std::setprecision(4);
+            for (float frameTime : frameTimesMs_) {
+                outFile << frameTime << "\n";
+            }
+    
+            outFile.close();
+            metricsSaved_ = true;
+            std::cout << "[Metrics] Metrics saved successfully (" << frameTimesMs_.size() << " frames)." << std::endl;
+    
+        } catch (const std::filesystem::filesystem_error& fs_err) {
+            std::cerr << "[Metrics] Filesystem error: " << fs_err.what() << " Path1: " << fs_err.path1().string() << " Path2: " << fs_err.path2().string() << std::endl;
+        } catch (const std::exception& e) {
+            std::cerr << "[Metrics] Exception: " << e.what() << std::endl;
+        } catch (...) {
+            std::cerr << "[Metrics] Unknown error." << std::endl;
+        }
+    }
 
 }; // Fin de la clase ParticleSimulationApp
 

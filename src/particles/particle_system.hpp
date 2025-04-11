@@ -17,6 +17,11 @@ public:
     // Devuelve una referencia constante al vector de partículas (para renderización)
     const std::vector<Particle>& getParticles() const;
 
+    
+    // --- NUEVO GETTER ---
+    // Devuelve el número actual de partículas
+    size_t getParticleCount() const { return particles_.size(); }
+
 private:
     // Inicializa las partículas con posiciones, velocidades y colores aleatorios
     void initializeParticles();
