@@ -33,7 +33,7 @@ jobs:
               libvulkan-dev \
               vulkan-utility-libraries-dev \
               spirv-tools
-              shell: bash # Asegúrate de que usa bash (es el default en ubuntu-latest)
+      shell: bash # Asegúrate de que usa bash (es el default en ubuntu-latest)
     # 4. Configurar el proyecto con CMake
     - name: Configure CMake
       run: cmake -B build -S . -G Ninja -DCMAKE_BUILD_TYPE=Release
