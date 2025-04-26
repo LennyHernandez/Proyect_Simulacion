@@ -1,6 +1,8 @@
 # Carpetas y archivos de Build
 build/
 Build/
+/build/
+
 _build/
 [Bb]uild/
 [Bb]in/
