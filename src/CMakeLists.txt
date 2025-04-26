@@ -12,9 +12,16 @@ set(APP_SOURCES
     rendering/particle_renderer.cpp
     window/window.cpp
     utils/vulkan_debug.cpp
-    # Backends de ImGui
-    "${CMAKE_SOURCE_DIR}/external/imgui/backends/imgui_impl_glfw.cpp"
-    "${CMAKE_SOURCE_DIR}/external/imgui/backends/imgui_impl_vulkan.cpp"
+    # Fuentes de los BACKENDS de ImGui
+    "${imgui_SOURCE_DIR}/backends/imgui_impl_glfw.cpp"
+    "${imgui_SOURCE_DIR}/backends/imgui_impl_vulkan.cpp"
+
+    # ¡¡AÑADIR FUENTES DEL CORE de ImGui!!
+    "${imgui_SOURCE_DIR}/imgui.cpp"
+    "${imgui_SOURCE_DIR}/imgui_draw.cpp"
+    "${imgui_SOURCE_DIR}/imgui_tables.cpp"
+    "${imgui_SOURCE_DIR}/imgui_widgets.cpp"
+    # Añadir otros si los usas (ej: imgui_demo.cpp si quieres el demo)
 )
 
 # --- Definir el Ejecutable AQUÍ ---
@@ -22,18 +29,12 @@ add_executable(ParticleSimulation ${APP_SOURCES})
 
 # --- Directorios de Inclusión DENTRO de src ---
 target_include_directories(ParticleSimulation PRIVATE
-    "."
-    "core"
-    "particles"
-    "rendering"
-    "window"
-    "utils"
+    "." "core" "particles" "rendering" "window" "utils"
 )
 
 # --- Vincular Bibliotecas AQUÍ ---
 target_link_libraries(ParticleSimulation PRIVATE
-    glfw           # Target de GLFW
-    ImGui          # Target de ImGui
+    glfw           # Target de GLFW (FetchContent lo crea)
+    # ImGui          # <-- ELIMINADO (Compilamos las fuentes)
     Vulkan::Vulkan
-    # Threads::Threads # <-- ELIMINADO
 )
