@@ -26,14 +26,14 @@ jobs:
     - name: Install Vulkan SDK and dependencies via Apt
       # 'run: |' debe estar 2 espacios más adentro que '- name:'
       run: |
-        # Estas líneas deben estar 2 espacios más adentro que 'run: |'
-        sudo apt-get update -y
-        sudo apt-get install -y --no-install-recommends \
-          vulkan-tools \
-          libvulkan-dev \
-          vulkan-validationlayers-dev \
-          spirv-tools
-          shell: bash # Asegúrate de que usa bash (es el default en ubuntu-latest)
+              # Estas líneas deben estar 2 espacios más adentro que 'run: |'
+              sudo apt-get update -y
+              sudo apt-get install -y --no-install-recommends \
+              vulkan-tools \
+              libvulkan-dev \
+              vulkan-validationlayers-dev \
+              spirv-tools
+              shell: bash # Asegúrate de que usa bash (es el default en ubuntu-latest)
     # 4. Configurar el proyecto con CMake
     - name: Configure CMake
       run: cmake -B build -S . -G Ninja -DCMAKE_BUILD_TYPE=Release
