@@ -39,7 +39,7 @@ cmake_ninja_workdir = C$:/Users/donle/OneDrive/Desktop/Particulas/build/
 #############################################
 # Utility command for Shaders
 
-build Shaders: phony
+build Shaders: phony CMakeFiles/Shaders Shaders/particle.frag.spv Shaders/particle.vert.spv
 
 
 #############################################
@@ -106,6 +106,30 @@ build CMakeFiles/install/strip.util: CUSTOM_COMMAND all
 
 build install/strip: phony CMakeFiles/install/strip.util
 
+
+#############################################
+# Phony custom command for CMakeFiles\Shaders
+
+build CMakeFiles/Shaders | ${cmake_ninja_workdir}CMakeFiles/Shaders: phony Shaders/particle.frag.spv Shaders/particle.vert.spv
+
+
+#############################################
+# Custom command for Shaders\particle.frag.spv
+
+build Shaders/particle.frag.spv | ${cmake_ninja_workdir}Shaders/particle.frag.spv: CUSTOM_COMMAND C$:/Users/donle/OneDrive/Desktop/Particulas/Shaders/particle.frag
+  COMMAND = C:\WINDOWS\system32\cmd.exe /C "cd /D C:\Users\donle\OneDrive\Desktop\Particulas\build && C:\VulkanSDK\1.3.296.0\Bin\glslc.exe C:/Users/donle/OneDrive/Desktop/Particulas/shaders/particle.frag -o C:/Users/donle/OneDrive/Desktop/Particulas/build/shaders/particle.frag.spv"
+  DESC = Compiling particle.frag to SPIR-V
+  restat = 1
+
+
+#############################################
+# Custom command for Shaders\particle.vert.spv
+
+build Shaders/particle.vert.spv | ${cmake_ninja_workdir}Shaders/particle.vert.spv: CUSTOM_COMMAND C$:/Users/donle/OneDrive/Desktop/Particulas/Shaders/particle.vert
+  COMMAND = C:\WINDOWS\system32\cmd.exe /C "cd /D C:\Users\donle\OneDrive\Desktop\Particulas\build && C:\VulkanSDK\1.3.296.0\Bin\glslc.exe C:/Users/donle/OneDrive/Desktop/Particulas/shaders/particle.vert -o C:/Users/donle/OneDrive/Desktop/Particulas/build/shaders/particle.vert.spv"
+  DESC = Compiling particle.vert to SPIR-V
+  restat = 1
+
 # =============================================================================
 # Write statements declared in CMakeLists.txt:
 # C:/Users/donle/OneDrive/Desktop/Particulas/CMakeLists.txt
@@ -115,83 +139,83 @@ build install/strip: phony CMakeFiles/install/strip.util
 #############################################
 # Utility command for uninstall
 
-build External/glfw/uninstall: phony External/glfw/CMakeFiles/uninstall
+build _deps/glfw-build/uninstall: phony _deps/glfw-build/CMakeFiles/uninstall
 
 
 #############################################
 # Utility command for edit_cache
 
-build External/glfw/CMakeFiles/edit_cache.util: CUSTOM_COMMAND
-  COMMAND = C:\WINDOWS\system32\cmd.exe /C "cd /D C:\Users\donle\OneDrive\Desktop\Particulas\build\External\glfw && C:\msys64\mingw64\bin\cmake.exe -E echo "No interactive CMake dialog available.""
+build _deps/glfw-build/CMakeFiles/edit_cache.util: CUSTOM_COMMAND
+  COMMAND = C:\WINDOWS\system32\cmd.exe /C "cd /D C:\Users\donle\OneDrive\Desktop\Particulas\build\_deps\glfw-build && C:\msys64\mingw64\bin\cmake.exe -E echo "No interactive CMake dialog available.""
   DESC = No interactive CMake dialog available...
   restat = 1
 
-build External/glfw/edit_cache: phony External/glfw/CMakeFiles/edit_cache.util
+build _deps/glfw-build/edit_cache: phony _deps/glfw-build/CMakeFiles/edit_cache.util
 
 
 #############################################
 # Utility command for rebuild_cache
 
-build External/glfw/CMakeFiles/rebuild_cache.util: CUSTOM_COMMAND
-  COMMAND = C:\WINDOWS\system32\cmd.exe /C "cd /D C:\Users\donle\OneDrive\Desktop\Particulas\build\External\glfw && C:\msys64\mingw64\bin\cmake.exe --regenerate-during-build -SC:\Users\donle\OneDrive\Desktop\Particulas -BC:\Users\donle\OneDrive\Desktop\Particulas\build"
+build _deps/glfw-build/CMakeFiles/rebuild_cache.util: CUSTOM_COMMAND
+  COMMAND = C:\WINDOWS\system32\cmd.exe /C "cd /D C:\Users\donle\OneDrive\Desktop\Particulas\build\_deps\glfw-build && C:\msys64\mingw64\bin\cmake.exe --regenerate-during-build -SC:\Users\donle\OneDrive\Desktop\Particulas -BC:\Users\donle\OneDrive\Desktop\Particulas\build"
   DESC = Running CMake to regenerate build system...
   pool = console
   restat = 1
 
-build External/glfw/rebuild_cache: phony External/glfw/CMakeFiles/rebuild_cache.util
+build _deps/glfw-build/rebuild_cache: phony _deps/glfw-build/CMakeFiles/rebuild_cache.util
 
 
 #############################################
 # Utility command for list_install_components
 
-build External/glfw/list_install_components: phony
+build _deps/glfw-build/list_install_components: phony
 
 
 #############################################
 # Utility command for install
 
-build External/glfw/CMakeFiles/install.util: CUSTOM_COMMAND External/glfw/all
-  COMMAND = C:\WINDOWS\system32\cmd.exe /C "cd /D C:\Users\donle\OneDrive\Desktop\Particulas\build\External\glfw && C:\msys64\mingw64\bin\cmake.exe -P cmake_install.cmake"
+build _deps/glfw-build/CMakeFiles/install.util: CUSTOM_COMMAND _deps/glfw-build/all
+  COMMAND = C:\WINDOWS\system32\cmd.exe /C "cd /D C:\Users\donle\OneDrive\Desktop\Particulas\build\_deps\glfw-build && C:\msys64\mingw64\bin\cmake.exe -P cmake_install.cmake"
   DESC = Install the project...
   pool = console
   restat = 1
 
-build External/glfw/install: phony External/glfw/CMakeFiles/install.util
+build _deps/glfw-build/install: phony _deps/glfw-build/CMakeFiles/install.util
 
 
 #############################################
 # Utility command for install/local
 
-build External/glfw/CMakeFiles/install/local.util: CUSTOM_COMMAND External/glfw/all
-  COMMAND = C:\WINDOWS\system32\cmd.exe /C "cd /D C:\Users\donle\OneDrive\Desktop\Particulas\build\External\glfw && C:\msys64\mingw64\bin\cmake.exe -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake"
+build _deps/glfw-build/CMakeFiles/install/local.util: CUSTOM_COMMAND _deps/glfw-build/all
+  COMMAND = C:\WINDOWS\system32\cmd.exe /C "cd /D C:\Users\donle\OneDrive\Desktop\Particulas\build\_deps\glfw-build && C:\msys64\mingw64\bin\cmake.exe -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake"
   DESC = Installing only the local directory...
   pool = console
   restat = 1
 
-build External/glfw/install/local: phony External/glfw/CMakeFiles/install/local.util
+build _deps/glfw-build/install/local: phony _deps/glfw-build/CMakeFiles/install/local.util
 
 
 #############################################
 # Utility command for install/strip
 
-build External/glfw/CMakeFiles/install/strip.util: CUSTOM_COMMAND External/glfw/all
-  COMMAND = C:\WINDOWS\system32\cmd.exe /C "cd /D C:\Users\donle\OneDrive\Desktop\Particulas\build\External\glfw && C:\msys64\mingw64\bin\cmake.exe -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake"
+build _deps/glfw-build/CMakeFiles/install/strip.util: CUSTOM_COMMAND _deps/glfw-build/all
+  COMMAND = C:\WINDOWS\system32\cmd.exe /C "cd /D C:\Users\donle\OneDrive\Desktop\Particulas\build\_deps\glfw-build && C:\msys64\mingw64\bin\cmake.exe -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake"
   DESC = Installing the project stripped...
   pool = console
   restat = 1
 
-build External/glfw/install/strip: phony External/glfw/CMakeFiles/install/strip.util
+build _deps/glfw-build/install/strip: phony _deps/glfw-build/CMakeFiles/install/strip.util
 
 
 #############################################
-# Custom command for External\glfw\CMakeFiles\uninstall
+# Custom command for _deps\glfw-build\CMakeFiles\uninstall
 
-build External/glfw/CMakeFiles/uninstall | ${cmake_ninja_workdir}External/glfw/CMakeFiles/uninstall: CUSTOM_COMMAND
-  COMMAND = C:\WINDOWS\system32\cmd.exe /C "cd /D C:\Users\donle\OneDrive\Desktop\Particulas\build\External\glfw && C:\msys64\mingw64\bin\cmake.exe -P C:/Users/donle/OneDrive/Desktop/Particulas/build/External/glfw/cmake_uninstall.cmake"
+build _deps/glfw-build/CMakeFiles/uninstall | ${cmake_ninja_workdir}_deps/glfw-build/CMakeFiles/uninstall: CUSTOM_COMMAND
+  COMMAND = C:\WINDOWS\system32\cmd.exe /C "cd /D C:\Users\donle\OneDrive\Desktop\Particulas\build\_deps\glfw-build && C:\msys64\mingw64\bin\cmake.exe -P C:/Users/donle/OneDrive/Desktop/Particulas/build/_deps/glfw-build/cmake_uninstall.cmake"
 
 # =============================================================================
 # Write statements declared in CMakeLists.txt:
-# C:/Users/donle/OneDrive/Desktop/Particulas/External/glfw/CMakeLists.txt
+# C:/Users/donle/OneDrive/Desktop/Particulas/build/_deps/glfw-src/CMakeLists.txt
 # =============================================================================
 
 # =============================================================================
@@ -203,215 +227,215 @@ build External/glfw/CMakeFiles/uninstall | ${cmake_ninja_workdir}External/glfw/C
 
 build cmake_object_order_depends_target_glfw: phony || .
 
-build External/glfw/src/CMakeFiles/glfw.dir/context.c.obj: C_COMPILER__glfw_unscanned_ C$:/Users/donle/OneDrive/Desktop/Particulas/External/glfw/src/context.c || cmake_object_order_depends_target_glfw
+build _deps/glfw-build/src/CMakeFiles/glfw.dir/context.c.obj: C_COMPILER__glfw_unscanned_ C$:/Users/donle/OneDrive/Desktop/Particulas/build/_deps/glfw-src/src/context.c || cmake_object_order_depends_target_glfw
   DEFINES = -DUNICODE -DWINVER=0x0501 -D_GLFW_WIN32 -D_UNICODE
-  DEP_FILE = External\glfw\src\CMakeFiles\glfw.dir\context.c.obj.d
+  DEP_FILE = _deps\glfw-build\src\CMakeFiles\glfw.dir\context.c.obj.d
   FLAGS = -std=c99 -Wall
-  INCLUDES = -IC:/Users/donle/OneDrive/Desktop/Particulas/External/glfw/include -IC:/Users/donle/OneDrive/Desktop/Particulas/External/glfw/src -IC:/Users/donle/OneDrive/Desktop/Particulas/build/External/glfw/src
-  OBJECT_DIR = External\glfw\src\CMakeFiles\glfw.dir
-  OBJECT_FILE_DIR = External\glfw\src\CMakeFiles\glfw.dir
-  TARGET_COMPILE_PDB = External\glfw\src\CMakeFiles\glfw.dir\glfw.pdb
-  TARGET_PDB = External\glfw\src\libglfw3.pdb
+  INCLUDES = -IC:/Users/donle/OneDrive/Desktop/Particulas/build/_deps/glfw-src/include -IC:/Users/donle/OneDrive/Desktop/Particulas/build/_deps/glfw-src/src -IC:/Users/donle/OneDrive/Desktop/Particulas/build/_deps/glfw-build/src
+  OBJECT_DIR = _deps\glfw-build\src\CMakeFiles\glfw.dir
+  OBJECT_FILE_DIR = _deps\glfw-build\src\CMakeFiles\glfw.dir
+  TARGET_COMPILE_PDB = _deps\glfw-build\src\CMakeFiles\glfw.dir\glfw.pdb
+  TARGET_PDB = _deps\glfw-build\src\libglfw3.pdb
 
-build External/glfw/src/CMakeFiles/glfw.dir/init.c.obj: C_COMPILER__glfw_unscanned_ C$:/Users/donle/OneDrive/Desktop/Particulas/External/glfw/src/init.c || cmake_object_order_depends_target_glfw
+build _deps/glfw-build/src/CMakeFiles/glfw.dir/init.c.obj: C_COMPILER__glfw_unscanned_ C$:/Users/donle/OneDrive/Desktop/Particulas/build/_deps/glfw-src/src/init.c || cmake_object_order_depends_target_glfw
   DEFINES = -DUNICODE -DWINVER=0x0501 -D_GLFW_WIN32 -D_UNICODE
-  DEP_FILE = External\glfw\src\CMakeFiles\glfw.dir\init.c.obj.d
+  DEP_FILE = _deps\glfw-build\src\CMakeFiles\glfw.dir\init.c.obj.d
   FLAGS = -std=c99 -Wall
-  INCLUDES = -IC:/Users/donle/OneDrive/Desktop/Particulas/External/glfw/include -IC:/Users/donle/OneDrive/Desktop/Particulas/External/glfw/src -IC:/Users/donle/OneDrive/Desktop/Particulas/build/External/glfw/src
-  OBJECT_DIR = External\glfw\src\CMakeFiles\glfw.dir
-  OBJECT_FILE_DIR = External\glfw\src\CMakeFiles\glfw.dir
-  TARGET_COMPILE_PDB = External\glfw\src\CMakeFiles\glfw.dir\glfw.pdb
-  TARGET_PDB = External\glfw\src\libglfw3.pdb
+  INCLUDES = -IC:/Users/donle/OneDrive/Desktop/Particulas/build/_deps/glfw-src/include -IC:/Users/donle/OneDrive/Desktop/Particulas/build/_deps/glfw-src/src -IC:/Users/donle/OneDrive/Desktop/Particulas/build/_deps/glfw-build/src
+  OBJECT_DIR = _deps\glfw-build\src\CMakeFiles\glfw.dir
+  OBJECT_FILE_DIR = _deps\glfw-build\src\CMakeFiles\glfw.dir
+  TARGET_COMPILE_PDB = _deps\glfw-build\src\CMakeFiles\glfw.dir\glfw.pdb
+  TARGET_PDB = _deps\glfw-build\src\libglfw3.pdb
 
-build External/glfw/src/CMakeFiles/glfw.dir/input.c.obj: C_COMPILER__glfw_unscanned_ C$:/Users/donle/OneDrive/Desktop/Particulas/External/glfw/src/input.c || cmake_object_order_depends_target_glfw
+build _deps/glfw-build/src/CMakeFiles/glfw.dir/input.c.obj: C_COMPILER__glfw_unscanned_ C$:/Users/donle/OneDrive/Desktop/Particulas/build/_deps/glfw-src/src/input.c || cmake_object_order_depends_target_glfw
   DEFINES = -DUNICODE -DWINVER=0x0501 -D_GLFW_WIN32 -D_UNICODE
-  DEP_FILE = External\glfw\src\CMakeFiles\glfw.dir\input.c.obj.d
+  DEP_FILE = _deps\glfw-build\src\CMakeFiles\glfw.dir\input.c.obj.d
   FLAGS = -std=c99 -Wall
-  INCLUDES = -IC:/Users/donle/OneDrive/Desktop/Particulas/External/glfw/include -IC:/Users/donle/OneDrive/Desktop/Particulas/External/glfw/src -IC:/Users/donle/OneDrive/Desktop/Particulas/build/External/glfw/src
-  OBJECT_DIR = External\glfw\src\CMakeFiles\glfw.dir
-  OBJECT_FILE_DIR = External\glfw\src\CMakeFiles\glfw.dir
-  TARGET_COMPILE_PDB = External\glfw\src\CMakeFiles\glfw.dir\glfw.pdb
-  TARGET_PDB = External\glfw\src\libglfw3.pdb
+  INCLUDES = -IC:/Users/donle/OneDrive/Desktop/Particulas/build/_deps/glfw-src/include -IC:/Users/donle/OneDrive/Desktop/Particulas/build/_deps/glfw-src/src -IC:/Users/donle/OneDrive/Desktop/Particulas/build/_deps/glfw-build/src
+  OBJECT_DIR = _deps\glfw-build\src\CMakeFiles\glfw.dir
+  OBJECT_FILE_DIR = _deps\glfw-build\src\CMakeFiles\glfw.dir
+  TARGET_COMPILE_PDB = _deps\glfw-build\src\CMakeFiles\glfw.dir\glfw.pdb
+  TARGET_PDB = _deps\glfw-build\src\libglfw3.pdb
 
-build External/glfw/src/CMakeFiles/glfw.dir/monitor.c.obj: C_COMPILER__glfw_unscanned_ C$:/Users/donle/OneDrive/Desktop/Particulas/External/glfw/src/monitor.c || cmake_object_order_depends_target_glfw
+build _deps/glfw-build/src/CMakeFiles/glfw.dir/monitor.c.obj: C_COMPILER__glfw_unscanned_ C$:/Users/donle/OneDrive/Desktop/Particulas/build/_deps/glfw-src/src/monitor.c || cmake_object_order_depends_target_glfw
   DEFINES = -DUNICODE -DWINVER=0x0501 -D_GLFW_WIN32 -D_UNICODE
-  DEP_FILE = External\glfw\src\CMakeFiles\glfw.dir\monitor.c.obj.d
+  DEP_FILE = _deps\glfw-build\src\CMakeFiles\glfw.dir\monitor.c.obj.d
   FLAGS = -std=c99 -Wall
-  INCLUDES = -IC:/Users/donle/OneDrive/Desktop/Particulas/External/glfw/include -IC:/Users/donle/OneDrive/Desktop/Particulas/External/glfw/src -IC:/Users/donle/OneDrive/Desktop/Particulas/build/External/glfw/src
-  OBJECT_DIR = External\glfw\src\CMakeFiles\glfw.dir
-  OBJECT_FILE_DIR = External\glfw\src\CMakeFiles\glfw.dir
-  TARGET_COMPILE_PDB = External\glfw\src\CMakeFiles\glfw.dir\glfw.pdb
-  TARGET_PDB = External\glfw\src\libglfw3.pdb
+  INCLUDES = -IC:/Users/donle/OneDrive/Desktop/Particulas/build/_deps/glfw-src/include -IC:/Users/donle/OneDrive/Desktop/Particulas/build/_deps/glfw-src/src -IC:/Users/donle/OneDrive/Desktop/Particulas/build/_deps/glfw-build/src
+  OBJECT_DIR = _deps\glfw-build\src\CMakeFiles\glfw.dir
+  OBJECT_FILE_DIR = _deps\glfw-build\src\CMakeFiles\glfw.dir
+  TARGET_COMPILE_PDB = _deps\glfw-build\src\CMakeFiles\glfw.dir\glfw.pdb
+  TARGET_PDB = _deps\glfw-build\src\libglfw3.pdb
 
-build External/glfw/src/CMakeFiles/glfw.dir/platform.c.obj: C_COMPILER__glfw_unscanned_ C$:/Users/donle/OneDrive/Desktop/Particulas/External/glfw/src/platform.c || cmake_object_order_depends_target_glfw
+build _deps/glfw-build/src/CMakeFiles/glfw.dir/platform.c.obj: C_COMPILER__glfw_unscanned_ C$:/Users/donle/OneDrive/Desktop/Particulas/build/_deps/glfw-src/src/platform.c || cmake_object_order_depends_target_glfw
   DEFINES = -DUNICODE -DWINVER=0x0501 -D_GLFW_WIN32 -D_UNICODE
-  DEP_FILE = External\glfw\src\CMakeFiles\glfw.dir\platform.c.obj.d
+  DEP_FILE = _deps\glfw-build\src\CMakeFiles\glfw.dir\platform.c.obj.d
   FLAGS = -std=c99 -Wall
-  INCLUDES = -IC:/Users/donle/OneDrive/Desktop/Particulas/External/glfw/include -IC:/Users/donle/OneDrive/Desktop/Particulas/External/glfw/src -IC:/Users/donle/OneDrive/Desktop/Particulas/build/External/glfw/src
-  OBJECT_DIR = External\glfw\src\CMakeFiles\glfw.dir
-  OBJECT_FILE_DIR = External\glfw\src\CMakeFiles\glfw.dir
-  TARGET_COMPILE_PDB = External\glfw\src\CMakeFiles\glfw.dir\glfw.pdb
-  TARGET_PDB = External\glfw\src\libglfw3.pdb
+  INCLUDES = -IC:/Users/donle/OneDrive/Desktop/Particulas/build/_deps/glfw-src/include -IC:/Users/donle/OneDrive/Desktop/Particulas/build/_deps/glfw-src/src -IC:/Users/donle/OneDrive/Desktop/Particulas/build/_deps/glfw-build/src
+  OBJECT_DIR = _deps\glfw-build\src\CMakeFiles\glfw.dir
+  OBJECT_FILE_DIR = _deps\glfw-build\src\CMakeFiles\glfw.dir
+  TARGET_COMPILE_PDB = _deps\glfw-build\src\CMakeFiles\glfw.dir\glfw.pdb
+  TARGET_PDB = _deps\glfw-build\src\libglfw3.pdb
 
-build External/glfw/src/CMakeFiles/glfw.dir/vulkan.c.obj: C_COMPILER__glfw_unscanned_ C$:/Users/donle/OneDrive/Desktop/Particulas/External/glfw/src/vulkan.c || cmake_object_order_depends_target_glfw
+build _deps/glfw-build/src/CMakeFiles/glfw.dir/vulkan.c.obj: C_COMPILER__glfw_unscanned_ C$:/Users/donle/OneDrive/Desktop/Particulas/build/_deps/glfw-src/src/vulkan.c || cmake_object_order_depends_target_glfw
   DEFINES = -DUNICODE -DWINVER=0x0501 -D_GLFW_WIN32 -D_UNICODE
-  DEP_FILE = External\glfw\src\CMakeFiles\glfw.dir\vulkan.c.obj.d
+  DEP_FILE = _deps\glfw-build\src\CMakeFiles\glfw.dir\vulkan.c.obj.d
   FLAGS = -std=c99 -Wall
-  INCLUDES = -IC:/Users/donle/OneDrive/Desktop/Particulas/External/glfw/include -IC:/Users/donle/OneDrive/Desktop/Particulas/External/glfw/src -IC:/Users/donle/OneDrive/Desktop/Particulas/build/External/glfw/src
-  OBJECT_DIR = External\glfw\src\CMakeFiles\glfw.dir
-  OBJECT_FILE_DIR = External\glfw\src\CMakeFiles\glfw.dir
-  TARGET_COMPILE_PDB = External\glfw\src\CMakeFiles\glfw.dir\glfw.pdb
-  TARGET_PDB = External\glfw\src\libglfw3.pdb
+  INCLUDES = -IC:/Users/donle/OneDrive/Desktop/Particulas/build/_deps/glfw-src/include -IC:/Users/donle/OneDrive/Desktop/Particulas/build/_deps/glfw-src/src -IC:/Users/donle/OneDrive/Desktop/Particulas/build/_deps/glfw-build/src
+  OBJECT_DIR = _deps\glfw-build\src\CMakeFiles\glfw.dir
+  OBJECT_FILE_DIR = _deps\glfw-build\src\CMakeFiles\glfw.dir
+  TARGET_COMPILE_PDB = _deps\glfw-build\src\CMakeFiles\glfw.dir\glfw.pdb
+  TARGET_PDB = _deps\glfw-build\src\libglfw3.pdb
 
-build External/glfw/src/CMakeFiles/glfw.dir/window.c.obj: C_COMPILER__glfw_unscanned_ C$:/Users/donle/OneDrive/Desktop/Particulas/External/glfw/src/window.c || cmake_object_order_depends_target_glfw
+build _deps/glfw-build/src/CMakeFiles/glfw.dir/window.c.obj: C_COMPILER__glfw_unscanned_ C$:/Users/donle/OneDrive/Desktop/Particulas/build/_deps/glfw-src/src/window.c || cmake_object_order_depends_target_glfw
   DEFINES = -DUNICODE -DWINVER=0x0501 -D_GLFW_WIN32 -D_UNICODE
-  DEP_FILE = External\glfw\src\CMakeFiles\glfw.dir\window.c.obj.d
+  DEP_FILE = _deps\glfw-build\src\CMakeFiles\glfw.dir\window.c.obj.d
   FLAGS = -std=c99 -Wall
-  INCLUDES = -IC:/Users/donle/OneDrive/Desktop/Particulas/External/glfw/include -IC:/Users/donle/OneDrive/Desktop/Particulas/External/glfw/src -IC:/Users/donle/OneDrive/Desktop/Particulas/build/External/glfw/src
-  OBJECT_DIR = External\glfw\src\CMakeFiles\glfw.dir
-  OBJECT_FILE_DIR = External\glfw\src\CMakeFiles\glfw.dir
-  TARGET_COMPILE_PDB = External\glfw\src\CMakeFiles\glfw.dir\glfw.pdb
-  TARGET_PDB = External\glfw\src\libglfw3.pdb
+  INCLUDES = -IC:/Users/donle/OneDrive/Desktop/Particulas/build/_deps/glfw-src/include -IC:/Users/donle/OneDrive/Desktop/Particulas/build/_deps/glfw-src/src -IC:/Users/donle/OneDrive/Desktop/Particulas/build/_deps/glfw-build/src
+  OBJECT_DIR = _deps\glfw-build\src\CMakeFiles\glfw.dir
+  OBJECT_FILE_DIR = _deps\glfw-build\src\CMakeFiles\glfw.dir
+  TARGET_COMPILE_PDB = _deps\glfw-build\src\CMakeFiles\glfw.dir\glfw.pdb
+  TARGET_PDB = _deps\glfw-build\src\libglfw3.pdb
 
-build External/glfw/src/CMakeFiles/glfw.dir/egl_context.c.obj: C_COMPILER__glfw_unscanned_ C$:/Users/donle/OneDrive/Desktop/Particulas/External/glfw/src/egl_context.c || cmake_object_order_depends_target_glfw
+build _deps/glfw-build/src/CMakeFiles/glfw.dir/egl_context.c.obj: C_COMPILER__glfw_unscanned_ C$:/Users/donle/OneDrive/Desktop/Particulas/build/_deps/glfw-src/src/egl_context.c || cmake_object_order_depends_target_glfw
   DEFINES = -DUNICODE -DWINVER=0x0501 -D_GLFW_WIN32 -D_UNICODE
-  DEP_FILE = External\glfw\src\CMakeFiles\glfw.dir\egl_context.c.obj.d
+  DEP_FILE = _deps\glfw-build\src\CMakeFiles\glfw.dir\egl_context.c.obj.d
   FLAGS = -std=c99 -Wall
-  INCLUDES = -IC:/Users/donle/OneDrive/Desktop/Particulas/External/glfw/include -IC:/Users/donle/OneDrive/Desktop/Particulas/External/glfw/src -IC:/Users/donle/OneDrive/Desktop/Particulas/build/External/glfw/src
-  OBJECT_DIR = External\glfw\src\CMakeFiles\glfw.dir
-  OBJECT_FILE_DIR = External\glfw\src\CMakeFiles\glfw.dir
-  TARGET_COMPILE_PDB = External\glfw\src\CMakeFiles\glfw.dir\glfw.pdb
-  TARGET_PDB = External\glfw\src\libglfw3.pdb
+  INCLUDES = -IC:/Users/donle/OneDrive/Desktop/Particulas/build/_deps/glfw-src/include -IC:/Users/donle/OneDrive/Desktop/Particulas/build/_deps/glfw-src/src -IC:/Users/donle/OneDrive/Desktop/Particulas/build/_deps/glfw-build/src
+  OBJECT_DIR = _deps\glfw-build\src\CMakeFiles\glfw.dir
+  OBJECT_FILE_DIR = _deps\glfw-build\src\CMakeFiles\glfw.dir
+  TARGET_COMPILE_PDB = _deps\glfw-build\src\CMakeFiles\glfw.dir\glfw.pdb
+  TARGET_PDB = _deps\glfw-build\src\libglfw3.pdb
 
-build External/glfw/src/CMakeFiles/glfw.dir/osmesa_context.c.obj: C_COMPILER__glfw_unscanned_ C$:/Users/donle/OneDrive/Desktop/Particulas/External/glfw/src/osmesa_context.c || cmake_object_order_depends_target_glfw
+build _deps/glfw-build/src/CMakeFiles/glfw.dir/osmesa_context.c.obj: C_COMPILER__glfw_unscanned_ C$:/Users/donle/OneDrive/Desktop/Particulas/build/_deps/glfw-src/src/osmesa_context.c || cmake_object_order_depends_target_glfw
   DEFINES = -DUNICODE -DWINVER=0x0501 -D_GLFW_WIN32 -D_UNICODE
-  DEP_FILE = External\glfw\src\CMakeFiles\glfw.dir\osmesa_context.c.obj.d
+  DEP_FILE = _deps\glfw-build\src\CMakeFiles\glfw.dir\osmesa_context.c.obj.d
   FLAGS = -std=c99 -Wall
-  INCLUDES = -IC:/Users/donle/OneDrive/Desktop/Particulas/External/glfw/include -IC:/Users/donle/OneDrive/Desktop/Particulas/External/glfw/src -IC:/Users/donle/OneDrive/Desktop/Particulas/build/External/glfw/src
-  OBJECT_DIR = External\glfw\src\CMakeFiles\glfw.dir
-  OBJECT_FILE_DIR = External\glfw\src\CMakeFiles\glfw.dir
-  TARGET_COMPILE_PDB = External\glfw\src\CMakeFiles\glfw.dir\glfw.pdb
-  TARGET_PDB = External\glfw\src\libglfw3.pdb
+  INCLUDES = -IC:/Users/donle/OneDrive/Desktop/Particulas/build/_deps/glfw-src/include -IC:/Users/donle/OneDrive/Desktop/Particulas/build/_deps/glfw-src/src -IC:/Users/donle/OneDrive/Desktop/Particulas/build/_deps/glfw-build/src
+  OBJECT_DIR = _deps\glfw-build\src\CMakeFiles\glfw.dir
+  OBJECT_FILE_DIR = _deps\glfw-build\src\CMakeFiles\glfw.dir
+  TARGET_COMPILE_PDB = _deps\glfw-build\src\CMakeFiles\glfw.dir\glfw.pdb
+  TARGET_PDB = _deps\glfw-build\src\libglfw3.pdb
 
-build External/glfw/src/CMakeFiles/glfw.dir/null_init.c.obj: C_COMPILER__glfw_unscanned_ C$:/Users/donle/OneDrive/Desktop/Particulas/External/glfw/src/null_init.c || cmake_object_order_depends_target_glfw
+build _deps/glfw-build/src/CMakeFiles/glfw.dir/null_init.c.obj: C_COMPILER__glfw_unscanned_ C$:/Users/donle/OneDrive/Desktop/Particulas/build/_deps/glfw-src/src/null_init.c || cmake_object_order_depends_target_glfw
   DEFINES = -DUNICODE -DWINVER=0x0501 -D_GLFW_WIN32 -D_UNICODE
-  DEP_FILE = External\glfw\src\CMakeFiles\glfw.dir\null_init.c.obj.d
+  DEP_FILE = _deps\glfw-build\src\CMakeFiles\glfw.dir\null_init.c.obj.d
   FLAGS = -std=c99 -Wall
-  INCLUDES = -IC:/Users/donle/OneDrive/Desktop/Particulas/External/glfw/include -IC:/Users/donle/OneDrive/Desktop/Particulas/External/glfw/src -IC:/Users/donle/OneDrive/Desktop/Particulas/build/External/glfw/src
-  OBJECT_DIR = External\glfw\src\CMakeFiles\glfw.dir
-  OBJECT_FILE_DIR = External\glfw\src\CMakeFiles\glfw.dir
-  TARGET_COMPILE_PDB = External\glfw\src\CMakeFiles\glfw.dir\glfw.pdb
-  TARGET_PDB = External\glfw\src\libglfw3.pdb
+  INCLUDES = -IC:/Users/donle/OneDrive/Desktop/Particulas/build/_deps/glfw-src/include -IC:/Users/donle/OneDrive/Desktop/Particulas/build/_deps/glfw-src/src -IC:/Users/donle/OneDrive/Desktop/Particulas/build/_deps/glfw-build/src
+  OBJECT_DIR = _deps\glfw-build\src\CMakeFiles\glfw.dir
+  OBJECT_FILE_DIR = _deps\glfw-build\src\CMakeFiles\glfw.dir
+  TARGET_COMPILE_PDB = _deps\glfw-build\src\CMakeFiles\glfw.dir\glfw.pdb
+  TARGET_PDB = _deps\glfw-build\src\libglfw3.pdb
 
-build External/glfw/src/CMakeFiles/glfw.dir/null_monitor.c.obj: C_COMPILER__glfw_unscanned_ C$:/Users/donle/OneDrive/Desktop/Particulas/External/glfw/src/null_monitor.c || cmake_object_order_depends_target_glfw
+build _deps/glfw-build/src/CMakeFiles/glfw.dir/null_monitor.c.obj: C_COMPILER__glfw_unscanned_ C$:/Users/donle/OneDrive/Desktop/Particulas/build/_deps/glfw-src/src/null_monitor.c || cmake_object_order_depends_target_glfw
   DEFINES = -DUNICODE -DWINVER=0x0501 -D_GLFW_WIN32 -D_UNICODE
-  DEP_FILE = External\glfw\src\CMakeFiles\glfw.dir\null_monitor.c.obj.d
+  DEP_FILE = _deps\glfw-build\src\CMakeFiles\glfw.dir\null_monitor.c.obj.d
   FLAGS = -std=c99 -Wall
-  INCLUDES = -IC:/Users/donle/OneDrive/Desktop/Particulas/External/glfw/include -IC:/Users/donle/OneDrive/Desktop/Particulas/External/glfw/src -IC:/Users/donle/OneDrive/Desktop/Particulas/build/External/glfw/src
-  OBJECT_DIR = External\glfw\src\CMakeFiles\glfw.dir
-  OBJECT_FILE_DIR = External\glfw\src\CMakeFiles\glfw.dir
-  TARGET_COMPILE_PDB = External\glfw\src\CMakeFiles\glfw.dir\glfw.pdb
-  TARGET_PDB = External\glfw\src\libglfw3.pdb
+  INCLUDES = -IC:/Users/donle/OneDrive/Desktop/Particulas/build/_deps/glfw-src/include -IC:/Users/donle/OneDrive/Desktop/Particulas/build/_deps/glfw-src/src -IC:/Users/donle/OneDrive/Desktop/Particulas/build/_deps/glfw-build/src
+  OBJECT_DIR = _deps\glfw-build\src\CMakeFiles\glfw.dir
+  OBJECT_FILE_DIR = _deps\glfw-build\src\CMakeFiles\glfw.dir
+  TARGET_COMPILE_PDB = _deps\glfw-build\src\CMakeFiles\glfw.dir\glfw.pdb
+  TARGET_PDB = _deps\glfw-build\src\libglfw3.pdb
 
-build External/glfw/src/CMakeFiles/glfw.dir/null_window.c.obj: C_COMPILER__glfw_unscanned_ C$:/Users/donle/OneDrive/Desktop/Particulas/External/glfw/src/null_window.c || cmake_object_order_depends_target_glfw
+build _deps/glfw-build/src/CMakeFiles/glfw.dir/null_window.c.obj: C_COMPILER__glfw_unscanned_ C$:/Users/donle/OneDrive/Desktop/Particulas/build/_deps/glfw-src/src/null_window.c || cmake_object_order_depends_target_glfw
   DEFINES = -DUNICODE -DWINVER=0x0501 -D_GLFW_WIN32 -D_UNICODE
-  DEP_FILE = External\glfw\src\CMakeFiles\glfw.dir\null_window.c.obj.d
+  DEP_FILE = _deps\glfw-build\src\CMakeFiles\glfw.dir\null_window.c.obj.d
   FLAGS = -std=c99 -Wall
-  INCLUDES = -IC:/Users/donle/OneDrive/Desktop/Particulas/External/glfw/include -IC:/Users/donle/OneDrive/Desktop/Particulas/External/glfw/src -IC:/Users/donle/OneDrive/Desktop/Particulas/build/External/glfw/src
-  OBJECT_DIR = External\glfw\src\CMakeFiles\glfw.dir
-  OBJECT_FILE_DIR = External\glfw\src\CMakeFiles\glfw.dir
-  TARGET_COMPILE_PDB = External\glfw\src\CMakeFiles\glfw.dir\glfw.pdb
-  TARGET_PDB = External\glfw\src\libglfw3.pdb
+  INCLUDES = -IC:/Users/donle/OneDrive/Desktop/Particulas/build/_deps/glfw-src/include -IC:/Users/donle/OneDrive/Desktop/Particulas/build/_deps/glfw-src/src -IC:/Users/donle/OneDrive/Desktop/Particulas/build/_deps/glfw-build/src
+  OBJECT_DIR = _deps\glfw-build\src\CMakeFiles\glfw.dir
+  OBJECT_FILE_DIR = _deps\glfw-build\src\CMakeFiles\glfw.dir
+  TARGET_COMPILE_PDB = _deps\glfw-build\src\CMakeFiles\glfw.dir\glfw.pdb
+  TARGET_PDB = _deps\glfw-build\src\libglfw3.pdb
 
-build External/glfw/src/CMakeFiles/glfw.dir/null_joystick.c.obj: C_COMPILER__glfw_unscanned_ C$:/Users/donle/OneDrive/Desktop/Particulas/External/glfw/src/null_joystick.c || cmake_object_order_depends_target_glfw
+build _deps/glfw-build/src/CMakeFiles/glfw.dir/null_joystick.c.obj: C_COMPILER__glfw_unscanned_ C$:/Users/donle/OneDrive/Desktop/Particulas/build/_deps/glfw-src/src/null_joystick.c || cmake_object_order_depends_target_glfw
   DEFINES = -DUNICODE -DWINVER=0x0501 -D_GLFW_WIN32 -D_UNICODE
-  DEP_FILE = External\glfw\src\CMakeFiles\glfw.dir\null_joystick.c.obj.d
+  DEP_FILE = _deps\glfw-build\src\CMakeFiles\glfw.dir\null_joystick.c.obj.d
   FLAGS = -std=c99 -Wall
-  INCLUDES = -IC:/Users/donle/OneDrive/Desktop/Particulas/External/glfw/include -IC:/Users/donle/OneDrive/Desktop/Particulas/External/glfw/src -IC:/Users/donle/OneDrive/Desktop/Particulas/build/External/glfw/src
-  OBJECT_DIR = External\glfw\src\CMakeFiles\glfw.dir
-  OBJECT_FILE_DIR = External\glfw\src\CMakeFiles\glfw.dir
-  TARGET_COMPILE_PDB = External\glfw\src\CMakeFiles\glfw.dir\glfw.pdb
-  TARGET_PDB = External\glfw\src\libglfw3.pdb
+  INCLUDES = -IC:/Users/donle/OneDrive/Desktop/Particulas/build/_deps/glfw-src/include -IC:/Users/donle/OneDrive/Desktop/Particulas/build/_deps/glfw-src/src -IC:/Users/donle/OneDrive/Desktop/Particulas/build/_deps/glfw-build/src
+  OBJECT_DIR = _deps\glfw-build\src\CMakeFiles\glfw.dir
+  OBJECT_FILE_DIR = _deps\glfw-build\src\CMakeFiles\glfw.dir
+  TARGET_COMPILE_PDB = _deps\glfw-build\src\CMakeFiles\glfw.dir\glfw.pdb
+  TARGET_PDB = _deps\glfw-build\src\libglfw3.pdb
 
-build External/glfw/src/CMakeFiles/glfw.dir/win32_module.c.obj: C_COMPILER__glfw_unscanned_ C$:/Users/donle/OneDrive/Desktop/Particulas/External/glfw/src/win32_module.c || cmake_object_order_depends_target_glfw
+build _deps/glfw-build/src/CMakeFiles/glfw.dir/win32_module.c.obj: C_COMPILER__glfw_unscanned_ C$:/Users/donle/OneDrive/Desktop/Particulas/build/_deps/glfw-src/src/win32_module.c || cmake_object_order_depends_target_glfw
   DEFINES = -DUNICODE -DWINVER=0x0501 -D_GLFW_WIN32 -D_UNICODE
-  DEP_FILE = External\glfw\src\CMakeFiles\glfw.dir\win32_module.c.obj.d
+  DEP_FILE = _deps\glfw-build\src\CMakeFiles\glfw.dir\win32_module.c.obj.d
   FLAGS = -std=c99 -Wall
-  INCLUDES = -IC:/Users/donle/OneDrive/Desktop/Particulas/External/glfw/include -IC:/Users/donle/OneDrive/Desktop/Particulas/External/glfw/src -IC:/Users/donle/OneDrive/Desktop/Particulas/build/External/glfw/src
-  OBJECT_DIR = External\glfw\src\CMakeFiles\glfw.dir
-  OBJECT_FILE_DIR = External\glfw\src\CMakeFiles\glfw.dir
-  TARGET_COMPILE_PDB = External\glfw\src\CMakeFiles\glfw.dir\glfw.pdb
-  TARGET_PDB = External\glfw\src\libglfw3.pdb
+  INCLUDES = -IC:/Users/donle/OneDrive/Desktop/Particulas/build/_deps/glfw-src/include -IC:/Users/donle/OneDrive/Desktop/Particulas/build/_deps/glfw-src/src -IC:/Users/donle/OneDrive/Desktop/Particulas/build/_deps/glfw-build/src
+  OBJECT_DIR = _deps\glfw-build\src\CMakeFiles\glfw.dir
+  OBJECT_FILE_DIR = _deps\glfw-build\src\CMakeFiles\glfw.dir
+  TARGET_COMPILE_PDB = _deps\glfw-build\src\CMakeFiles\glfw.dir\glfw.pdb
+  TARGET_PDB = _deps\glfw-build\src\libglfw3.pdb
 
-build External/glfw/src/CMakeFiles/glfw.dir/win32_time.c.obj: C_COMPILER__glfw_unscanned_ C$:/Users/donle/OneDrive/Desktop/Particulas/External/glfw/src/win32_time.c || cmake_object_order_depends_target_glfw
+build _deps/glfw-build/src/CMakeFiles/glfw.dir/win32_time.c.obj: C_COMPILER__glfw_unscanned_ C$:/Users/donle/OneDrive/Desktop/Particulas/build/_deps/glfw-src/src/win32_time.c || cmake_object_order_depends_target_glfw
   DEFINES = -DUNICODE -DWINVER=0x0501 -D_GLFW_WIN32 -D_UNICODE
-  DEP_FILE = External\glfw\src\CMakeFiles\glfw.dir\win32_time.c.obj.d
+  DEP_FILE = _deps\glfw-build\src\CMakeFiles\glfw.dir\win32_time.c.obj.d
   FLAGS = -std=c99 -Wall
-  INCLUDES = -IC:/Users/donle/OneDrive/Desktop/Particulas/External/glfw/include -IC:/Users/donle/OneDrive/Desktop/Particulas/External/glfw/src -IC:/Users/donle/OneDrive/Desktop/Particulas/build/External/glfw/src
-  OBJECT_DIR = External\glfw\src\CMakeFiles\glfw.dir
-  OBJECT_FILE_DIR = External\glfw\src\CMakeFiles\glfw.dir
-  TARGET_COMPILE_PDB = External\glfw\src\CMakeFiles\glfw.dir\glfw.pdb
-  TARGET_PDB = External\glfw\src\libglfw3.pdb
+  INCLUDES = -IC:/Users/donle/OneDrive/Desktop/Particulas/build/_deps/glfw-src/include -IC:/Users/donle/OneDrive/Desktop/Particulas/build/_deps/glfw-src/src -IC:/Users/donle/OneDrive/Desktop/Particulas/build/_deps/glfw-build/src
+  OBJECT_DIR = _deps\glfw-build\src\CMakeFiles\glfw.dir
+  OBJECT_FILE_DIR = _deps\glfw-build\src\CMakeFiles\glfw.dir
+  TARGET_COMPILE_PDB = _deps\glfw-build\src\CMakeFiles\glfw.dir\glfw.pdb
+  TARGET_PDB = _deps\glfw-build\src\libglfw3.pdb
 
-build External/glfw/src/CMakeFiles/glfw.dir/win32_thread.c.obj: C_COMPILER__glfw_unscanned_ C$:/Users/donle/OneDrive/Desktop/Particulas/External/glfw/src/win32_thread.c || cmake_object_order_depends_target_glfw
+build _deps/glfw-build/src/CMakeFiles/glfw.dir/win32_thread.c.obj: C_COMPILER__glfw_unscanned_ C$:/Users/donle/OneDrive/Desktop/Particulas/build/_deps/glfw-src/src/win32_thread.c || cmake_object_order_depends_target_glfw
   DEFINES = -DUNICODE -DWINVER=0x0501 -D_GLFW_WIN32 -D_UNICODE
-  DEP_FILE = External\glfw\src\CMakeFiles\glfw.dir\win32_thread.c.obj.d
+  DEP_FILE = _deps\glfw-build\src\CMakeFiles\glfw.dir\win32_thread.c.obj.d
   FLAGS = -std=c99 -Wall
-  INCLUDES = -IC:/Users/donle/OneDrive/Desktop/Particulas/External/glfw/include -IC:/Users/donle/OneDrive/Desktop/Particulas/External/glfw/src -IC:/Users/donle/OneDrive/Desktop/Particulas/build/External/glfw/src
-  OBJECT_DIR = External\glfw\src\CMakeFiles\glfw.dir
-  OBJECT_FILE_DIR = External\glfw\src\CMakeFiles\glfw.dir
-  TARGET_COMPILE_PDB = External\glfw\src\CMakeFiles\glfw.dir\glfw.pdb
-  TARGET_PDB = External\glfw\src\libglfw3.pdb
+  INCLUDES = -IC:/Users/donle/OneDrive/Desktop/Particulas/build/_deps/glfw-src/include -IC:/Users/donle/OneDrive/Desktop/Particulas/build/_deps/glfw-src/src -IC:/Users/donle/OneDrive/Desktop/Particulas/build/_deps/glfw-build/src
+  OBJECT_DIR = _deps\glfw-build\src\CMakeFiles\glfw.dir
+  OBJECT_FILE_DIR = _deps\glfw-build\src\CMakeFiles\glfw.dir
+  TARGET_COMPILE_PDB = _deps\glfw-build\src\CMakeFiles\glfw.dir\glfw.pdb
+  TARGET_PDB = _deps\glfw-build\src\libglfw3.pdb
 
-build External/glfw/src/CMakeFiles/glfw.dir/win32_init.c.obj: C_COMPILER__glfw_unscanned_ C$:/Users/donle/OneDrive/Desktop/Particulas/External/glfw/src/win32_init.c || cmake_object_order_depends_target_glfw
+build _deps/glfw-build/src/CMakeFiles/glfw.dir/win32_init.c.obj: C_COMPILER__glfw_unscanned_ C$:/Users/donle/OneDrive/Desktop/Particulas/build/_deps/glfw-src/src/win32_init.c || cmake_object_order_depends_target_glfw
   DEFINES = -DUNICODE -DWINVER=0x0501 -D_GLFW_WIN32 -D_UNICODE
-  DEP_FILE = External\glfw\src\CMakeFiles\glfw.dir\win32_init.c.obj.d
+  DEP_FILE = _deps\glfw-build\src\CMakeFiles\glfw.dir\win32_init.c.obj.d
   FLAGS = -std=c99 -Wall
-  INCLUDES = -IC:/Users/donle/OneDrive/Desktop/Particulas/External/glfw/include -IC:/Users/donle/OneDrive/Desktop/Particulas/External/glfw/src -IC:/Users/donle/OneDrive/Desktop/Particulas/build/External/glfw/src
-  OBJECT_DIR = External\glfw\src\CMakeFiles\glfw.dir
-  OBJECT_FILE_DIR = External\glfw\src\CMakeFiles\glfw.dir
-  TARGET_COMPILE_PDB = External\glfw\src\CMakeFiles\glfw.dir\glfw.pdb
-  TARGET_PDB = External\glfw\src\libglfw3.pdb
+  INCLUDES = -IC:/Users/donle/OneDrive/Desktop/Particulas/build/_deps/glfw-src/include -IC:/Users/donle/OneDrive/Desktop/Particulas/build/_deps/glfw-src/src -IC:/Users/donle/OneDrive/Desktop/Particulas/build/_deps/glfw-build/src
+  OBJECT_DIR = _deps\glfw-build\src\CMakeFiles\glfw.dir
+  OBJECT_FILE_DIR = _deps\glfw-build\src\CMakeFiles\glfw.dir
+  TARGET_COMPILE_PDB = _deps\glfw-build\src\CMakeFiles\glfw.dir\glfw.pdb
+  TARGET_PDB = _deps\glfw-build\src\libglfw3.pdb
 
-build External/glfw/src/CMakeFiles/glfw.dir/win32_joystick.c.obj: C_COMPILER__glfw_unscanned_ C$:/Users/donle/OneDrive/Desktop/Particulas/External/glfw/src/win32_joystick.c || cmake_object_order_depends_target_glfw
+build _deps/glfw-build/src/CMakeFiles/glfw.dir/win32_joystick.c.obj: C_COMPILER__glfw_unscanned_ C$:/Users/donle/OneDrive/Desktop/Particulas/build/_deps/glfw-src/src/win32_joystick.c || cmake_object_order_depends_target_glfw
   DEFINES = -DUNICODE -DWINVER=0x0501 -D_GLFW_WIN32 -D_UNICODE
-  DEP_FILE = External\glfw\src\CMakeFiles\glfw.dir\win32_joystick.c.obj.d
+  DEP_FILE = _deps\glfw-build\src\CMakeFiles\glfw.dir\win32_joystick.c.obj.d
   FLAGS = -std=c99 -Wall
-  INCLUDES = -IC:/Users/donle/OneDrive/Desktop/Particulas/External/glfw/include -IC:/Users/donle/OneDrive/Desktop/Particulas/External/glfw/src -IC:/Users/donle/OneDrive/Desktop/Particulas/build/External/glfw/src
-  OBJECT_DIR = External\glfw\src\CMakeFiles\glfw.dir
-  OBJECT_FILE_DIR = External\glfw\src\CMakeFiles\glfw.dir
-  TARGET_COMPILE_PDB = External\glfw\src\CMakeFiles\glfw.dir\glfw.pdb
-  TARGET_PDB = External\glfw\src\libglfw3.pdb
+  INCLUDES = -IC:/Users/donle/OneDrive/Desktop/Particulas/build/_deps/glfw-src/include -IC:/Users/donle/OneDrive/Desktop/Particulas/build/_deps/glfw-src/src -IC:/Users/donle/OneDrive/Desktop/Particulas/build/_deps/glfw-build/src
+  OBJECT_DIR = _deps\glfw-build\src\CMakeFiles\glfw.dir
+  OBJECT_FILE_DIR = _deps\glfw-build\src\CMakeFiles\glfw.dir
+  TARGET_COMPILE_PDB = _deps\glfw-build\src\CMakeFiles\glfw.dir\glfw.pdb
+  TARGET_PDB = _deps\glfw-build\src\libglfw3.pdb
 
-build External/glfw/src/CMakeFiles/glfw.dir/win32_monitor.c.obj: C_COMPILER__glfw_unscanned_ C$:/Users/donle/OneDrive/Desktop/Particulas/External/glfw/src/win32_monitor.c || cmake_object_order_depends_target_glfw
+build _deps/glfw-build/src/CMakeFiles/glfw.dir/win32_monitor.c.obj: C_COMPILER__glfw_unscanned_ C$:/Users/donle/OneDrive/Desktop/Particulas/build/_deps/glfw-src/src/win32_monitor.c || cmake_object_order_depends_target_glfw
   DEFINES = -DUNICODE -DWINVER=0x0501 -D_GLFW_WIN32 -D_UNICODE
-  DEP_FILE = External\glfw\src\CMakeFiles\glfw.dir\win32_monitor.c.obj.d
+  DEP_FILE = _deps\glfw-build\src\CMakeFiles\glfw.dir\win32_monitor.c.obj.d
   FLAGS = -std=c99 -Wall
-  INCLUDES = -IC:/Users/donle/OneDrive/Desktop/Particulas/External/glfw/include -IC:/Users/donle/OneDrive/Desktop/Particulas/External/glfw/src -IC:/Users/donle/OneDrive/Desktop/Particulas/build/External/glfw/src
-  OBJECT_DIR = External\glfw\src\CMakeFiles\glfw.dir
-  OBJECT_FILE_DIR = External\glfw\src\CMakeFiles\glfw.dir
-  TARGET_COMPILE_PDB = External\glfw\src\CMakeFiles\glfw.dir\glfw.pdb
-  TARGET_PDB = External\glfw\src\libglfw3.pdb
+  INCLUDES = -IC:/Users/donle/OneDrive/Desktop/Particulas/build/_deps/glfw-src/include -IC:/Users/donle/OneDrive/Desktop/Particulas/build/_deps/glfw-src/src -IC:/Users/donle/OneDrive/Desktop/Particulas/build/_deps/glfw-build/src
+  OBJECT_DIR = _deps\glfw-build\src\CMakeFiles\glfw.dir
+  OBJECT_FILE_DIR = _deps\glfw-build\src\CMakeFiles\glfw.dir
+  TARGET_COMPILE_PDB = _deps\glfw-build\src\CMakeFiles\glfw.dir\glfw.pdb
+  TARGET_PDB = _deps\glfw-build\src\libglfw3.pdb
 
-build External/glfw/src/CMakeFiles/glfw.dir/win32_window.c.obj: C_COMPILER__glfw_unscanned_ C$:/Users/donle/OneDrive/Desktop/Particulas/External/glfw/src/win32_window.c || cmake_object_order_depends_target_glfw
+build _deps/glfw-build/src/CMakeFiles/glfw.dir/win32_window.c.obj: C_COMPILER__glfw_unscanned_ C$:/Users/donle/OneDrive/Desktop/Particulas/build/_deps/glfw-src/src/win32_window.c || cmake_object_order_depends_target_glfw
   DEFINES = -DUNICODE -DWINVER=0x0501 -D_GLFW_WIN32 -D_UNICODE
-  DEP_FILE = External\glfw\src\CMakeFiles\glfw.dir\win32_window.c.obj.d
+  DEP_FILE = _deps\glfw-build\src\CMakeFiles\glfw.dir\win32_window.c.obj.d
   FLAGS = -std=c99 -Wall
-  INCLUDES = -IC:/Users/donle/OneDrive/Desktop/Particulas/External/glfw/include -IC:/Users/donle/OneDrive/Desktop/Particulas/External/glfw/src -IC:/Users/donle/OneDrive/Desktop/Particulas/build/External/glfw/src
-  OBJECT_DIR = External\glfw\src\CMakeFiles\glfw.dir
-  OBJECT_FILE_DIR = External\glfw\src\CMakeFiles\glfw.dir
-  TARGET_COMPILE_PDB = External\glfw\src\CMakeFiles\glfw.dir\glfw.pdb
-  TARGET_PDB = External\glfw\src\libglfw3.pdb
+  INCLUDES = -IC:/Users/donle/OneDrive/Desktop/Particulas/build/_deps/glfw-src/include -IC:/Users/donle/OneDrive/Desktop/Particulas/build/_deps/glfw-src/src -IC:/Users/donle/OneDrive/Desktop/Particulas/build/_deps/glfw-build/src
+  OBJECT_DIR = _deps\glfw-build\src\CMakeFiles\glfw.dir
+  OBJECT_FILE_DIR = _deps\glfw-build\src\CMakeFiles\glfw.dir
+  TARGET_COMPILE_PDB = _deps\glfw-build\src\CMakeFiles\glfw.dir\glfw.pdb
+  TARGET_PDB = _deps\glfw-build\src\libglfw3.pdb
 
-build External/glfw/src/CMakeFiles/glfw.dir/wgl_context.c.obj: C_COMPILER__glfw_unscanned_ C$:/Users/donle/OneDrive/Desktop/Particulas/External/glfw/src/wgl_context.c || cmake_object_order_depends_target_glfw
+build _deps/glfw-build/src/CMakeFiles/glfw.dir/wgl_context.c.obj: C_COMPILER__glfw_unscanned_ C$:/Users/donle/OneDrive/Desktop/Particulas/build/_deps/glfw-src/src/wgl_context.c || cmake_object_order_depends_target_glfw
   DEFINES = -DUNICODE -DWINVER=0x0501 -D_GLFW_WIN32 -D_UNICODE
-  DEP_FILE = External\glfw\src\CMakeFiles\glfw.dir\wgl_context.c.obj.d
+  DEP_FILE = _deps\glfw-build\src\CMakeFiles\glfw.dir\wgl_context.c.obj.d
   FLAGS = -std=c99 -Wall
-  INCLUDES = -IC:/Users/donle/OneDrive/Desktop/Particulas/External/glfw/include -IC:/Users/donle/OneDrive/Desktop/Particulas/External/glfw/src -IC:/Users/donle/OneDrive/Desktop/Particulas/build/External/glfw/src
-  OBJECT_DIR = External\glfw\src\CMakeFiles\glfw.dir
-  OBJECT_FILE_DIR = External\glfw\src\CMakeFiles\glfw.dir
-  TARGET_COMPILE_PDB = External\glfw\src\CMakeFiles\glfw.dir\glfw.pdb
-  TARGET_PDB = External\glfw\src\libglfw3.pdb
+  INCLUDES = -IC:/Users/donle/OneDrive/Desktop/Particulas/build/_deps/glfw-src/include -IC:/Users/donle/OneDrive/Desktop/Particulas/build/_deps/glfw-src/src -IC:/Users/donle/OneDrive/Desktop/Particulas/build/_deps/glfw-build/src
+  OBJECT_DIR = _deps\glfw-build\src\CMakeFiles\glfw.dir
+  OBJECT_FILE_DIR = _deps\glfw-build\src\CMakeFiles\glfw.dir
+  TARGET_COMPILE_PDB = _deps\glfw-build\src\CMakeFiles\glfw.dir\glfw.pdb
+  TARGET_PDB = _deps\glfw-build\src\libglfw3.pdb
 
 
 # =============================================================================
@@ -419,295 +443,338 @@ build External/glfw/src/CMakeFiles/glfw.dir/wgl_context.c.obj: C_COMPILER__glfw_
 
 
 #############################################
-# Link the static library External\glfw\src\libglfw3.a
+# Link the static library _deps\glfw-build\src\libglfw3.a
 
-build External/glfw/src/libglfw3.a: C_STATIC_LIBRARY_LINKER__glfw_ External/glfw/src/CMakeFiles/glfw.dir/context.c.obj External/glfw/src/CMakeFiles/glfw.dir/init.c.obj External/glfw/src/CMakeFiles/glfw.dir/input.c.obj External/glfw/src/CMakeFiles/glfw.dir/monitor.c.obj External/glfw/src/CMakeFiles/glfw.dir/platform.c.obj External/glfw/src/CMakeFiles/glfw.dir/vulkan.c.obj External/glfw/src/CMakeFiles/glfw.dir/window.c.obj External/glfw/src/CMakeFiles/glfw.dir/egl_context.c.obj External/glfw/src/CMakeFiles/glfw.dir/osmesa_context.c.obj External/glfw/src/CMakeFiles/glfw.dir/null_init.c.obj External/glfw/src/CMakeFiles/glfw.dir/null_monitor.c.obj External/glfw/src/CMakeFiles/glfw.dir/null_window.c.obj External/glfw/src/CMakeFiles/glfw.dir/null_joystick.c.obj External/glfw/src/CMakeFiles/glfw.dir/win32_module.c.obj External/glfw/src/CMakeFiles/glfw.dir/win32_time.c.obj External/glfw/src/CMakeFiles/glfw.dir/win32_thread.c.obj External/glfw/src/CMakeFiles/glfw.dir/win32_init.c.obj External/glfw/src/CMakeFiles/glfw.dir/win32_joystick.c.obj External/glfw/src/CMakeFiles/glfw.dir/win32_monitor.c.obj External/glfw/src/CMakeFiles/glfw.dir/win32_window.c.obj External/glfw/src/CMakeFiles/glfw.dir/wgl_context.c.obj
-  OBJECT_DIR = External\glfw\src\CMakeFiles\glfw.dir
+build _deps/glfw-build/src/libglfw3.a: C_STATIC_LIBRARY_LINKER__glfw_ _deps/glfw-build/src/CMakeFiles/glfw.dir/context.c.obj _deps/glfw-build/src/CMakeFiles/glfw.dir/init.c.obj _deps/glfw-build/src/CMakeFiles/glfw.dir/input.c.obj _deps/glfw-build/src/CMakeFiles/glfw.dir/monitor.c.obj _deps/glfw-build/src/CMakeFiles/glfw.dir/platform.c.obj _deps/glfw-build/src/CMakeFiles/glfw.dir/vulkan.c.obj _deps/glfw-build/src/CMakeFiles/glfw.dir/window.c.obj _deps/glfw-build/src/CMakeFiles/glfw.dir/egl_context.c.obj _deps/glfw-build/src/CMakeFiles/glfw.dir/osmesa_context.c.obj _deps/glfw-build/src/CMakeFiles/glfw.dir/null_init.c.obj _deps/glfw-build/src/CMakeFiles/glfw.dir/null_monitor.c.obj _deps/glfw-build/src/CMakeFiles/glfw.dir/null_window.c.obj _deps/glfw-build/src/CMakeFiles/glfw.dir/null_joystick.c.obj _deps/glfw-build/src/CMakeFiles/glfw.dir/win32_module.c.obj _deps/glfw-build/src/CMakeFiles/glfw.dir/win32_time.c.obj _deps/glfw-build/src/CMakeFiles/glfw.dir/win32_thread.c.obj _deps/glfw-build/src/CMakeFiles/glfw.dir/win32_init.c.obj _deps/glfw-build/src/CMakeFiles/glfw.dir/win32_joystick.c.obj _deps/glfw-build/src/CMakeFiles/glfw.dir/win32_monitor.c.obj _deps/glfw-build/src/CMakeFiles/glfw.dir/win32_window.c.obj _deps/glfw-build/src/CMakeFiles/glfw.dir/wgl_context.c.obj
+  OBJECT_DIR = _deps\glfw-build\src\CMakeFiles\glfw.dir
   POST_BUILD = cd .
   PRE_LINK = cd .
-  TARGET_COMPILE_PDB = External\glfw\src\CMakeFiles\glfw.dir\glfw.pdb
-  TARGET_FILE = External\glfw\src\libglfw3.a
-  TARGET_PDB = External\glfw\src\libglfw3.pdb
+  TARGET_COMPILE_PDB = _deps\glfw-build\src\CMakeFiles\glfw.dir\glfw.pdb
+  TARGET_FILE = _deps\glfw-build\src\libglfw3.a
+  TARGET_PDB = _deps\glfw-build\src\libglfw3.pdb
 
 
 #############################################
 # Utility command for update_mappings
 
-build External/glfw/src/update_mappings: phony External/glfw/src/CMakeFiles/update_mappings
+build _deps/glfw-build/src/update_mappings: phony _deps/glfw-build/src/CMakeFiles/update_mappings
 
 
 #############################################
 # Utility command for edit_cache
 
-build External/glfw/src/CMakeFiles/edit_cache.util: CUSTOM_COMMAND
-  COMMAND = C:\WINDOWS\system32\cmd.exe /C "cd /D C:\Users\donle\OneDrive\Desktop\Particulas\build\External\glfw\src && C:\msys64\mingw64\bin\cmake.exe -E echo "No interactive CMake dialog available.""
+build _deps/glfw-build/src/CMakeFiles/edit_cache.util: CUSTOM_COMMAND
+  COMMAND = C:\WINDOWS\system32\cmd.exe /C "cd /D C:\Users\donle\OneDrive\Desktop\Particulas\build\_deps\glfw-build\src && C:\msys64\mingw64\bin\cmake.exe -E echo "No interactive CMake dialog available.""
   DESC = No interactive CMake dialog available...
   restat = 1
 
-build External/glfw/src/edit_cache: phony External/glfw/src/CMakeFiles/edit_cache.util
+build _deps/glfw-build/src/edit_cache: phony _deps/glfw-build/src/CMakeFiles/edit_cache.util
 
 
 #############################################
 # Utility command for rebuild_cache
 
-build External/glfw/src/CMakeFiles/rebuild_cache.util: CUSTOM_COMMAND
-  COMMAND = C:\WINDOWS\system32\cmd.exe /C "cd /D C:\Users\donle\OneDrive\Desktop\Particulas\build\External\glfw\src && C:\msys64\mingw64\bin\cmake.exe --regenerate-during-build -SC:\Users\donle\OneDrive\Desktop\Particulas -BC:\Users\donle\OneDrive\Desktop\Particulas\build"
+build _deps/glfw-build/src/CMakeFiles/rebuild_cache.util: CUSTOM_COMMAND
+  COMMAND = C:\WINDOWS\system32\cmd.exe /C "cd /D C:\Users\donle\OneDrive\Desktop\Particulas\build\_deps\glfw-build\src && C:\msys64\mingw64\bin\cmake.exe --regenerate-during-build -SC:\Users\donle\OneDrive\Desktop\Particulas -BC:\Users\donle\OneDrive\Desktop\Particulas\build"
   DESC = Running CMake to regenerate build system...
   pool = console
   restat = 1
 
-build External/glfw/src/rebuild_cache: phony External/glfw/src/CMakeFiles/rebuild_cache.util
+build _deps/glfw-build/src/rebuild_cache: phony _deps/glfw-build/src/CMakeFiles/rebuild_cache.util
 
 
 #############################################
 # Utility command for list_install_components
 
-build External/glfw/src/list_install_components: phony
+build _deps/glfw-build/src/list_install_components: phony
 
 
 #############################################
 # Utility command for install
 
-build External/glfw/src/CMakeFiles/install.util: CUSTOM_COMMAND External/glfw/src/all
-  COMMAND = C:\WINDOWS\system32\cmd.exe /C "cd /D C:\Users\donle\OneDrive\Desktop\Particulas\build\External\glfw\src && C:\msys64\mingw64\bin\cmake.exe -P cmake_install.cmake"
+build _deps/glfw-build/src/CMakeFiles/install.util: CUSTOM_COMMAND _deps/glfw-build/src/all
+  COMMAND = C:\WINDOWS\system32\cmd.exe /C "cd /D C:\Users\donle\OneDrive\Desktop\Particulas\build\_deps\glfw-build\src && C:\msys64\mingw64\bin\cmake.exe -P cmake_install.cmake"
   DESC = Install the project...
   pool = console
   restat = 1
 
-build External/glfw/src/install: phony External/glfw/src/CMakeFiles/install.util
+build _deps/glfw-build/src/install: phony _deps/glfw-build/src/CMakeFiles/install.util
 
 
 #############################################
 # Utility command for install/local
 
-build External/glfw/src/CMakeFiles/install/local.util: CUSTOM_COMMAND External/glfw/src/all
-  COMMAND = C:\WINDOWS\system32\cmd.exe /C "cd /D C:\Users\donle\OneDrive\Desktop\Particulas\build\External\glfw\src && C:\msys64\mingw64\bin\cmake.exe -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake"
+build _deps/glfw-build/src/CMakeFiles/install/local.util: CUSTOM_COMMAND _deps/glfw-build/src/all
+  COMMAND = C:\WINDOWS\system32\cmd.exe /C "cd /D C:\Users\donle\OneDrive\Desktop\Particulas\build\_deps\glfw-build\src && C:\msys64\mingw64\bin\cmake.exe -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake"
   DESC = Installing only the local directory...
   pool = console
   restat = 1
 
-build External/glfw/src/install/local: phony External/glfw/src/CMakeFiles/install/local.util
+build _deps/glfw-build/src/install/local: phony _deps/glfw-build/src/CMakeFiles/install/local.util
 
 
 #############################################
 # Utility command for install/strip
 
-build External/glfw/src/CMakeFiles/install/strip.util: CUSTOM_COMMAND External/glfw/src/all
-  COMMAND = C:\WINDOWS\system32\cmd.exe /C "cd /D C:\Users\donle\OneDrive\Desktop\Particulas\build\External\glfw\src && C:\msys64\mingw64\bin\cmake.exe -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake"
+build _deps/glfw-build/src/CMakeFiles/install/strip.util: CUSTOM_COMMAND _deps/glfw-build/src/all
+  COMMAND = C:\WINDOWS\system32\cmd.exe /C "cd /D C:\Users\donle\OneDrive\Desktop\Particulas\build\_deps\glfw-build\src && C:\msys64\mingw64\bin\cmake.exe -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake"
   DESC = Installing the project stripped...
   pool = console
   restat = 1
 
-build External/glfw/src/install/strip: phony External/glfw/src/CMakeFiles/install/strip.util
+build _deps/glfw-build/src/install/strip: phony _deps/glfw-build/src/CMakeFiles/install/strip.util
 
 
 #############################################
-# Custom command for External\glfw\src\CMakeFiles\update_mappings
+# Custom command for _deps\glfw-build\src\CMakeFiles\update_mappings
 
-build External/glfw/src/CMakeFiles/update_mappings | ${cmake_ninja_workdir}External/glfw/src/CMakeFiles/update_mappings: CUSTOM_COMMAND
-  COMMAND = C:\WINDOWS\system32\cmd.exe /C "cd /D C:\Users\donle\OneDrive\Desktop\Particulas\External\glfw\src && C:\msys64\mingw64\bin\cmake.exe -P C:/Users/donle/OneDrive/Desktop/Particulas/External/glfw/CMake/GenerateMappings.cmake mappings.h.in mappings.h"
+build _deps/glfw-build/src/CMakeFiles/update_mappings | ${cmake_ninja_workdir}_deps/glfw-build/src/CMakeFiles/update_mappings: CUSTOM_COMMAND
+  COMMAND = C:\WINDOWS\system32\cmd.exe /C "cd /D C:\Users\donle\OneDrive\Desktop\Particulas\build\_deps\glfw-src\src && C:\msys64\mingw64\bin\cmake.exe -P C:/Users/donle/OneDrive/Desktop/Particulas/build/_deps/glfw-src/CMake/GenerateMappings.cmake mappings.h.in mappings.h"
   DESC = Updating gamepad mappings from upstream repository
 
 # =============================================================================
 # Write statements declared in CMakeLists.txt:
-# C:/Users/donle/OneDrive/Desktop/Particulas/External/glfw/CMakeLists.txt
+# C:/Users/donle/OneDrive/Desktop/Particulas/build/_deps/glfw-src/CMakeLists.txt
 # =============================================================================
 
 
 #############################################
 # Utility command for edit_cache
 
-build External/glfw/docs/CMakeFiles/edit_cache.util: CUSTOM_COMMAND
-  COMMAND = C:\WINDOWS\system32\cmd.exe /C "cd /D C:\Users\donle\OneDrive\Desktop\Particulas\build\External\glfw\docs && C:\msys64\mingw64\bin\cmake.exe -E echo "No interactive CMake dialog available.""
+build _deps/glfw-build/docs/CMakeFiles/edit_cache.util: CUSTOM_COMMAND
+  COMMAND = C:\WINDOWS\system32\cmd.exe /C "cd /D C:\Users\donle\OneDrive\Desktop\Particulas\build\_deps\glfw-build\docs && C:\msys64\mingw64\bin\cmake.exe -E echo "No interactive CMake dialog available.""
   DESC = No interactive CMake dialog available...
   restat = 1
 
-build External/glfw/docs/edit_cache: phony External/glfw/docs/CMakeFiles/edit_cache.util
+build _deps/glfw-build/docs/edit_cache: phony _deps/glfw-build/docs/CMakeFiles/edit_cache.util
 
 
 #############################################
 # Utility command for rebuild_cache
 
-build External/glfw/docs/CMakeFiles/rebuild_cache.util: CUSTOM_COMMAND
-  COMMAND = C:\WINDOWS\system32\cmd.exe /C "cd /D C:\Users\donle\OneDrive\Desktop\Particulas\build\External\glfw\docs && C:\msys64\mingw64\bin\cmake.exe --regenerate-during-build -SC:\Users\donle\OneDrive\Desktop\Particulas -BC:\Users\donle\OneDrive\Desktop\Particulas\build"
+build _deps/glfw-build/docs/CMakeFiles/rebuild_cache.util: CUSTOM_COMMAND
+  COMMAND = C:\WINDOWS\system32\cmd.exe /C "cd /D C:\Users\donle\OneDrive\Desktop\Particulas\build\_deps\glfw-build\docs && C:\msys64\mingw64\bin\cmake.exe --regenerate-during-build -SC:\Users\donle\OneDrive\Desktop\Particulas -BC:\Users\donle\OneDrive\Desktop\Particulas\build"
   DESC = Running CMake to regenerate build system...
   pool = console
   restat = 1
 
-build External/glfw/docs/rebuild_cache: phony External/glfw/docs/CMakeFiles/rebuild_cache.util
+build _deps/glfw-build/docs/rebuild_cache: phony _deps/glfw-build/docs/CMakeFiles/rebuild_cache.util
 
 
 #############################################
 # Utility command for list_install_components
 
-build External/glfw/docs/list_install_components: phony
+build _deps/glfw-build/docs/list_install_components: phony
 
 
 #############################################
 # Utility command for install
 
-build External/glfw/docs/CMakeFiles/install.util: CUSTOM_COMMAND External/glfw/docs/all
-  COMMAND = C:\WINDOWS\system32\cmd.exe /C "cd /D C:\Users\donle\OneDrive\Desktop\Particulas\build\External\glfw\docs && C:\msys64\mingw64\bin\cmake.exe -P cmake_install.cmake"
+build _deps/glfw-build/docs/CMakeFiles/install.util: CUSTOM_COMMAND _deps/glfw-build/docs/all
+  COMMAND = C:\WINDOWS\system32\cmd.exe /C "cd /D C:\Users\donle\OneDrive\Desktop\Particulas\build\_deps\glfw-build\docs && C:\msys64\mingw64\bin\cmake.exe -P cmake_install.cmake"
   DESC = Install the project...
   pool = console
   restat = 1
 
-build External/glfw/docs/install: phony External/glfw/docs/CMakeFiles/install.util
+build _deps/glfw-build/docs/install: phony _deps/glfw-build/docs/CMakeFiles/install.util
 
 
 #############################################
 # Utility command for install/local
 
-build External/glfw/docs/CMakeFiles/install/local.util: CUSTOM_COMMAND External/glfw/docs/all
-  COMMAND = C:\WINDOWS\system32\cmd.exe /C "cd /D C:\Users\donle\OneDrive\Desktop\Particulas\build\External\glfw\docs && C:\msys64\mingw64\bin\cmake.exe -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake"
+build _deps/glfw-build/docs/CMakeFiles/install/local.util: CUSTOM_COMMAND _deps/glfw-build/docs/all
+  COMMAND = C:\WINDOWS\system32\cmd.exe /C "cd /D C:\Users\donle\OneDrive\Desktop\Particulas\build\_deps\glfw-build\docs && C:\msys64\mingw64\bin\cmake.exe -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake"
   DESC = Installing only the local directory...
   pool = console
   restat = 1
 
-build External/glfw/docs/install/local: phony External/glfw/docs/CMakeFiles/install/local.util
+build _deps/glfw-build/docs/install/local: phony _deps/glfw-build/docs/CMakeFiles/install/local.util
 
 
 #############################################
 # Utility command for install/strip
 
-build External/glfw/docs/CMakeFiles/install/strip.util: CUSTOM_COMMAND External/glfw/docs/all
-  COMMAND = C:\WINDOWS\system32\cmd.exe /C "cd /D C:\Users\donle\OneDrive\Desktop\Particulas\build\External\glfw\docs && C:\msys64\mingw64\bin\cmake.exe -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake"
+build _deps/glfw-build/docs/CMakeFiles/install/strip.util: CUSTOM_COMMAND _deps/glfw-build/docs/all
+  COMMAND = C:\WINDOWS\system32\cmd.exe /C "cd /D C:\Users\donle\OneDrive\Desktop\Particulas\build\_deps\glfw-build\docs && C:\msys64\mingw64\bin\cmake.exe -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake"
   DESC = Installing the project stripped...
   pool = console
   restat = 1
 
-build External/glfw/docs/install/strip: phony External/glfw/docs/CMakeFiles/install/strip.util
+build _deps/glfw-build/docs/install/strip: phony _deps/glfw-build/docs/CMakeFiles/install/strip.util
 
 # =============================================================================
 # Write statements declared in CMakeLists.txt:
 # C:/Users/donle/OneDrive/Desktop/Particulas/CMakeLists.txt
 # =============================================================================
 
-# =============================================================================
-# Object build statements for STATIC_LIBRARY target ImGui
-
-
-#############################################
-# Order-only phony target for ImGui
-
-build cmake_object_order_depends_target_ImGui: phony || .
-
-build External/imgui/CMakeFiles/ImGui.dir/imgui.cpp.obj: CXX_COMPILER__ImGui_unscanned_ C$:/Users/donle/OneDrive/Desktop/Particulas/External/imgui/imgui.cpp || cmake_object_order_depends_target_ImGui
-  DEP_FILE = External\imgui\CMakeFiles\ImGui.dir\imgui.cpp.obj.d
-  FLAGS = -std=gnu++17
-  INCLUDES = -IC:/Users/donle/OneDrive/Desktop/Particulas/External/imgui
-  OBJECT_DIR = External\imgui\CMakeFiles\ImGui.dir
-  OBJECT_FILE_DIR = External\imgui\CMakeFiles\ImGui.dir
-  TARGET_COMPILE_PDB = External\imgui\CMakeFiles\ImGui.dir\ImGui.pdb
-  TARGET_PDB = External\imgui\libImGui.pdb
-
-build External/imgui/CMakeFiles/ImGui.dir/imgui_draw.cpp.obj: CXX_COMPILER__ImGui_unscanned_ C$:/Users/donle/OneDrive/Desktop/Particulas/External/imgui/imgui_draw.cpp || cmake_object_order_depends_target_ImGui
-  DEP_FILE = External\imgui\CMakeFiles\ImGui.dir\imgui_draw.cpp.obj.d
-  FLAGS = -std=gnu++17
-  INCLUDES = -IC:/Users/donle/OneDrive/Desktop/Particulas/External/imgui
-  OBJECT_DIR = External\imgui\CMakeFiles\ImGui.dir
-  OBJECT_FILE_DIR = External\imgui\CMakeFiles\ImGui.dir
-  TARGET_COMPILE_PDB = External\imgui\CMakeFiles\ImGui.dir\ImGui.pdb
-  TARGET_PDB = External\imgui\libImGui.pdb
-
-build External/imgui/CMakeFiles/ImGui.dir/imgui_widgets.cpp.obj: CXX_COMPILER__ImGui_unscanned_ C$:/Users/donle/OneDrive/Desktop/Particulas/External/imgui/imgui_widgets.cpp || cmake_object_order_depends_target_ImGui
-  DEP_FILE = External\imgui\CMakeFiles\ImGui.dir\imgui_widgets.cpp.obj.d
-  FLAGS = -std=gnu++17
-  INCLUDES = -IC:/Users/donle/OneDrive/Desktop/Particulas/External/imgui
-  OBJECT_DIR = External\imgui\CMakeFiles\ImGui.dir
-  OBJECT_FILE_DIR = External\imgui\CMakeFiles\ImGui.dir
-  TARGET_COMPILE_PDB = External\imgui\CMakeFiles\ImGui.dir\ImGui.pdb
-  TARGET_PDB = External\imgui\libImGui.pdb
-
-build External/imgui/CMakeFiles/ImGui.dir/imgui_tables.cpp.obj: CXX_COMPILER__ImGui_unscanned_ C$:/Users/donle/OneDrive/Desktop/Particulas/External/imgui/imgui_tables.cpp || cmake_object_order_depends_target_ImGui
-  DEP_FILE = External\imgui\CMakeFiles\ImGui.dir\imgui_tables.cpp.obj.d
-  FLAGS = -std=gnu++17
-  INCLUDES = -IC:/Users/donle/OneDrive/Desktop/Particulas/External/imgui
-  OBJECT_DIR = External\imgui\CMakeFiles\ImGui.dir
-  OBJECT_FILE_DIR = External\imgui\CMakeFiles\ImGui.dir
-  TARGET_COMPILE_PDB = External\imgui\CMakeFiles\ImGui.dir\ImGui.pdb
-  TARGET_PDB = External\imgui\libImGui.pdb
-
-
-# =============================================================================
-# Link build statements for STATIC_LIBRARY target ImGui
-
-
-#############################################
-# Link the static library External\imgui\libImGui.a
-
-build External/imgui/libImGui.a: CXX_STATIC_LIBRARY_LINKER__ImGui_ External/imgui/CMakeFiles/ImGui.dir/imgui.cpp.obj External/imgui/CMakeFiles/ImGui.dir/imgui_draw.cpp.obj External/imgui/CMakeFiles/ImGui.dir/imgui_widgets.cpp.obj External/imgui/CMakeFiles/ImGui.dir/imgui_tables.cpp.obj
-  OBJECT_DIR = External\imgui\CMakeFiles\ImGui.dir
-  POST_BUILD = cd .
-  PRE_LINK = cd .
-  TARGET_COMPILE_PDB = External\imgui\CMakeFiles\ImGui.dir\ImGui.pdb
-  TARGET_FILE = External\imgui\libImGui.a
-  TARGET_PDB = External\imgui\libImGui.pdb
-
 
 #############################################
 # Utility command for edit_cache
 
-build External/imgui/CMakeFiles/edit_cache.util: CUSTOM_COMMAND
-  COMMAND = C:\WINDOWS\system32\cmd.exe /C "cd /D C:\Users\donle\OneDrive\Desktop\Particulas\build\External\imgui && C:\msys64\mingw64\bin\cmake.exe -E echo "No interactive CMake dialog available.""
+build _deps/glm-build/CMakeFiles/edit_cache.util: CUSTOM_COMMAND
+  COMMAND = C:\WINDOWS\system32\cmd.exe /C "cd /D C:\Users\donle\OneDrive\Desktop\Particulas\build\_deps\glm-build && C:\msys64\mingw64\bin\cmake.exe -E echo "No interactive CMake dialog available.""
   DESC = No interactive CMake dialog available...
   restat = 1
 
-build External/imgui/edit_cache: phony External/imgui/CMakeFiles/edit_cache.util
+build _deps/glm-build/edit_cache: phony _deps/glm-build/CMakeFiles/edit_cache.util
 
 
 #############################################
 # Utility command for rebuild_cache
 
-build External/imgui/CMakeFiles/rebuild_cache.util: CUSTOM_COMMAND
-  COMMAND = C:\WINDOWS\system32\cmd.exe /C "cd /D C:\Users\donle\OneDrive\Desktop\Particulas\build\External\imgui && C:\msys64\mingw64\bin\cmake.exe --regenerate-during-build -SC:\Users\donle\OneDrive\Desktop\Particulas -BC:\Users\donle\OneDrive\Desktop\Particulas\build"
+build _deps/glm-build/CMakeFiles/rebuild_cache.util: CUSTOM_COMMAND
+  COMMAND = C:\WINDOWS\system32\cmd.exe /C "cd /D C:\Users\donle\OneDrive\Desktop\Particulas\build\_deps\glm-build && C:\msys64\mingw64\bin\cmake.exe --regenerate-during-build -SC:\Users\donle\OneDrive\Desktop\Particulas -BC:\Users\donle\OneDrive\Desktop\Particulas\build"
   DESC = Running CMake to regenerate build system...
   pool = console
   restat = 1
 
-build External/imgui/rebuild_cache: phony External/imgui/CMakeFiles/rebuild_cache.util
+build _deps/glm-build/rebuild_cache: phony _deps/glm-build/CMakeFiles/rebuild_cache.util
 
 
 #############################################
 # Utility command for list_install_components
 
-build External/imgui/list_install_components: phony
+build _deps/glm-build/list_install_components: phony
 
 
 #############################################
 # Utility command for install
 
-build External/imgui/CMakeFiles/install.util: CUSTOM_COMMAND External/imgui/all
-  COMMAND = C:\WINDOWS\system32\cmd.exe /C "cd /D C:\Users\donle\OneDrive\Desktop\Particulas\build\External\imgui && C:\msys64\mingw64\bin\cmake.exe -P cmake_install.cmake"
+build _deps/glm-build/CMakeFiles/install.util: CUSTOM_COMMAND _deps/glm-build/all
+  COMMAND = C:\WINDOWS\system32\cmd.exe /C "cd /D C:\Users\donle\OneDrive\Desktop\Particulas\build\_deps\glm-build && C:\msys64\mingw64\bin\cmake.exe -P cmake_install.cmake"
   DESC = Install the project...
   pool = console
   restat = 1
 
-build External/imgui/install: phony External/imgui/CMakeFiles/install.util
+build _deps/glm-build/install: phony _deps/glm-build/CMakeFiles/install.util
 
 
 #############################################
 # Utility command for install/local
 
-build External/imgui/CMakeFiles/install/local.util: CUSTOM_COMMAND External/imgui/all
-  COMMAND = C:\WINDOWS\system32\cmd.exe /C "cd /D C:\Users\donle\OneDrive\Desktop\Particulas\build\External\imgui && C:\msys64\mingw64\bin\cmake.exe -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake"
+build _deps/glm-build/CMakeFiles/install/local.util: CUSTOM_COMMAND _deps/glm-build/all
+  COMMAND = C:\WINDOWS\system32\cmd.exe /C "cd /D C:\Users\donle\OneDrive\Desktop\Particulas\build\_deps\glm-build && C:\msys64\mingw64\bin\cmake.exe -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake"
   DESC = Installing only the local directory...
   pool = console
   restat = 1
 
-build External/imgui/install/local: phony External/imgui/CMakeFiles/install/local.util
+build _deps/glm-build/install/local: phony _deps/glm-build/CMakeFiles/install/local.util
 
 
 #############################################
 # Utility command for install/strip
 
-build External/imgui/CMakeFiles/install/strip.util: CUSTOM_COMMAND External/imgui/all
-  COMMAND = C:\WINDOWS\system32\cmd.exe /C "cd /D C:\Users\donle\OneDrive\Desktop\Particulas\build\External\imgui && C:\msys64\mingw64\bin\cmake.exe -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake"
+build _deps/glm-build/CMakeFiles/install/strip.util: CUSTOM_COMMAND _deps/glm-build/all
+  COMMAND = C:\WINDOWS\system32\cmd.exe /C "cd /D C:\Users\donle\OneDrive\Desktop\Particulas\build\_deps\glm-build && C:\msys64\mingw64\bin\cmake.exe -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake"
   DESC = Installing the project stripped...
   pool = console
   restat = 1
 
-build External/imgui/install/strip: phony External/imgui/CMakeFiles/install/strip.util
+build _deps/glm-build/install/strip: phony _deps/glm-build/CMakeFiles/install/strip.util
+
+# =============================================================================
+# Write statements declared in CMakeLists.txt:
+# C:/Users/donle/OneDrive/Desktop/Particulas/build/_deps/glm-src/CMakeLists.txt
+# =============================================================================
+
+# =============================================================================
+# Object build statements for STATIC_LIBRARY target glm
+
+
+#############################################
+# Order-only phony target for glm
+
+build cmake_object_order_depends_target_glm: phony || .
+
+build _deps/glm-build/glm/CMakeFiles/glm.dir/detail/glm.cpp.obj: CXX_COMPILER__glm_unscanned_ C$:/Users/donle/OneDrive/Desktop/Particulas/build/_deps/glm-src/glm/detail/glm.cpp || cmake_object_order_depends_target_glm
+  DEP_FILE = _deps\glm-build\glm\CMakeFiles\glm.dir\detail\glm.cpp.obj.d
+  FLAGS = -std=c++17
+  INCLUDES = -IC:/Users/donle/OneDrive/Desktop/Particulas/build/_deps/glm-src
+  OBJECT_DIR = _deps\glm-build\glm\CMakeFiles\glm.dir
+  OBJECT_FILE_DIR = _deps\glm-build\glm\CMakeFiles\glm.dir\detail
+  TARGET_COMPILE_PDB = _deps\glm-build\glm\CMakeFiles\glm.dir\glm.pdb
+  TARGET_PDB = _deps\glm-build\glm\libglm.pdb
+
+
+# =============================================================================
+# Link build statements for STATIC_LIBRARY target glm
+
+
+#############################################
+# Link the static library _deps\glm-build\glm\libglm.a
+
+build _deps/glm-build/glm/libglm.a: CXX_STATIC_LIBRARY_LINKER__glm_ _deps/glm-build/glm/CMakeFiles/glm.dir/detail/glm.cpp.obj
+  OBJECT_DIR = _deps\glm-build\glm\CMakeFiles\glm.dir
+  POST_BUILD = cd .
+  PRE_LINK = cd .
+  TARGET_COMPILE_PDB = _deps\glm-build\glm\CMakeFiles\glm.dir\glm.pdb
+  TARGET_FILE = _deps\glm-build\glm\libglm.a
+  TARGET_PDB = _deps\glm-build\glm\libglm.pdb
+
+
+#############################################
+# Utility command for edit_cache
+
+build _deps/glm-build/glm/CMakeFiles/edit_cache.util: CUSTOM_COMMAND
+  COMMAND = C:\WINDOWS\system32\cmd.exe /C "cd /D C:\Users\donle\OneDrive\Desktop\Particulas\build\_deps\glm-build\glm && C:\msys64\mingw64\bin\cmake.exe -E echo "No interactive CMake dialog available.""
+  DESC = No interactive CMake dialog available...
+  restat = 1
+
+build _deps/glm-build/glm/edit_cache: phony _deps/glm-build/glm/CMakeFiles/edit_cache.util
+
+
+#############################################
+# Utility command for rebuild_cache
+
+build _deps/glm-build/glm/CMakeFiles/rebuild_cache.util: CUSTOM_COMMAND
+  COMMAND = C:\WINDOWS\system32\cmd.exe /C "cd /D C:\Users\donle\OneDrive\Desktop\Particulas\build\_deps\glm-build\glm && C:\msys64\mingw64\bin\cmake.exe --regenerate-during-build -SC:\Users\donle\OneDrive\Desktop\Particulas -BC:\Users\donle\OneDrive\Desktop\Particulas\build"
+  DESC = Running CMake to regenerate build system...
+  pool = console
+  restat = 1
+
+build _deps/glm-build/glm/rebuild_cache: phony _deps/glm-build/glm/CMakeFiles/rebuild_cache.util
+
+
+#############################################
+# Utility command for list_install_components
+
+build _deps/glm-build/glm/list_install_components: phony
+
+
+#############################################
+# Utility command for install
+
+build _deps/glm-build/glm/CMakeFiles/install.util: CUSTOM_COMMAND _deps/glm-build/glm/all
+  COMMAND = C:\WINDOWS\system32\cmd.exe /C "cd /D C:\Users\donle\OneDrive\Desktop\Particulas\build\_deps\glm-build\glm && C:\msys64\mingw64\bin\cmake.exe -P cmake_install.cmake"
+  DESC = Install the project...
+  pool = console
+  restat = 1
+
+build _deps/glm-build/glm/install: phony _deps/glm-build/glm/CMakeFiles/install.util
+
+
+#############################################
+# Utility command for install/local
+
+build _deps/glm-build/glm/CMakeFiles/install/local.util: CUSTOM_COMMAND _deps/glm-build/glm/all
+  COMMAND = C:\WINDOWS\system32\cmd.exe /C "cd /D C:\Users\donle\OneDrive\Desktop\Particulas\build\_deps\glm-build\glm && C:\msys64\mingw64\bin\cmake.exe -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake"
+  DESC = Installing only the local directory...
+  pool = console
+  restat = 1
+
+build _deps/glm-build/glm/install/local: phony _deps/glm-build/glm/CMakeFiles/install/local.util
+
+
+#############################################
+# Utility command for install/strip
+
+build _deps/glm-build/glm/CMakeFiles/install/strip.util: CUSTOM_COMMAND _deps/glm-build/glm/all
+  COMMAND = C:\WINDOWS\system32\cmd.exe /C "cd /D C:\Users\donle\OneDrive\Desktop\Particulas\build\_deps\glm-build\glm && C:\msys64\mingw64\bin\cmake.exe -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake"
+  DESC = Installing the project stripped...
+  pool = console
+  restat = 1
+
+build _deps/glm-build/glm/install/strip: phony _deps/glm-build/glm/CMakeFiles/install/strip.util
 
 # =============================================================================
 # Write statements declared in CMakeLists.txt:
@@ -721,12 +788,12 @@ build External/imgui/install/strip: phony External/imgui/CMakeFiles/install/stri
 #############################################
 # Order-only phony target for ParticleSimulation
 
-build cmake_object_order_depends_target_ParticleSimulation: phony || Shaders cmake_object_order_depends_target_ImGui cmake_object_order_depends_target_glfw
+build cmake_object_order_depends_target_ParticleSimulation: phony || Shaders cmake_object_order_depends_target_glfw
 
 build src/CMakeFiles/ParticleSimulation.dir/main.cpp.obj: CXX_COMPILER__ParticleSimulation_unscanned_ C$:/Users/donle/OneDrive/Desktop/Particulas/src/main.cpp || cmake_object_order_depends_target_ParticleSimulation
   DEP_FILE = src\CMakeFiles\ParticleSimulation.dir\main.cpp.obj.d
-  FLAGS = -std=gnu++17
-  INCLUDES = -IC:/Users/donle/OneDrive/Desktop/Particulas/src/. -IC:/Users/donle/OneDrive/Desktop/Particulas/src/core -IC:/Users/donle/OneDrive/Desktop/Particulas/src/particles -IC:/Users/donle/OneDrive/Desktop/Particulas/src/rendering -IC:/Users/donle/OneDrive/Desktop/Particulas/src/window -IC:/Users/donle/OneDrive/Desktop/Particulas/src/utils -IC:/Users/donle/OneDrive/Desktop/Particulas/external/glfw/include -IC:/Users/donle/OneDrive/Desktop/Particulas/external/glm -IC:/Users/donle/OneDrive/Desktop/Particulas/external/imgui -IC:/Users/donle/OneDrive/Desktop/Particulas/external/imgui/backends -IC:/Users/donle/OneDrive/Desktop/Particulas/External/glfw/include -IC:/Users/donle/OneDrive/Desktop/Particulas/External/imgui -isystem C:/VulkanSDK/1.3.296.0/Include
+  FLAGS = -std=c++17
+  INCLUDES = -IC:/Users/donle/OneDrive/Desktop/Particulas/src/. -IC:/Users/donle/OneDrive/Desktop/Particulas/src/core -IC:/Users/donle/OneDrive/Desktop/Particulas/src/particles -IC:/Users/donle/OneDrive/Desktop/Particulas/src/rendering -IC:/Users/donle/OneDrive/Desktop/Particulas/src/window -IC:/Users/donle/OneDrive/Desktop/Particulas/src/utils -IC:/Users/donle/OneDrive/Desktop/Particulas/build/_deps/glfw-src/include -IC:/Users/donle/OneDrive/Desktop/Particulas/build/_deps/imgui-src -IC:/Users/donle/OneDrive/Desktop/Particulas/build/_deps/imgui-src/backends -IC:/Users/donle/OneDrive/Desktop/Particulas/build/_deps/glm-src -IC:/Users/donle/OneDrive/Desktop/Particulas/src -isystem C:/VulkanSDK/1.3.296.0/Include
   OBJECT_DIR = src\CMakeFiles\ParticleSimulation.dir
   OBJECT_FILE_DIR = src\CMakeFiles\ParticleSimulation.dir
   TARGET_COMPILE_PDB = src\CMakeFiles\ParticleSimulation.dir\
@@ -734,8 +801,8 @@ build src/CMakeFiles/ParticleSimulation.dir/main.cpp.obj: CXX_COMPILER__Particle
 
 build src/CMakeFiles/ParticleSimulation.dir/core/instance.cpp.obj: CXX_COMPILER__ParticleSimulation_unscanned_ C$:/Users/donle/OneDrive/Desktop/Particulas/src/core/instance.cpp || cmake_object_order_depends_target_ParticleSimulation
   DEP_FILE = src\CMakeFiles\ParticleSimulation.dir\core\instance.cpp.obj.d
-  FLAGS = -std=gnu++17
-  INCLUDES = -IC:/Users/donle/OneDrive/Desktop/Particulas/src/. -IC:/Users/donle/OneDrive/Desktop/Particulas/src/core -IC:/Users/donle/OneDrive/Desktop/Particulas/src/particles -IC:/Users/donle/OneDrive/Desktop/Particulas/src/rendering -IC:/Users/donle/OneDrive/Desktop/Particulas/src/window -IC:/Users/donle/OneDrive/Desktop/Particulas/src/utils -IC:/Users/donle/OneDrive/Desktop/Particulas/external/glfw/include -IC:/Users/donle/OneDrive/Desktop/Particulas/external/glm -IC:/Users/donle/OneDrive/Desktop/Particulas/external/imgui -IC:/Users/donle/OneDrive/Desktop/Particulas/external/imgui/backends -IC:/Users/donle/OneDrive/Desktop/Particulas/External/glfw/include -IC:/Users/donle/OneDrive/Desktop/Particulas/External/imgui -isystem C:/VulkanSDK/1.3.296.0/Include
+  FLAGS = -std=c++17
+  INCLUDES = -IC:/Users/donle/OneDrive/Desktop/Particulas/src/. -IC:/Users/donle/OneDrive/Desktop/Particulas/src/core -IC:/Users/donle/OneDrive/Desktop/Particulas/src/particles -IC:/Users/donle/OneDrive/Desktop/Particulas/src/rendering -IC:/Users/donle/OneDrive/Desktop/Particulas/src/window -IC:/Users/donle/OneDrive/Desktop/Particulas/src/utils -IC:/Users/donle/OneDrive/Desktop/Particulas/build/_deps/glfw-src/include -IC:/Users/donle/OneDrive/Desktop/Particulas/build/_deps/imgui-src -IC:/Users/donle/OneDrive/Desktop/Particulas/build/_deps/imgui-src/backends -IC:/Users/donle/OneDrive/Desktop/Particulas/build/_deps/glm-src -IC:/Users/donle/OneDrive/Desktop/Particulas/src -isystem C:/VulkanSDK/1.3.296.0/Include
   OBJECT_DIR = src\CMakeFiles\ParticleSimulation.dir
   OBJECT_FILE_DIR = src\CMakeFiles\ParticleSimulation.dir\core
   TARGET_COMPILE_PDB = src\CMakeFiles\ParticleSimulation.dir\
@@ -743,8 +810,8 @@ build src/CMakeFiles/ParticleSimulation.dir/core/instance.cpp.obj: CXX_COMPILER_
 
 build src/CMakeFiles/ParticleSimulation.dir/core/device.cpp.obj: CXX_COMPILER__ParticleSimulation_unscanned_ C$:/Users/donle/OneDrive/Desktop/Particulas/src/core/device.cpp || cmake_object_order_depends_target_ParticleSimulation
   DEP_FILE = src\CMakeFiles\ParticleSimulation.dir\core\device.cpp.obj.d
-  FLAGS = -std=gnu++17
-  INCLUDES = -IC:/Users/donle/OneDrive/Desktop/Particulas/src/. -IC:/Users/donle/OneDrive/Desktop/Particulas/src/core -IC:/Users/donle/OneDrive/Desktop/Particulas/src/particles -IC:/Users/donle/OneDrive/Desktop/Particulas/src/rendering -IC:/Users/donle/OneDrive/Desktop/Particulas/src/window -IC:/Users/donle/OneDrive/Desktop/Particulas/src/utils -IC:/Users/donle/OneDrive/Desktop/Particulas/external/glfw/include -IC:/Users/donle/OneDrive/Desktop/Particulas/external/glm -IC:/Users/donle/OneDrive/Desktop/Particulas/external/imgui -IC:/Users/donle/OneDrive/Desktop/Particulas/external/imgui/backends -IC:/Users/donle/OneDrive/Desktop/Particulas/External/glfw/include -IC:/Users/donle/OneDrive/Desktop/Particulas/External/imgui -isystem C:/VulkanSDK/1.3.296.0/Include
+  FLAGS = -std=c++17
+  INCLUDES = -IC:/Users/donle/OneDrive/Desktop/Particulas/src/. -IC:/Users/donle/OneDrive/Desktop/Particulas/src/core -IC:/Users/donle/OneDrive/Desktop/Particulas/src/particles -IC:/Users/donle/OneDrive/Desktop/Particulas/src/rendering -IC:/Users/donle/OneDrive/Desktop/Particulas/src/window -IC:/Users/donle/OneDrive/Desktop/Particulas/src/utils -IC:/Users/donle/OneDrive/Desktop/Particulas/build/_deps/glfw-src/include -IC:/Users/donle/OneDrive/Desktop/Particulas/build/_deps/imgui-src -IC:/Users/donle/OneDrive/Desktop/Particulas/build/_deps/imgui-src/backends -IC:/Users/donle/OneDrive/Desktop/Particulas/build/_deps/glm-src -IC:/Users/donle/OneDrive/Desktop/Particulas/src -isystem C:/VulkanSDK/1.3.296.0/Include
   OBJECT_DIR = src\CMakeFiles\ParticleSimulation.dir
   OBJECT_FILE_DIR = src\CMakeFiles\ParticleSimulation.dir\core
   TARGET_COMPILE_PDB = src\CMakeFiles\ParticleSimulation.dir\
@@ -752,8 +819,8 @@ build src/CMakeFiles/ParticleSimulation.dir/core/device.cpp.obj: CXX_COMPILER__P
 
 build src/CMakeFiles/ParticleSimulation.dir/core/swapchain.cpp.obj: CXX_COMPILER__ParticleSimulation_unscanned_ C$:/Users/donle/OneDrive/Desktop/Particulas/src/core/swapchain.cpp || cmake_object_order_depends_target_ParticleSimulation
   DEP_FILE = src\CMakeFiles\ParticleSimulation.dir\core\swapchain.cpp.obj.d
-  FLAGS = -std=gnu++17
-  INCLUDES = -IC:/Users/donle/OneDrive/Desktop/Particulas/src/. -IC:/Users/donle/OneDrive/Desktop/Particulas/src/core -IC:/Users/donle/OneDrive/Desktop/Particulas/src/particles -IC:/Users/donle/OneDrive/Desktop/Particulas/src/rendering -IC:/Users/donle/OneDrive/Desktop/Particulas/src/window -IC:/Users/donle/OneDrive/Desktop/Particulas/src/utils -IC:/Users/donle/OneDrive/Desktop/Particulas/external/glfw/include -IC:/Users/donle/OneDrive/Desktop/Particulas/external/glm -IC:/Users/donle/OneDrive/Desktop/Particulas/external/imgui -IC:/Users/donle/OneDrive/Desktop/Particulas/external/imgui/backends -IC:/Users/donle/OneDrive/Desktop/Particulas/External/glfw/include -IC:/Users/donle/OneDrive/Desktop/Particulas/External/imgui -isystem C:/VulkanSDK/1.3.296.0/Include
+  FLAGS = -std=c++17
+  INCLUDES = -IC:/Users/donle/OneDrive/Desktop/Particulas/src/. -IC:/Users/donle/OneDrive/Desktop/Particulas/src/core -IC:/Users/donle/OneDrive/Desktop/Particulas/src/particles -IC:/Users/donle/OneDrive/Desktop/Particulas/src/rendering -IC:/Users/donle/OneDrive/Desktop/Particulas/src/window -IC:/Users/donle/OneDrive/Desktop/Particulas/src/utils -IC:/Users/donle/OneDrive/Desktop/Particulas/build/_deps/glfw-src/include -IC:/Users/donle/OneDrive/Desktop/Particulas/build/_deps/imgui-src -IC:/Users/donle/OneDrive/Desktop/Particulas/build/_deps/imgui-src/backends -IC:/Users/donle/OneDrive/Desktop/Particulas/build/_deps/glm-src -IC:/Users/donle/OneDrive/Desktop/Particulas/src -isystem C:/VulkanSDK/1.3.296.0/Include
   OBJECT_DIR = src\CMakeFiles\ParticleSimulation.dir
   OBJECT_FILE_DIR = src\CMakeFiles\ParticleSimulation.dir\core
   TARGET_COMPILE_PDB = src\CMakeFiles\ParticleSimulation.dir\
@@ -761,8 +828,8 @@ build src/CMakeFiles/ParticleSimulation.dir/core/swapchain.cpp.obj: CXX_COMPILER
 
 build src/CMakeFiles/ParticleSimulation.dir/core/command_pool.cpp.obj: CXX_COMPILER__ParticleSimulation_unscanned_ C$:/Users/donle/OneDrive/Desktop/Particulas/src/core/command_pool.cpp || cmake_object_order_depends_target_ParticleSimulation
   DEP_FILE = src\CMakeFiles\ParticleSimulation.dir\core\command_pool.cpp.obj.d
-  FLAGS = -std=gnu++17
-  INCLUDES = -IC:/Users/donle/OneDrive/Desktop/Particulas/src/. -IC:/Users/donle/OneDrive/Desktop/Particulas/src/core -IC:/Users/donle/OneDrive/Desktop/Particulas/src/particles -IC:/Users/donle/OneDrive/Desktop/Particulas/src/rendering -IC:/Users/donle/OneDrive/Desktop/Particulas/src/window -IC:/Users/donle/OneDrive/Desktop/Particulas/src/utils -IC:/Users/donle/OneDrive/Desktop/Particulas/external/glfw/include -IC:/Users/donle/OneDrive/Desktop/Particulas/external/glm -IC:/Users/donle/OneDrive/Desktop/Particulas/external/imgui -IC:/Users/donle/OneDrive/Desktop/Particulas/external/imgui/backends -IC:/Users/donle/OneDrive/Desktop/Particulas/External/glfw/include -IC:/Users/donle/OneDrive/Desktop/Particulas/External/imgui -isystem C:/VulkanSDK/1.3.296.0/Include
+  FLAGS = -std=c++17
+  INCLUDES = -IC:/Users/donle/OneDrive/Desktop/Particulas/src/. -IC:/Users/donle/OneDrive/Desktop/Particulas/src/core -IC:/Users/donle/OneDrive/Desktop/Particulas/src/particles -IC:/Users/donle/OneDrive/Desktop/Particulas/src/rendering -IC:/Users/donle/OneDrive/Desktop/Particulas/src/window -IC:/Users/donle/OneDrive/Desktop/Particulas/src/utils -IC:/Users/donle/OneDrive/Desktop/Particulas/build/_deps/glfw-src/include -IC:/Users/donle/OneDrive/Desktop/Particulas/build/_deps/imgui-src -IC:/Users/donle/OneDrive/Desktop/Particulas/build/_deps/imgui-src/backends -IC:/Users/donle/OneDrive/Desktop/Particulas/build/_deps/glm-src -IC:/Users/donle/OneDrive/Desktop/Particulas/src -isystem C:/VulkanSDK/1.3.296.0/Include
   OBJECT_DIR = src\CMakeFiles\ParticleSimulation.dir
   OBJECT_FILE_DIR = src\CMakeFiles\ParticleSimulation.dir\core
   TARGET_COMPILE_PDB = src\CMakeFiles\ParticleSimulation.dir\
@@ -770,8 +837,8 @@ build src/CMakeFiles/ParticleSimulation.dir/core/command_pool.cpp.obj: CXX_COMPI
 
 build src/CMakeFiles/ParticleSimulation.dir/core/sync.cpp.obj: CXX_COMPILER__ParticleSimulation_unscanned_ C$:/Users/donle/OneDrive/Desktop/Particulas/src/core/sync.cpp || cmake_object_order_depends_target_ParticleSimulation
   DEP_FILE = src\CMakeFiles\ParticleSimulation.dir\core\sync.cpp.obj.d
-  FLAGS = -std=gnu++17
-  INCLUDES = -IC:/Users/donle/OneDrive/Desktop/Particulas/src/. -IC:/Users/donle/OneDrive/Desktop/Particulas/src/core -IC:/Users/donle/OneDrive/Desktop/Particulas/src/particles -IC:/Users/donle/OneDrive/Desktop/Particulas/src/rendering -IC:/Users/donle/OneDrive/Desktop/Particulas/src/window -IC:/Users/donle/OneDrive/Desktop/Particulas/src/utils -IC:/Users/donle/OneDrive/Desktop/Particulas/external/glfw/include -IC:/Users/donle/OneDrive/Desktop/Particulas/external/glm -IC:/Users/donle/OneDrive/Desktop/Particulas/external/imgui -IC:/Users/donle/OneDrive/Desktop/Particulas/external/imgui/backends -IC:/Users/donle/OneDrive/Desktop/Particulas/External/glfw/include -IC:/Users/donle/OneDrive/Desktop/Particulas/External/imgui -isystem C:/VulkanSDK/1.3.296.0/Include
+  FLAGS = -std=c++17
+  INCLUDES = -IC:/Users/donle/OneDrive/Desktop/Particulas/src/. -IC:/Users/donle/OneDrive/Desktop/Particulas/src/core -IC:/Users/donle/OneDrive/Desktop/Particulas/src/particles -IC:/Users/donle/OneDrive/Desktop/Particulas/src/rendering -IC:/Users/donle/OneDrive/Desktop/Particulas/src/window -IC:/Users/donle/OneDrive/Desktop/Particulas/src/utils -IC:/Users/donle/OneDrive/Desktop/Particulas/build/_deps/glfw-src/include -IC:/Users/donle/OneDrive/Desktop/Particulas/build/_deps/imgui-src -IC:/Users/donle/OneDrive/Desktop/Particulas/build/_deps/imgui-src/backends -IC:/Users/donle/OneDrive/Desktop/Particulas/build/_deps/glm-src -IC:/Users/donle/OneDrive/Desktop/Particulas/src -isystem C:/VulkanSDK/1.3.296.0/Include
   OBJECT_DIR = src\CMakeFiles\ParticleSimulation.dir
   OBJECT_FILE_DIR = src\CMakeFiles\ParticleSimulation.dir\core
   TARGET_COMPILE_PDB = src\CMakeFiles\ParticleSimulation.dir\
@@ -779,8 +846,8 @@ build src/CMakeFiles/ParticleSimulation.dir/core/sync.cpp.obj: CXX_COMPILER__Par
 
 build src/CMakeFiles/ParticleSimulation.dir/core/pipeline.cpp.obj: CXX_COMPILER__ParticleSimulation_unscanned_ C$:/Users/donle/OneDrive/Desktop/Particulas/src/core/pipeline.cpp || cmake_object_order_depends_target_ParticleSimulation
   DEP_FILE = src\CMakeFiles\ParticleSimulation.dir\core\pipeline.cpp.obj.d
-  FLAGS = -std=gnu++17
-  INCLUDES = -IC:/Users/donle/OneDrive/Desktop/Particulas/src/. -IC:/Users/donle/OneDrive/Desktop/Particulas/src/core -IC:/Users/donle/OneDrive/Desktop/Particulas/src/particles -IC:/Users/donle/OneDrive/Desktop/Particulas/src/rendering -IC:/Users/donle/OneDrive/Desktop/Particulas/src/window -IC:/Users/donle/OneDrive/Desktop/Particulas/src/utils -IC:/Users/donle/OneDrive/Desktop/Particulas/external/glfw/include -IC:/Users/donle/OneDrive/Desktop/Particulas/external/glm -IC:/Users/donle/OneDrive/Desktop/Particulas/external/imgui -IC:/Users/donle/OneDrive/Desktop/Particulas/external/imgui/backends -IC:/Users/donle/OneDrive/Desktop/Particulas/External/glfw/include -IC:/Users/donle/OneDrive/Desktop/Particulas/External/imgui -isystem C:/VulkanSDK/1.3.296.0/Include
+  FLAGS = -std=c++17
+  INCLUDES = -IC:/Users/donle/OneDrive/Desktop/Particulas/src/. -IC:/Users/donle/OneDrive/Desktop/Particulas/src/core -IC:/Users/donle/OneDrive/Desktop/Particulas/src/particles -IC:/Users/donle/OneDrive/Desktop/Particulas/src/rendering -IC:/Users/donle/OneDrive/Desktop/Particulas/src/window -IC:/Users/donle/OneDrive/Desktop/Particulas/src/utils -IC:/Users/donle/OneDrive/Desktop/Particulas/build/_deps/glfw-src/include -IC:/Users/donle/OneDrive/Desktop/Particulas/build/_deps/imgui-src -IC:/Users/donle/OneDrive/Desktop/Particulas/build/_deps/imgui-src/backends -IC:/Users/donle/OneDrive/Desktop/Particulas/build/_deps/glm-src -IC:/Users/donle/OneDrive/Desktop/Particulas/src -isystem C:/VulkanSDK/1.3.296.0/Include
   OBJECT_DIR = src\CMakeFiles\ParticleSimulation.dir
   OBJECT_FILE_DIR = src\CMakeFiles\ParticleSimulation.dir\core
   TARGET_COMPILE_PDB = src\CMakeFiles\ParticleSimulation.dir\
@@ -788,8 +855,8 @@ build src/CMakeFiles/ParticleSimulation.dir/core/pipeline.cpp.obj: CXX_COMPILER_
 
 build src/CMakeFiles/ParticleSimulation.dir/core/render_pass.cpp.obj: CXX_COMPILER__ParticleSimulation_unscanned_ C$:/Users/donle/OneDrive/Desktop/Particulas/src/core/render_pass.cpp || cmake_object_order_depends_target_ParticleSimulation
   DEP_FILE = src\CMakeFiles\ParticleSimulation.dir\core\render_pass.cpp.obj.d
-  FLAGS = -std=gnu++17
-  INCLUDES = -IC:/Users/donle/OneDrive/Desktop/Particulas/src/. -IC:/Users/donle/OneDrive/Desktop/Particulas/src/core -IC:/Users/donle/OneDrive/Desktop/Particulas/src/particles -IC:/Users/donle/OneDrive/Desktop/Particulas/src/rendering -IC:/Users/donle/OneDrive/Desktop/Particulas/src/window -IC:/Users/donle/OneDrive/Desktop/Particulas/src/utils -IC:/Users/donle/OneDrive/Desktop/Particulas/external/glfw/include -IC:/Users/donle/OneDrive/Desktop/Particulas/external/glm -IC:/Users/donle/OneDrive/Desktop/Particulas/external/imgui -IC:/Users/donle/OneDrive/Desktop/Particulas/external/imgui/backends -IC:/Users/donle/OneDrive/Desktop/Particulas/External/glfw/include -IC:/Users/donle/OneDrive/Desktop/Particulas/External/imgui -isystem C:/VulkanSDK/1.3.296.0/Include
+  FLAGS = -std=c++17
+  INCLUDES = -IC:/Users/donle/OneDrive/Desktop/Particulas/src/. -IC:/Users/donle/OneDrive/Desktop/Particulas/src/core -IC:/Users/donle/OneDrive/Desktop/Particulas/src/particles -IC:/Users/donle/OneDrive/Desktop/Particulas/src/rendering -IC:/Users/donle/OneDrive/Desktop/Particulas/src/window -IC:/Users/donle/OneDrive/Desktop/Particulas/src/utils -IC:/Users/donle/OneDrive/Desktop/Particulas/build/_deps/glfw-src/include -IC:/Users/donle/OneDrive/Desktop/Particulas/build/_deps/imgui-src -IC:/Users/donle/OneDrive/Desktop/Particulas/build/_deps/imgui-src/backends -IC:/Users/donle/OneDrive/Desktop/Particulas/build/_deps/glm-src -IC:/Users/donle/OneDrive/Desktop/Particulas/src -isystem C:/VulkanSDK/1.3.296.0/Include
   OBJECT_DIR = src\CMakeFiles\ParticleSimulation.dir
   OBJECT_FILE_DIR = src\CMakeFiles\ParticleSimulation.dir\core
   TARGET_COMPILE_PDB = src\CMakeFiles\ParticleSimulation.dir\
@@ -797,8 +864,8 @@ build src/CMakeFiles/ParticleSimulation.dir/core/render_pass.cpp.obj: CXX_COMPIL
 
 build src/CMakeFiles/ParticleSimulation.dir/particles/particle_system.cpp.obj: CXX_COMPILER__ParticleSimulation_unscanned_ C$:/Users/donle/OneDrive/Desktop/Particulas/src/particles/particle_system.cpp || cmake_object_order_depends_target_ParticleSimulation
   DEP_FILE = src\CMakeFiles\ParticleSimulation.dir\particles\particle_system.cpp.obj.d
-  FLAGS = -std=gnu++17
-  INCLUDES = -IC:/Users/donle/OneDrive/Desktop/Particulas/src/. -IC:/Users/donle/OneDrive/Desktop/Particulas/src/core -IC:/Users/donle/OneDrive/Desktop/Particulas/src/particles -IC:/Users/donle/OneDrive/Desktop/Particulas/src/rendering -IC:/Users/donle/OneDrive/Desktop/Particulas/src/window -IC:/Users/donle/OneDrive/Desktop/Particulas/src/utils -IC:/Users/donle/OneDrive/Desktop/Particulas/external/glfw/include -IC:/Users/donle/OneDrive/Desktop/Particulas/external/glm -IC:/Users/donle/OneDrive/Desktop/Particulas/external/imgui -IC:/Users/donle/OneDrive/Desktop/Particulas/external/imgui/backends -IC:/Users/donle/OneDrive/Desktop/Particulas/External/glfw/include -IC:/Users/donle/OneDrive/Desktop/Particulas/External/imgui -isystem C:/VulkanSDK/1.3.296.0/Include
+  FLAGS = -std=c++17
+  INCLUDES = -IC:/Users/donle/OneDrive/Desktop/Particulas/src/. -IC:/Users/donle/OneDrive/Desktop/Particulas/src/core -IC:/Users/donle/OneDrive/Desktop/Particulas/src/particles -IC:/Users/donle/OneDrive/Desktop/Particulas/src/rendering -IC:/Users/donle/OneDrive/Desktop/Particulas/src/window -IC:/Users/donle/OneDrive/Desktop/Particulas/src/utils -IC:/Users/donle/OneDrive/Desktop/Particulas/build/_deps/glfw-src/include -IC:/Users/donle/OneDrive/Desktop/Particulas/build/_deps/imgui-src -IC:/Users/donle/OneDrive/Desktop/Particulas/build/_deps/imgui-src/backends -IC:/Users/donle/OneDrive/Desktop/Particulas/build/_deps/glm-src -IC:/Users/donle/OneDrive/Desktop/Particulas/src -isystem C:/VulkanSDK/1.3.296.0/Include
   OBJECT_DIR = src\CMakeFiles\ParticleSimulation.dir
   OBJECT_FILE_DIR = src\CMakeFiles\ParticleSimulation.dir\particles
   TARGET_COMPILE_PDB = src\CMakeFiles\ParticleSimulation.dir\
@@ -806,8 +873,8 @@ build src/CMakeFiles/ParticleSimulation.dir/particles/particle_system.cpp.obj: C
 
 build src/CMakeFiles/ParticleSimulation.dir/rendering/particle_renderer.cpp.obj: CXX_COMPILER__ParticleSimulation_unscanned_ C$:/Users/donle/OneDrive/Desktop/Particulas/src/rendering/particle_renderer.cpp || cmake_object_order_depends_target_ParticleSimulation
   DEP_FILE = src\CMakeFiles\ParticleSimulation.dir\rendering\particle_renderer.cpp.obj.d
-  FLAGS = -std=gnu++17
-  INCLUDES = -IC:/Users/donle/OneDrive/Desktop/Particulas/src/. -IC:/Users/donle/OneDrive/Desktop/Particulas/src/core -IC:/Users/donle/OneDrive/Desktop/Particulas/src/particles -IC:/Users/donle/OneDrive/Desktop/Particulas/src/rendering -IC:/Users/donle/OneDrive/Desktop/Particulas/src/window -IC:/Users/donle/OneDrive/Desktop/Particulas/src/utils -IC:/Users/donle/OneDrive/Desktop/Particulas/external/glfw/include -IC:/Users/donle/OneDrive/Desktop/Particulas/external/glm -IC:/Users/donle/OneDrive/Desktop/Particulas/external/imgui -IC:/Users/donle/OneDrive/Desktop/Particulas/external/imgui/backends -IC:/Users/donle/OneDrive/Desktop/Particulas/External/glfw/include -IC:/Users/donle/OneDrive/Desktop/Particulas/External/imgui -isystem C:/VulkanSDK/1.3.296.0/Include
+  FLAGS = -std=c++17
+  INCLUDES = -IC:/Users/donle/OneDrive/Desktop/Particulas/src/. -IC:/Users/donle/OneDrive/Desktop/Particulas/src/core -IC:/Users/donle/OneDrive/Desktop/Particulas/src/particles -IC:/Users/donle/OneDrive/Desktop/Particulas/src/rendering -IC:/Users/donle/OneDrive/Desktop/Particulas/src/window -IC:/Users/donle/OneDrive/Desktop/Particulas/src/utils -IC:/Users/donle/OneDrive/Desktop/Particulas/build/_deps/glfw-src/include -IC:/Users/donle/OneDrive/Desktop/Particulas/build/_deps/imgui-src -IC:/Users/donle/OneDrive/Desktop/Particulas/build/_deps/imgui-src/backends -IC:/Users/donle/OneDrive/Desktop/Particulas/build/_deps/glm-src -IC:/Users/donle/OneDrive/Desktop/Particulas/src -isystem C:/VulkanSDK/1.3.296.0/Include
   OBJECT_DIR = src\CMakeFiles\ParticleSimulation.dir
   OBJECT_FILE_DIR = src\CMakeFiles\ParticleSimulation.dir\rendering
   TARGET_COMPILE_PDB = src\CMakeFiles\ParticleSimulation.dir\
@@ -815,8 +882,8 @@ build src/CMakeFiles/ParticleSimulation.dir/rendering/particle_renderer.cpp.obj:
 
 build src/CMakeFiles/ParticleSimulation.dir/window/window.cpp.obj: CXX_COMPILER__ParticleSimulation_unscanned_ C$:/Users/donle/OneDrive/Desktop/Particulas/src/window/window.cpp || cmake_object_order_depends_target_ParticleSimulation
   DEP_FILE = src\CMakeFiles\ParticleSimulation.dir\window\window.cpp.obj.d
-  FLAGS = -std=gnu++17
-  INCLUDES = -IC:/Users/donle/OneDrive/Desktop/Particulas/src/. -IC:/Users/donle/OneDrive/Desktop/Particulas/src/core -IC:/Users/donle/OneDrive/Desktop/Particulas/src/particles -IC:/Users/donle/OneDrive/Desktop/Particulas/src/rendering -IC:/Users/donle/OneDrive/Desktop/Particulas/src/window -IC:/Users/donle/OneDrive/Desktop/Particulas/src/utils -IC:/Users/donle/OneDrive/Desktop/Particulas/external/glfw/include -IC:/Users/donle/OneDrive/Desktop/Particulas/external/glm -IC:/Users/donle/OneDrive/Desktop/Particulas/external/imgui -IC:/Users/donle/OneDrive/Desktop/Particulas/external/imgui/backends -IC:/Users/donle/OneDrive/Desktop/Particulas/External/glfw/include -IC:/Users/donle/OneDrive/Desktop/Particulas/External/imgui -isystem C:/VulkanSDK/1.3.296.0/Include
+  FLAGS = -std=c++17
+  INCLUDES = -IC:/Users/donle/OneDrive/Desktop/Particulas/src/. -IC:/Users/donle/OneDrive/Desktop/Particulas/src/core -IC:/Users/donle/OneDrive/Desktop/Particulas/src/particles -IC:/Users/donle/OneDrive/Desktop/Particulas/src/rendering -IC:/Users/donle/OneDrive/Desktop/Particulas/src/window -IC:/Users/donle/OneDrive/Desktop/Particulas/src/utils -IC:/Users/donle/OneDrive/Desktop/Particulas/build/_deps/glfw-src/include -IC:/Users/donle/OneDrive/Desktop/Particulas/build/_deps/imgui-src -IC:/Users/donle/OneDrive/Desktop/Particulas/build/_deps/imgui-src/backends -IC:/Users/donle/OneDrive/Desktop/Particulas/build/_deps/glm-src -IC:/Users/donle/OneDrive/Desktop/Particulas/src -isystem C:/VulkanSDK/1.3.296.0/Include
   OBJECT_DIR = src\CMakeFiles\ParticleSimulation.dir
   OBJECT_FILE_DIR = src\CMakeFiles\ParticleSimulation.dir\window
   TARGET_COMPILE_PDB = src\CMakeFiles\ParticleSimulation.dir\
@@ -824,28 +891,64 @@ build src/CMakeFiles/ParticleSimulation.dir/window/window.cpp.obj: CXX_COMPILER_
 
 build src/CMakeFiles/ParticleSimulation.dir/utils/vulkan_debug.cpp.obj: CXX_COMPILER__ParticleSimulation_unscanned_ C$:/Users/donle/OneDrive/Desktop/Particulas/src/utils/vulkan_debug.cpp || cmake_object_order_depends_target_ParticleSimulation
   DEP_FILE = src\CMakeFiles\ParticleSimulation.dir\utils\vulkan_debug.cpp.obj.d
-  FLAGS = -std=gnu++17
-  INCLUDES = -IC:/Users/donle/OneDrive/Desktop/Particulas/src/. -IC:/Users/donle/OneDrive/Desktop/Particulas/src/core -IC:/Users/donle/OneDrive/Desktop/Particulas/src/particles -IC:/Users/donle/OneDrive/Desktop/Particulas/src/rendering -IC:/Users/donle/OneDrive/Desktop/Particulas/src/window -IC:/Users/donle/OneDrive/Desktop/Particulas/src/utils -IC:/Users/donle/OneDrive/Desktop/Particulas/external/glfw/include -IC:/Users/donle/OneDrive/Desktop/Particulas/external/glm -IC:/Users/donle/OneDrive/Desktop/Particulas/external/imgui -IC:/Users/donle/OneDrive/Desktop/Particulas/external/imgui/backends -IC:/Users/donle/OneDrive/Desktop/Particulas/External/glfw/include -IC:/Users/donle/OneDrive/Desktop/Particulas/External/imgui -isystem C:/VulkanSDK/1.3.296.0/Include
+  FLAGS = -std=c++17
+  INCLUDES = -IC:/Users/donle/OneDrive/Desktop/Particulas/src/. -IC:/Users/donle/OneDrive/Desktop/Particulas/src/core -IC:/Users/donle/OneDrive/Desktop/Particulas/src/particles -IC:/Users/donle/OneDrive/Desktop/Particulas/src/rendering -IC:/Users/donle/OneDrive/Desktop/Particulas/src/window -IC:/Users/donle/OneDrive/Desktop/Particulas/src/utils -IC:/Users/donle/OneDrive/Desktop/Particulas/build/_deps/glfw-src/include -IC:/Users/donle/OneDrive/Desktop/Particulas/build/_deps/imgui-src -IC:/Users/donle/OneDrive/Desktop/Particulas/build/_deps/imgui-src/backends -IC:/Users/donle/OneDrive/Desktop/Particulas/build/_deps/glm-src -IC:/Users/donle/OneDrive/Desktop/Particulas/src -isystem C:/VulkanSDK/1.3.296.0/Include
   OBJECT_DIR = src\CMakeFiles\ParticleSimulation.dir
   OBJECT_FILE_DIR = src\CMakeFiles\ParticleSimulation.dir\utils
   TARGET_COMPILE_PDB = src\CMakeFiles\ParticleSimulation.dir\
   TARGET_PDB = src\ParticleSimulation.pdb
 
-build src/CMakeFiles/ParticleSimulation.dir/__/External/imgui/backends/imgui_impl_glfw.cpp.obj: CXX_COMPILER__ParticleSimulation_unscanned_ C$:/Users/donle/OneDrive/Desktop/Particulas/External/imgui/backends/imgui_impl_glfw.cpp || cmake_object_order_depends_target_ParticleSimulation
-  DEP_FILE = src\CMakeFiles\ParticleSimulation.dir\__\External\imgui\backends\imgui_impl_glfw.cpp.obj.d
-  FLAGS = -std=gnu++17
-  INCLUDES = -IC:/Users/donle/OneDrive/Desktop/Particulas/src/. -IC:/Users/donle/OneDrive/Desktop/Particulas/src/core -IC:/Users/donle/OneDrive/Desktop/Particulas/src/particles -IC:/Users/donle/OneDrive/Desktop/Particulas/src/rendering -IC:/Users/donle/OneDrive/Desktop/Particulas/src/window -IC:/Users/donle/OneDrive/Desktop/Particulas/src/utils -IC:/Users/donle/OneDrive/Desktop/Particulas/external/glfw/include -IC:/Users/donle/OneDrive/Desktop/Particulas/external/glm -IC:/Users/donle/OneDrive/Desktop/Particulas/external/imgui -IC:/Users/donle/OneDrive/Desktop/Particulas/external/imgui/backends -IC:/Users/donle/OneDrive/Desktop/Particulas/External/glfw/include -IC:/Users/donle/OneDrive/Desktop/Particulas/External/imgui -isystem C:/VulkanSDK/1.3.296.0/Include
+build src/CMakeFiles/ParticleSimulation.dir/__/_deps/imgui-src/backends/imgui_impl_glfw.cpp.obj: CXX_COMPILER__ParticleSimulation_unscanned_ C$:/Users/donle/OneDrive/Desktop/Particulas/build/_deps/imgui-src/backends/imgui_impl_glfw.cpp || cmake_object_order_depends_target_ParticleSimulation
+  DEP_FILE = src\CMakeFiles\ParticleSimulation.dir\__\_deps\imgui-src\backends\imgui_impl_glfw.cpp.obj.d
+  FLAGS = -std=c++17
+  INCLUDES = -IC:/Users/donle/OneDrive/Desktop/Particulas/src/. -IC:/Users/donle/OneDrive/Desktop/Particulas/src/core -IC:/Users/donle/OneDrive/Desktop/Particulas/src/particles -IC:/Users/donle/OneDrive/Desktop/Particulas/src/rendering -IC:/Users/donle/OneDrive/Desktop/Particulas/src/window -IC:/Users/donle/OneDrive/Desktop/Particulas/src/utils -IC:/Users/donle/OneDrive/Desktop/Particulas/build/_deps/glfw-src/include -IC:/Users/donle/OneDrive/Desktop/Particulas/build/_deps/imgui-src -IC:/Users/donle/OneDrive/Desktop/Particulas/build/_deps/imgui-src/backends -IC:/Users/donle/OneDrive/Desktop/Particulas/build/_deps/glm-src -IC:/Users/donle/OneDrive/Desktop/Particulas/src -isystem C:/VulkanSDK/1.3.296.0/Include
   OBJECT_DIR = src\CMakeFiles\ParticleSimulation.dir
-  OBJECT_FILE_DIR = src\CMakeFiles\ParticleSimulation.dir\__\External\imgui\backends
+  OBJECT_FILE_DIR = src\CMakeFiles\ParticleSimulation.dir\__\_deps\imgui-src\backends
   TARGET_COMPILE_PDB = src\CMakeFiles\ParticleSimulation.dir\
   TARGET_PDB = src\ParticleSimulation.pdb
 
-build src/CMakeFiles/ParticleSimulation.dir/__/External/imgui/backends/imgui_impl_vulkan.cpp.obj: CXX_COMPILER__ParticleSimulation_unscanned_ C$:/Users/donle/OneDrive/Desktop/Particulas/External/imgui/backends/imgui_impl_vulkan.cpp || cmake_object_order_depends_target_ParticleSimulation
-  DEP_FILE = src\CMakeFiles\ParticleSimulation.dir\__\External\imgui\backends\imgui_impl_vulkan.cpp.obj.d
-  FLAGS = -std=gnu++17
-  INCLUDES = -IC:/Users/donle/OneDrive/Desktop/Particulas/src/. -IC:/Users/donle/OneDrive/Desktop/Particulas/src/core -IC:/Users/donle/OneDrive/Desktop/Particulas/src/particles -IC:/Users/donle/OneDrive/Desktop/Particulas/src/rendering -IC:/Users/donle/OneDrive/Desktop/Particulas/src/window -IC:/Users/donle/OneDrive/Desktop/Particulas/src/utils -IC:/Users/donle/OneDrive/Desktop/Particulas/external/glfw/include -IC:/Users/donle/OneDrive/Desktop/Particulas/external/glm -IC:/Users/donle/OneDrive/Desktop/Particulas/external/imgui -IC:/Users/donle/OneDrive/Desktop/Particulas/external/imgui/backends -IC:/Users/donle/OneDrive/Desktop/Particulas/External/glfw/include -IC:/Users/donle/OneDrive/Desktop/Particulas/External/imgui -isystem C:/VulkanSDK/1.3.296.0/Include
+build src/CMakeFiles/ParticleSimulation.dir/__/_deps/imgui-src/backends/imgui_impl_vulkan.cpp.obj: CXX_COMPILER__ParticleSimulation_unscanned_ C$:/Users/donle/OneDrive/Desktop/Particulas/build/_deps/imgui-src/backends/imgui_impl_vulkan.cpp || cmake_object_order_depends_target_ParticleSimulation
+  DEP_FILE = src\CMakeFiles\ParticleSimulation.dir\__\_deps\imgui-src\backends\imgui_impl_vulkan.cpp.obj.d
+  FLAGS = -std=c++17
+  INCLUDES = -IC:/Users/donle/OneDrive/Desktop/Particulas/src/. -IC:/Users/donle/OneDrive/Desktop/Particulas/src/core -IC:/Users/donle/OneDrive/Desktop/Particulas/src/particles -IC:/Users/donle/OneDrive/Desktop/Particulas/src/rendering -IC:/Users/donle/OneDrive/Desktop/Particulas/src/window -IC:/Users/donle/OneDrive/Desktop/Particulas/src/utils -IC:/Users/donle/OneDrive/Desktop/Particulas/build/_deps/glfw-src/include -IC:/Users/donle/OneDrive/Desktop/Particulas/build/_deps/imgui-src -IC:/Users/donle/OneDrive/Desktop/Particulas/build/_deps/imgui-src/backends -IC:/Users/donle/OneDrive/Desktop/Particulas/build/_deps/glm-src -IC:/Users/donle/OneDrive/Desktop/Particulas/src -isystem C:/VulkanSDK/1.3.296.0/Include
   OBJECT_DIR = src\CMakeFiles\ParticleSimulation.dir
-  OBJECT_FILE_DIR = src\CMakeFiles\ParticleSimulation.dir\__\External\imgui\backends
+  OBJECT_FILE_DIR = src\CMakeFiles\ParticleSimulation.dir\__\_deps\imgui-src\backends
+  TARGET_COMPILE_PDB = src\CMakeFiles\ParticleSimulation.dir\
+  TARGET_PDB = src\ParticleSimulation.pdb
+
+build src/CMakeFiles/ParticleSimulation.dir/__/_deps/imgui-src/imgui.cpp.obj: CXX_COMPILER__ParticleSimulation_unscanned_ C$:/Users/donle/OneDrive/Desktop/Particulas/build/_deps/imgui-src/imgui.cpp || cmake_object_order_depends_target_ParticleSimulation
+  DEP_FILE = src\CMakeFiles\ParticleSimulation.dir\__\_deps\imgui-src\imgui.cpp.obj.d
+  FLAGS = -std=c++17
+  INCLUDES = -IC:/Users/donle/OneDrive/Desktop/Particulas/src/. -IC:/Users/donle/OneDrive/Desktop/Particulas/src/core -IC:/Users/donle/OneDrive/Desktop/Particulas/src/particles -IC:/Users/donle/OneDrive/Desktop/Particulas/src/rendering -IC:/Users/donle/OneDrive/Desktop/Particulas/src/window -IC:/Users/donle/OneDrive/Desktop/Particulas/src/utils -IC:/Users/donle/OneDrive/Desktop/Particulas/build/_deps/glfw-src/include -IC:/Users/donle/OneDrive/Desktop/Particulas/build/_deps/imgui-src -IC:/Users/donle/OneDrive/Desktop/Particulas/build/_deps/imgui-src/backends -IC:/Users/donle/OneDrive/Desktop/Particulas/build/_deps/glm-src -IC:/Users/donle/OneDrive/Desktop/Particulas/src -isystem C:/VulkanSDK/1.3.296.0/Include
+  OBJECT_DIR = src\CMakeFiles\ParticleSimulation.dir
+  OBJECT_FILE_DIR = src\CMakeFiles\ParticleSimulation.dir\__\_deps\imgui-src
+  TARGET_COMPILE_PDB = src\CMakeFiles\ParticleSimulation.dir\
+  TARGET_PDB = src\ParticleSimulation.pdb
+
+build src/CMakeFiles/ParticleSimulation.dir/__/_deps/imgui-src/imgui_draw.cpp.obj: CXX_COMPILER__ParticleSimulation_unscanned_ C$:/Users/donle/OneDrive/Desktop/Particulas/build/_deps/imgui-src/imgui_draw.cpp || cmake_object_order_depends_target_ParticleSimulation
+  DEP_FILE = src\CMakeFiles\ParticleSimulation.dir\__\_deps\imgui-src\imgui_draw.cpp.obj.d
+  FLAGS = -std=c++17
+  INCLUDES = -IC:/Users/donle/OneDrive/Desktop/Particulas/src/. -IC:/Users/donle/OneDrive/Desktop/Particulas/src/core -IC:/Users/donle/OneDrive/Desktop/Particulas/src/particles -IC:/Users/donle/OneDrive/Desktop/Particulas/src/rendering -IC:/Users/donle/OneDrive/Desktop/Particulas/src/window -IC:/Users/donle/OneDrive/Desktop/Particulas/src/utils -IC:/Users/donle/OneDrive/Desktop/Particulas/build/_deps/glfw-src/include -IC:/Users/donle/OneDrive/Desktop/Particulas/build/_deps/imgui-src -IC:/Users/donle/OneDrive/Desktop/Particulas/build/_deps/imgui-src/backends -IC:/Users/donle/OneDrive/Desktop/Particulas/build/_deps/glm-src -IC:/Users/donle/OneDrive/Desktop/Particulas/src -isystem C:/VulkanSDK/1.3.296.0/Include
+  OBJECT_DIR = src\CMakeFiles\ParticleSimulation.dir
+  OBJECT_FILE_DIR = src\CMakeFiles\ParticleSimulation.dir\__\_deps\imgui-src
+  TARGET_COMPILE_PDB = src\CMakeFiles\ParticleSimulation.dir\
+  TARGET_PDB = src\ParticleSimulation.pdb
+
+build src/CMakeFiles/ParticleSimulation.dir/__/_deps/imgui-src/imgui_tables.cpp.obj: CXX_COMPILER__ParticleSimulation_unscanned_ C$:/Users/donle/OneDrive/Desktop/Particulas/build/_deps/imgui-src/imgui_tables.cpp || cmake_object_order_depends_target_ParticleSimulation
+  DEP_FILE = src\CMakeFiles\ParticleSimulation.dir\__\_deps\imgui-src\imgui_tables.cpp.obj.d
+  FLAGS = -std=c++17
+  INCLUDES = -IC:/Users/donle/OneDrive/Desktop/Particulas/src/. -IC:/Users/donle/OneDrive/Desktop/Particulas/src/core -IC:/Users/donle/OneDrive/Desktop/Particulas/src/particles -IC:/Users/donle/OneDrive/Desktop/Particulas/src/rendering -IC:/Users/donle/OneDrive/Desktop/Particulas/src/window -IC:/Users/donle/OneDrive/Desktop/Particulas/src/utils -IC:/Users/donle/OneDrive/Desktop/Particulas/build/_deps/glfw-src/include -IC:/Users/donle/OneDrive/Desktop/Particulas/build/_deps/imgui-src -IC:/Users/donle/OneDrive/Desktop/Particulas/build/_deps/imgui-src/backends -IC:/Users/donle/OneDrive/Desktop/Particulas/build/_deps/glm-src -IC:/Users/donle/OneDrive/Desktop/Particulas/src -isystem C:/VulkanSDK/1.3.296.0/Include
+  OBJECT_DIR = src\CMakeFiles\ParticleSimulation.dir
+  OBJECT_FILE_DIR = src\CMakeFiles\ParticleSimulation.dir\__\_deps\imgui-src
+  TARGET_COMPILE_PDB = src\CMakeFiles\ParticleSimulation.dir\
+  TARGET_PDB = src\ParticleSimulation.pdb
+
+build src/CMakeFiles/ParticleSimulation.dir/__/_deps/imgui-src/imgui_widgets.cpp.obj: CXX_COMPILER__ParticleSimulation_unscanned_ C$:/Users/donle/OneDrive/Desktop/Particulas/build/_deps/imgui-src/imgui_widgets.cpp || cmake_object_order_depends_target_ParticleSimulation
+  DEP_FILE = src\CMakeFiles\ParticleSimulation.dir\__\_deps\imgui-src\imgui_widgets.cpp.obj.d
+  FLAGS = -std=c++17
+  INCLUDES = -IC:/Users/donle/OneDrive/Desktop/Particulas/src/. -IC:/Users/donle/OneDrive/Desktop/Particulas/src/core -IC:/Users/donle/OneDrive/Desktop/Particulas/src/particles -IC:/Users/donle/OneDrive/Desktop/Particulas/src/rendering -IC:/Users/donle/OneDrive/Desktop/Particulas/src/window -IC:/Users/donle/OneDrive/Desktop/Particulas/src/utils -IC:/Users/donle/OneDrive/Desktop/Particulas/build/_deps/glfw-src/include -IC:/Users/donle/OneDrive/Desktop/Particulas/build/_deps/imgui-src -IC:/Users/donle/OneDrive/Desktop/Particulas/build/_deps/imgui-src/backends -IC:/Users/donle/OneDrive/Desktop/Particulas/build/_deps/glm-src -IC:/Users/donle/OneDrive/Desktop/Particulas/src -isystem C:/VulkanSDK/1.3.296.0/Include
+  OBJECT_DIR = src\CMakeFiles\ParticleSimulation.dir
+  OBJECT_FILE_DIR = src\CMakeFiles\ParticleSimulation.dir\__\_deps\imgui-src
   TARGET_COMPILE_PDB = src\CMakeFiles\ParticleSimulation.dir\
   TARGET_PDB = src\ParticleSimulation.pdb
 
@@ -857,8 +960,8 @@ build src/CMakeFiles/ParticleSimulation.dir/__/External/imgui/backends/imgui_imp
 #############################################
 # Link the executable src\ParticleSimulation.exe
 
-build src/ParticleSimulation.exe: CXX_EXECUTABLE_LINKER__ParticleSimulation_ src/CMakeFiles/ParticleSimulation.dir/main.cpp.obj src/CMakeFiles/ParticleSimulation.dir/core/instance.cpp.obj src/CMakeFiles/ParticleSimulation.dir/core/device.cpp.obj src/CMakeFiles/ParticleSimulation.dir/core/swapchain.cpp.obj src/CMakeFiles/ParticleSimulation.dir/core/command_pool.cpp.obj src/CMakeFiles/ParticleSimulation.dir/core/sync.cpp.obj src/CMakeFiles/ParticleSimulation.dir/core/pipeline.cpp.obj src/CMakeFiles/ParticleSimulation.dir/core/render_pass.cpp.obj src/CMakeFiles/ParticleSimulation.dir/particles/particle_system.cpp.obj src/CMakeFiles/ParticleSimulation.dir/rendering/particle_renderer.cpp.obj src/CMakeFiles/ParticleSimulation.dir/window/window.cpp.obj src/CMakeFiles/ParticleSimulation.dir/utils/vulkan_debug.cpp.obj src/CMakeFiles/ParticleSimulation.dir/__/External/imgui/backends/imgui_impl_glfw.cpp.obj src/CMakeFiles/ParticleSimulation.dir/__/External/imgui/backends/imgui_impl_vulkan.cpp.obj | External/glfw/src/libglfw3.a External/imgui/libImGui.a C$:/VulkanSDK/1.3.296.0/Lib/vulkan-1.lib || External/glfw/src/libglfw3.a External/imgui/libImGui.a Shaders
-  LINK_LIBRARIES = External/glfw/src/libglfw3.a  External/imgui/libImGui.a  C:/VulkanSDK/1.3.296.0/Lib/vulkan-1.lib  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
+build src/ParticleSimulation.exe: CXX_EXECUTABLE_LINKER__ParticleSimulation_ src/CMakeFiles/ParticleSimulation.dir/main.cpp.obj src/CMakeFiles/ParticleSimulation.dir/core/instance.cpp.obj src/CMakeFiles/ParticleSimulation.dir/core/device.cpp.obj src/CMakeFiles/ParticleSimulation.dir/core/swapchain.cpp.obj src/CMakeFiles/ParticleSimulation.dir/core/command_pool.cpp.obj src/CMakeFiles/ParticleSimulation.dir/core/sync.cpp.obj src/CMakeFiles/ParticleSimulation.dir/core/pipeline.cpp.obj src/CMakeFiles/ParticleSimulation.dir/core/render_pass.cpp.obj src/CMakeFiles/ParticleSimulation.dir/particles/particle_system.cpp.obj src/CMakeFiles/ParticleSimulation.dir/rendering/particle_renderer.cpp.obj src/CMakeFiles/ParticleSimulation.dir/window/window.cpp.obj src/CMakeFiles/ParticleSimulation.dir/utils/vulkan_debug.cpp.obj src/CMakeFiles/ParticleSimulation.dir/__/_deps/imgui-src/backends/imgui_impl_glfw.cpp.obj src/CMakeFiles/ParticleSimulation.dir/__/_deps/imgui-src/backends/imgui_impl_vulkan.cpp.obj src/CMakeFiles/ParticleSimulation.dir/__/_deps/imgui-src/imgui.cpp.obj src/CMakeFiles/ParticleSimulation.dir/__/_deps/imgui-src/imgui_draw.cpp.obj src/CMakeFiles/ParticleSimulation.dir/__/_deps/imgui-src/imgui_tables.cpp.obj src/CMakeFiles/ParticleSimulation.dir/__/_deps/imgui-src/imgui_widgets.cpp.obj | _deps/glfw-build/src/libglfw3.a C$:/VulkanSDK/1.3.296.0/Lib/vulkan-1.lib || Shaders _deps/glfw-build/src/libglfw3.a
+  LINK_LIBRARIES = _deps/glfw-build/src/libglfw3.a  C:/VulkanSDK/1.3.296.0/Lib/vulkan-1.lib  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = src\CMakeFiles\ParticleSimulation.dir
   POST_BUILD = cd .
   PRE_LINK = cd .
@@ -935,21 +1038,21 @@ build src/install/strip: phony src/CMakeFiles/install/strip.util
 # =============================================================================
 # Target aliases.
 
-build ImGui: phony External/imgui/libImGui.a
-
 build ParticleSimulation: phony src/ParticleSimulation.exe
 
 build ParticleSimulation.exe: phony src/ParticleSimulation.exe
 
-build glfw: phony External/glfw/src/libglfw3.a
+build glfw: phony _deps/glfw-build/src/libglfw3.a
 
-build libImGui.a: phony External/imgui/libImGui.a
+build glm: phony _deps/glm-build/glm/libglm.a
 
-build libglfw3.a: phony External/glfw/src/libglfw3.a
+build libglfw3.a: phony _deps/glfw-build/src/libglfw3.a
 
-build uninstall: phony External/glfw/uninstall
+build libglm.a: phony _deps/glm-build/glm/libglm.a
 
-build update_mappings: phony External/glfw/src/update_mappings
+build uninstall: phony _deps/glfw-build/uninstall
+
+build update_mappings: phony _deps/glfw-build/src/update_mappings
 
 # =============================================================================
 # Folder targets.
@@ -959,35 +1062,42 @@ build update_mappings: phony External/glfw/src/update_mappings
 #############################################
 # Folder: C:/Users/donle/OneDrive/Desktop/Particulas/build
 
-build all: phony Shaders External/glfw/all External/imgui/all src/all
+build all: phony Shaders _deps/glfw-build/all _deps/glm-build/all src/all
 
 # =============================================================================
 
 #############################################
-# Folder: C:/Users/donle/OneDrive/Desktop/Particulas/build/External/glfw
+# Folder: C:/Users/donle/OneDrive/Desktop/Particulas/build/_deps/glfw-build
 
-build External/glfw/all: phony External/glfw/src/all External/glfw/docs/all
-
-# =============================================================================
-
-#############################################
-# Folder: C:/Users/donle/OneDrive/Desktop/Particulas/build/External/glfw/docs
-
-build External/glfw/docs/all: phony
+build _deps/glfw-build/all: phony _deps/glfw-build/src/all _deps/glfw-build/docs/all
 
 # =============================================================================
 
 #############################################
-# Folder: C:/Users/donle/OneDrive/Desktop/Particulas/build/External/glfw/src
+# Folder: C:/Users/donle/OneDrive/Desktop/Particulas/build/_deps/glfw-build/docs
 
-build External/glfw/src/all: phony External/glfw/src/libglfw3.a
+build _deps/glfw-build/docs/all: phony
 
 # =============================================================================
 
 #############################################
-# Folder: C:/Users/donle/OneDrive/Desktop/Particulas/build/External/imgui
+# Folder: C:/Users/donle/OneDrive/Desktop/Particulas/build/_deps/glfw-build/src
 
-build External/imgui/all: phony External/imgui/libImGui.a
+build _deps/glfw-build/src/all: phony _deps/glfw-build/src/libglfw3.a
+
+# =============================================================================
+
+#############################################
+# Folder: C:/Users/donle/OneDrive/Desktop/Particulas/build/_deps/glm-build
+
+build _deps/glm-build/all: phony _deps/glm-build/glm/all
+
+# =============================================================================
+
+#############################################
+# Folder: C:/Users/donle/OneDrive/Desktop/Particulas/build/_deps/glm-build/glm
+
+build _deps/glm-build/glm/all: phony _deps/glm-build/glm/libglm.a
 
 # =============================================================================
 
@@ -1003,14 +1113,14 @@ build src/all: phony src/ParticleSimulation.exe
 #############################################
 # Re-run CMake if any of its inputs changed.
 
-build build.ninja: RERUN_CMAKE | C$:/Users/donle/OneDrive/Desktop/Particulas/CMakeLists.txt C$:/Users/donle/OneDrive/Desktop/Particulas/External/glfw/CMakeLists.txt C$:/Users/donle/OneDrive/Desktop/Particulas/External/glfw/CMake/cmake_uninstall.cmake.in C$:/Users/donle/OneDrive/Desktop/Particulas/External/glfw/CMake/glfw3.pc.in C$:/Users/donle/OneDrive/Desktop/Particulas/External/glfw/CMake/glfw3Config.cmake.in C$:/Users/donle/OneDrive/Desktop/Particulas/External/glfw/docs/CMakeLists.txt C$:/Users/donle/OneDrive/Desktop/Particulas/External/glfw/src/CMakeLists.txt C$:/Users/donle/OneDrive/Desktop/Particulas/External/imgui/CMakeLists.txt C$:/Users/donle/OneDrive/Desktop/Particulas/src/CMakeLists.txt C$:/msys64/mingw64/share/cmake/Modules/BasicConfigVersion-SameMajorVersion.cmake.in C$:/msys64/mingw64/share/cmake/Modules/CMakeCCompiler.cmake.in C$:/msys64/mingw64/share/cmake/Modules/CMakeCCompilerABI.c C$:/msys64/mingw64/share/cmake/Modules/CMakeCInformation.cmake C$:/msys64/mingw64/share/cmake/Modules/CMakeCXXCompiler.cmake.in C$:/msys64/mingw64/share/cmake/Modules/CMakeCXXCompilerABI.cpp C$:/msys64/mingw64/share/cmake/Modules/CMakeCXXInformation.cmake C$:/msys64/mingw64/share/cmake/Modules/CMakeCommonLanguageInclude.cmake C$:/msys64/mingw64/share/cmake/Modules/CMakeCompilerIdDetection.cmake C$:/msys64/mingw64/share/cmake/Modules/CMakeDependentOption.cmake C$:/msys64/mingw64/share/cmake/Modules/CMakeDetermineCCompiler.cmake C$:/msys64/mingw64/share/cmake/Modules/CMakeDetermineCXXCompiler.cmake C$:/msys64/mingw64/share/cmake/Modules/CMakeDetermineCompiler.cmake C$:/msys64/mingw64/share/cmake/Modules/CMakeDetermineCompilerABI.cmake C$:/msys64/mingw64/share/cmake/Modules/CMakeDetermineCompilerId.cmake C$:/msys64/mingw64/share/cmake/Modules/CMakeDetermineCompilerSupport.cmake C$:/msys64/mingw64/share/cmake/Modules/CMakeDetermineRCCompiler.cmake C$:/msys64/mingw64/share/cmake/Modules/CMakeDetermineSystem.cmake C$:/msys64/mingw64/share/cmake/Modules/CMakeFindBinUtils.cmake C$:/msys64/mingw64/share/cmake/Modules/CMakeGenericSystem.cmake C$:/msys64/mingw64/share/cmake/Modules/CMakeInitializeConfigs.cmake C$:/msys64/mingw64/share/cmake/Modules/CMakeLanguageInformation.cmake C$:/msys64/mingw64/share/cmake/Modules/CMakeNinjaFindMake.cmake C$:/msys64/mingw64/share/cmake/Modules/CMakePackageConfigHelpers.cmake C$:/msys64/mingw64/share/cmake/Modules/CMakeParseImplicitIncludeInfo.cmake C$:/msys64/mingw64/share/cmake/Modules/CMakeParseImplicitLinkInfo.cmake C$:/msys64/mingw64/share/cmake/Modules/CMakeParseLibraryArchitecture.cmake C$:/msys64/mingw64/share/cmake/Modules/CMakeRCCompiler.cmake.in C$:/msys64/mingw64/share/cmake/Modules/CMakeRCInformation.cmake C$:/msys64/mingw64/share/cmake/Modules/CMakeSystem.cmake.in C$:/msys64/mingw64/share/cmake/Modules/CMakeSystemSpecificInformation.cmake C$:/msys64/mingw64/share/cmake/Modules/CMakeSystemSpecificInitialize.cmake C$:/msys64/mingw64/share/cmake/Modules/CMakeTestCCompiler.cmake C$:/msys64/mingw64/share/cmake/Modules/CMakeTestCXXCompiler.cmake C$:/msys64/mingw64/share/cmake/Modules/CMakeTestCompilerCommon.cmake C$:/msys64/mingw64/share/cmake/Modules/CMakeTestRCCompiler.cmake C$:/msys64/mingw64/share/cmake/Modules/CheckCSourceCompiles.cmake C$:/msys64/mingw64/share/cmake/Modules/CheckIncludeFile.cmake C$:/msys64/mingw64/share/cmake/Modules/CheckLibraryExists.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/ADSP-DetermineCompiler.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/ARMCC-DetermineCompiler.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/ARMClang-DetermineCompiler.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/AppleClang-DetermineCompiler.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/Borland-DetermineCompiler.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/Bruce-C-DetermineCompiler.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/CMakeCommonCompilerMacros.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/Clang-DetermineCompiler.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/Clang-DetermineCompilerInternal.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/Compaq-C-DetermineCompiler.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/Compaq-CXX-DetermineCompiler.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/Cray-DetermineCompiler.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/CrayClang-DetermineCompiler.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/Embarcadero-DetermineCompiler.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/Fujitsu-DetermineCompiler.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/FujitsuClang-DetermineCompiler.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/GHS-DetermineCompiler.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/GNU-C-DetermineCompiler.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/GNU-C.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/GNU-CXX-DetermineCompiler.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/GNU-CXX.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/GNU-FindBinUtils.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/GNU.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/HP-C-DetermineCompiler.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/HP-CXX-DetermineCompiler.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/IAR-DetermineCompiler.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/IBMCPP-C-DetermineVersionInternal.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/IBMCPP-CXX-DetermineVersionInternal.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/IBMClang-C-DetermineCompiler.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/IBMClang-CXX-DetermineCompiler.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/Intel-DetermineCompiler.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/IntelLLVM-DetermineCompiler.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/LCC-C-DetermineCompiler.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/LCC-CXX-DetermineCompiler.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/MSVC-DetermineCompiler.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/NVHPC-DetermineCompiler.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/NVIDIA-DetermineCompiler.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/OpenWatcom-DetermineCompiler.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/OrangeC-DetermineCompiler.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/PGI-DetermineCompiler.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/PathScale-DetermineCompiler.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/SCO-DetermineCompiler.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/SDCC-C-DetermineCompiler.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/SunPro-C-DetermineCompiler.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/SunPro-CXX-DetermineCompiler.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/TI-DetermineCompiler.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/TIClang-DetermineCompiler.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/Tasking-DetermineCompiler.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/TinyCC-C-DetermineCompiler.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/VisualAge-C-DetermineCompiler.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/VisualAge-CXX-DetermineCompiler.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/Watcom-DetermineCompiler.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/XL-C-DetermineCompiler.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/XL-CXX-DetermineCompiler.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/XLClang-C-DetermineCompiler.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/XLClang-CXX-DetermineCompiler.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/zOS-C-DetermineCompiler.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/zOS-CXX-DetermineCompiler.cmake C$:/msys64/mingw64/share/cmake/Modules/FindDoxygen.cmake C$:/msys64/mingw64/share/cmake/Modules/FindPackageHandleStandardArgs.cmake C$:/msys64/mingw64/share/cmake/Modules/FindPackageMessage.cmake C$:/msys64/mingw64/share/cmake/Modules/FindThreads.cmake C$:/msys64/mingw64/share/cmake/Modules/FindVulkan.cmake C$:/msys64/mingw64/share/cmake/Modules/GNUInstallDirs.cmake C$:/msys64/mingw64/share/cmake/Modules/Internal/CMakeCLinkerInformation.cmake C$:/msys64/mingw64/share/cmake/Modules/Internal/CMakeCXXLinkerInformation.cmake C$:/msys64/mingw64/share/cmake/Modules/Internal/CMakeCommonLinkerInformation.cmake C$:/msys64/mingw64/share/cmake/Modules/Internal/CMakeDetermineLinkerId.cmake C$:/msys64/mingw64/share/cmake/Modules/Internal/CheckSourceCompiles.cmake C$:/msys64/mingw64/share/cmake/Modules/Internal/FeatureTesting.cmake C$:/msys64/mingw64/share/cmake/Modules/Linker/GNU-C.cmake C$:/msys64/mingw64/share/cmake/Modules/Linker/GNU-CXX.cmake C$:/msys64/mingw64/share/cmake/Modules/Linker/GNU.cmake C$:/msys64/mingw64/share/cmake/Modules/Platform/Linker/GNU.cmake C$:/msys64/mingw64/share/cmake/Modules/Platform/Linker/Windows-GNU-C.cmake C$:/msys64/mingw64/share/cmake/Modules/Platform/Linker/Windows-GNU-CXX.cmake C$:/msys64/mingw64/share/cmake/Modules/Platform/Linker/Windows-GNU.cmake C$:/msys64/mingw64/share/cmake/Modules/Platform/Windows-Determine-CXX.cmake C$:/msys64/mingw64/share/cmake/Modules/Platform/Windows-GNU-C-ABI.cmake C$:/msys64/mingw64/share/cmake/Modules/Platform/Windows-GNU-C.cmake C$:/msys64/mingw64/share/cmake/Modules/Platform/Windows-GNU-CXX-ABI.cmake C$:/msys64/mingw64/share/cmake/Modules/Platform/Windows-GNU-CXX.cmake C$:/msys64/mingw64/share/cmake/Modules/Platform/Windows-GNU.cmake C$:/msys64/mingw64/share/cmake/Modules/Platform/Windows-Initialize.cmake C$:/msys64/mingw64/share/cmake/Modules/Platform/Windows-windres.cmake C$:/msys64/mingw64/share/cmake/Modules/Platform/Windows.cmake C$:/msys64/mingw64/share/cmake/Modules/Platform/WindowsPaths.cmake C$:/msys64/mingw64/share/cmake/Modules/WriteBasicConfigVersionFile.cmake CMakeCache.txt CMakeFiles/3.31.5/CMakeCCompiler.cmake CMakeFiles/3.31.5/CMakeCXXCompiler.cmake CMakeFiles/3.31.5/CMakeRCCompiler.cmake CMakeFiles/3.31.5/CMakeSystem.cmake
+build build.ninja: RERUN_CMAKE | C$:/Users/donle/OneDrive/Desktop/Particulas/CMakeLists.txt C$:/Users/donle/OneDrive/Desktop/Particulas/src/CMakeLists.txt C$:/msys64/mingw64/share/cmake/Modules/BasicConfigVersion-SameMajorVersion.cmake.in C$:/msys64/mingw64/share/cmake/Modules/CMakeCCompiler.cmake.in C$:/msys64/mingw64/share/cmake/Modules/CMakeCCompilerABI.c C$:/msys64/mingw64/share/cmake/Modules/CMakeCInformation.cmake C$:/msys64/mingw64/share/cmake/Modules/CMakeCXXCompiler.cmake.in C$:/msys64/mingw64/share/cmake/Modules/CMakeCXXCompilerABI.cpp C$:/msys64/mingw64/share/cmake/Modules/CMakeCXXInformation.cmake C$:/msys64/mingw64/share/cmake/Modules/CMakeCommonLanguageInclude.cmake C$:/msys64/mingw64/share/cmake/Modules/CMakeCompilerIdDetection.cmake C$:/msys64/mingw64/share/cmake/Modules/CMakeDependentOption.cmake C$:/msys64/mingw64/share/cmake/Modules/CMakeDetermineCCompiler.cmake C$:/msys64/mingw64/share/cmake/Modules/CMakeDetermineCXXCompiler.cmake C$:/msys64/mingw64/share/cmake/Modules/CMakeDetermineCompiler.cmake C$:/msys64/mingw64/share/cmake/Modules/CMakeDetermineCompilerABI.cmake C$:/msys64/mingw64/share/cmake/Modules/CMakeDetermineCompilerId.cmake C$:/msys64/mingw64/share/cmake/Modules/CMakeDetermineCompilerSupport.cmake C$:/msys64/mingw64/share/cmake/Modules/CMakeDetermineRCCompiler.cmake C$:/msys64/mingw64/share/cmake/Modules/CMakeDetermineSystem.cmake C$:/msys64/mingw64/share/cmake/Modules/CMakeFindBinUtils.cmake C$:/msys64/mingw64/share/cmake/Modules/CMakeGenericSystem.cmake C$:/msys64/mingw64/share/cmake/Modules/CMakeInitializeConfigs.cmake C$:/msys64/mingw64/share/cmake/Modules/CMakeLanguageInformation.cmake C$:/msys64/mingw64/share/cmake/Modules/CMakeNinjaFindMake.cmake C$:/msys64/mingw64/share/cmake/Modules/CMakePackageConfigHelpers.cmake C$:/msys64/mingw64/share/cmake/Modules/CMakeParseImplicitIncludeInfo.cmake C$:/msys64/mingw64/share/cmake/Modules/CMakeParseImplicitLinkInfo.cmake C$:/msys64/mingw64/share/cmake/Modules/CMakeParseLibraryArchitecture.cmake C$:/msys64/mingw64/share/cmake/Modules/CMakeRCCompiler.cmake.in C$:/msys64/mingw64/share/cmake/Modules/CMakeRCInformation.cmake C$:/msys64/mingw64/share/cmake/Modules/CMakeSystem.cmake.in C$:/msys64/mingw64/share/cmake/Modules/CMakeSystemSpecificInformation.cmake C$:/msys64/mingw64/share/cmake/Modules/CMakeSystemSpecificInitialize.cmake C$:/msys64/mingw64/share/cmake/Modules/CMakeTestCCompiler.cmake C$:/msys64/mingw64/share/cmake/Modules/CMakeTestCXXCompiler.cmake C$:/msys64/mingw64/share/cmake/Modules/CMakeTestCompilerCommon.cmake C$:/msys64/mingw64/share/cmake/Modules/CMakeTestRCCompiler.cmake C$:/msys64/mingw64/share/cmake/Modules/CheckCSourceCompiles.cmake C$:/msys64/mingw64/share/cmake/Modules/CheckIncludeFile.cmake C$:/msys64/mingw64/share/cmake/Modules/CheckLibraryExists.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/ADSP-DetermineCompiler.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/ARMCC-DetermineCompiler.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/ARMClang-DetermineCompiler.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/AppleClang-DetermineCompiler.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/Borland-DetermineCompiler.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/Bruce-C-DetermineCompiler.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/CMakeCommonCompilerMacros.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/Clang-DetermineCompiler.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/Clang-DetermineCompilerInternal.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/Compaq-C-DetermineCompiler.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/Compaq-CXX-DetermineCompiler.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/Cray-DetermineCompiler.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/CrayClang-DetermineCompiler.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/Embarcadero-DetermineCompiler.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/Fujitsu-DetermineCompiler.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/FujitsuClang-DetermineCompiler.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/GHS-DetermineCompiler.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/GNU-C-DetermineCompiler.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/GNU-C.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/GNU-CXX-DetermineCompiler.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/GNU-CXX.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/GNU-FindBinUtils.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/GNU.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/HP-C-DetermineCompiler.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/HP-CXX-DetermineCompiler.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/IAR-DetermineCompiler.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/IBMCPP-C-DetermineVersionInternal.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/IBMCPP-CXX-DetermineVersionInternal.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/IBMClang-C-DetermineCompiler.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/IBMClang-CXX-DetermineCompiler.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/Intel-DetermineCompiler.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/IntelLLVM-DetermineCompiler.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/LCC-C-DetermineCompiler.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/LCC-CXX-DetermineCompiler.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/MSVC-DetermineCompiler.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/NVHPC-DetermineCompiler.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/NVIDIA-DetermineCompiler.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/OpenWatcom-DetermineCompiler.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/OrangeC-DetermineCompiler.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/PGI-DetermineCompiler.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/PathScale-DetermineCompiler.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/SCO-DetermineCompiler.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/SDCC-C-DetermineCompiler.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/SunPro-C-DetermineCompiler.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/SunPro-CXX-DetermineCompiler.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/TI-DetermineCompiler.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/TIClang-DetermineCompiler.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/Tasking-DetermineCompiler.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/TinyCC-C-DetermineCompiler.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/VisualAge-C-DetermineCompiler.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/VisualAge-CXX-DetermineCompiler.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/Watcom-DetermineCompiler.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/XL-C-DetermineCompiler.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/XL-CXX-DetermineCompiler.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/XLClang-C-DetermineCompiler.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/XLClang-CXX-DetermineCompiler.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/zOS-C-DetermineCompiler.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/zOS-CXX-DetermineCompiler.cmake C$:/msys64/mingw64/share/cmake/Modules/ExternalProject/shared_internal_commands.cmake C$:/msys64/mingw64/share/cmake/Modules/FetchContent.cmake C$:/msys64/mingw64/share/cmake/Modules/FetchContent/CMakeLists.cmake.in C$:/msys64/mingw64/share/cmake/Modules/FindDoxygen.cmake C$:/msys64/mingw64/share/cmake/Modules/FindGit.cmake C$:/msys64/mingw64/share/cmake/Modules/FindPackageHandleStandardArgs.cmake C$:/msys64/mingw64/share/cmake/Modules/FindPackageMessage.cmake C$:/msys64/mingw64/share/cmake/Modules/FindThreads.cmake C$:/msys64/mingw64/share/cmake/Modules/FindVulkan.cmake C$:/msys64/mingw64/share/cmake/Modules/GNUInstallDirs.cmake C$:/msys64/mingw64/share/cmake/Modules/Internal/CMakeCLinkerInformation.cmake C$:/msys64/mingw64/share/cmake/Modules/Internal/CMakeCXXLinkerInformation.cmake C$:/msys64/mingw64/share/cmake/Modules/Internal/CMakeCommonLinkerInformation.cmake C$:/msys64/mingw64/share/cmake/Modules/Internal/CMakeDetermineLinkerId.cmake C$:/msys64/mingw64/share/cmake/Modules/Internal/CheckSourceCompiles.cmake C$:/msys64/mingw64/share/cmake/Modules/Internal/FeatureTesting.cmake C$:/msys64/mingw64/share/cmake/Modules/Linker/GNU-C.cmake C$:/msys64/mingw64/share/cmake/Modules/Linker/GNU-CXX.cmake C$:/msys64/mingw64/share/cmake/Modules/Linker/GNU.cmake C$:/msys64/mingw64/share/cmake/Modules/Platform/Linker/GNU.cmake C$:/msys64/mingw64/share/cmake/Modules/Platform/Linker/Windows-GNU-C.cmake C$:/msys64/mingw64/share/cmake/Modules/Platform/Linker/Windows-GNU-CXX.cmake C$:/msys64/mingw64/share/cmake/Modules/Platform/Linker/Windows-GNU.cmake C$:/msys64/mingw64/share/cmake/Modules/Platform/Windows-Determine-CXX.cmake C$:/msys64/mingw64/share/cmake/Modules/Platform/Windows-GNU-C-ABI.cmake C$:/msys64/mingw64/share/cmake/Modules/Platform/Windows-GNU-C.cmake C$:/msys64/mingw64/share/cmake/Modules/Platform/Windows-GNU-CXX-ABI.cmake C$:/msys64/mingw64/share/cmake/Modules/Platform/Windows-GNU-CXX.cmake C$:/msys64/mingw64/share/cmake/Modules/Platform/Windows-GNU.cmake C$:/msys64/mingw64/share/cmake/Modules/Platform/Windows-Initialize.cmake C$:/msys64/mingw64/share/cmake/Modules/Platform/Windows-windres.cmake C$:/msys64/mingw64/share/cmake/Modules/Platform/Windows.cmake C$:/msys64/mingw64/share/cmake/Modules/Platform/WindowsPaths.cmake C$:/msys64/mingw64/share/cmake/Modules/WriteBasicConfigVersionFile.cmake CMakeCache.txt CMakeFiles/3.31.5/CMakeCCompiler.cmake CMakeFiles/3.31.5/CMakeCXXCompiler.cmake CMakeFiles/3.31.5/CMakeRCCompiler.cmake CMakeFiles/3.31.5/CMakeSystem.cmake _deps/glfw-src/CMakeLists.txt _deps/glfw-src/CMake/cmake_uninstall.cmake.in _deps/glfw-src/CMake/glfw3.pc.in _deps/glfw-src/CMake/glfw3Config.cmake.in _deps/glfw-src/docs/CMakeLists.txt _deps/glfw-src/src/CMakeLists.txt _deps/glm-src/CMakeLists.txt _deps/glm-src/glm/CMakeLists.txt
   pool = console
 
 
 #############################################
 # A missing CMake input file is not an error.
 
-build C$:/Users/donle/OneDrive/Desktop/Particulas/CMakeLists.txt C$:/Users/donle/OneDrive/Desktop/Particulas/External/glfw/CMakeLists.txt C$:/Users/donle/OneDrive/Desktop/Particulas/External/glfw/CMake/cmake_uninstall.cmake.in C$:/Users/donle/OneDrive/Desktop/Particulas/External/glfw/CMake/glfw3.pc.in C$:/Users/donle/OneDrive/Desktop/Particulas/External/glfw/CMake/glfw3Config.cmake.in C$:/Users/donle/OneDrive/Desktop/Particulas/External/glfw/docs/CMakeLists.txt C$:/Users/donle/OneDrive/Desktop/Particulas/External/glfw/src/CMakeLists.txt C$:/Users/donle/OneDrive/Desktop/Particulas/External/imgui/CMakeLists.txt C$:/Users/donle/OneDrive/Desktop/Particulas/src/CMakeLists.txt C$:/msys64/mingw64/share/cmake/Modules/BasicConfigVersion-SameMajorVersion.cmake.in C$:/msys64/mingw64/share/cmake/Modules/CMakeCCompiler.cmake.in C$:/msys64/mingw64/share/cmake/Modules/CMakeCCompilerABI.c C$:/msys64/mingw64/share/cmake/Modules/CMakeCInformation.cmake C$:/msys64/mingw64/share/cmake/Modules/CMakeCXXCompiler.cmake.in C$:/msys64/mingw64/share/cmake/Modules/CMakeCXXCompilerABI.cpp C$:/msys64/mingw64/share/cmake/Modules/CMakeCXXInformation.cmake C$:/msys64/mingw64/share/cmake/Modules/CMakeCommonLanguageInclude.cmake C$:/msys64/mingw64/share/cmake/Modules/CMakeCompilerIdDetection.cmake C$:/msys64/mingw64/share/cmake/Modules/CMakeDependentOption.cmake C$:/msys64/mingw64/share/cmake/Modules/CMakeDetermineCCompiler.cmake C$:/msys64/mingw64/share/cmake/Modules/CMakeDetermineCXXCompiler.cmake C$:/msys64/mingw64/share/cmake/Modules/CMakeDetermineCompiler.cmake C$:/msys64/mingw64/share/cmake/Modules/CMakeDetermineCompilerABI.cmake C$:/msys64/mingw64/share/cmake/Modules/CMakeDetermineCompilerId.cmake C$:/msys64/mingw64/share/cmake/Modules/CMakeDetermineCompilerSupport.cmake C$:/msys64/mingw64/share/cmake/Modules/CMakeDetermineRCCompiler.cmake C$:/msys64/mingw64/share/cmake/Modules/CMakeDetermineSystem.cmake C$:/msys64/mingw64/share/cmake/Modules/CMakeFindBinUtils.cmake C$:/msys64/mingw64/share/cmake/Modules/CMakeGenericSystem.cmake C$:/msys64/mingw64/share/cmake/Modules/CMakeInitializeConfigs.cmake C$:/msys64/mingw64/share/cmake/Modules/CMakeLanguageInformation.cmake C$:/msys64/mingw64/share/cmake/Modules/CMakeNinjaFindMake.cmake C$:/msys64/mingw64/share/cmake/Modules/CMakePackageConfigHelpers.cmake C$:/msys64/mingw64/share/cmake/Modules/CMakeParseImplicitIncludeInfo.cmake C$:/msys64/mingw64/share/cmake/Modules/CMakeParseImplicitLinkInfo.cmake C$:/msys64/mingw64/share/cmake/Modules/CMakeParseLibraryArchitecture.cmake C$:/msys64/mingw64/share/cmake/Modules/CMakeRCCompiler.cmake.in C$:/msys64/mingw64/share/cmake/Modules/CMakeRCInformation.cmake C$:/msys64/mingw64/share/cmake/Modules/CMakeSystem.cmake.in C$:/msys64/mingw64/share/cmake/Modules/CMakeSystemSpecificInformation.cmake C$:/msys64/mingw64/share/cmake/Modules/CMakeSystemSpecificInitialize.cmake C$:/msys64/mingw64/share/cmake/Modules/CMakeTestCCompiler.cmake C$:/msys64/mingw64/share/cmake/Modules/CMakeTestCXXCompiler.cmake C$:/msys64/mingw64/share/cmake/Modules/CMakeTestCompilerCommon.cmake C$:/msys64/mingw64/share/cmake/Modules/CMakeTestRCCompiler.cmake C$:/msys64/mingw64/share/cmake/Modules/CheckCSourceCompiles.cmake C$:/msys64/mingw64/share/cmake/Modules/CheckIncludeFile.cmake C$:/msys64/mingw64/share/cmake/Modules/CheckLibraryExists.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/ADSP-DetermineCompiler.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/ARMCC-DetermineCompiler.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/ARMClang-DetermineCompiler.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/AppleClang-DetermineCompiler.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/Borland-DetermineCompiler.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/Bruce-C-DetermineCompiler.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/CMakeCommonCompilerMacros.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/Clang-DetermineCompiler.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/Clang-DetermineCompilerInternal.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/Compaq-C-DetermineCompiler.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/Compaq-CXX-DetermineCompiler.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/Cray-DetermineCompiler.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/CrayClang-DetermineCompiler.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/Embarcadero-DetermineCompiler.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/Fujitsu-DetermineCompiler.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/FujitsuClang-DetermineCompiler.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/GHS-DetermineCompiler.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/GNU-C-DetermineCompiler.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/GNU-C.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/GNU-CXX-DetermineCompiler.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/GNU-CXX.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/GNU-FindBinUtils.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/GNU.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/HP-C-DetermineCompiler.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/HP-CXX-DetermineCompiler.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/IAR-DetermineCompiler.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/IBMCPP-C-DetermineVersionInternal.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/IBMCPP-CXX-DetermineVersionInternal.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/IBMClang-C-DetermineCompiler.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/IBMClang-CXX-DetermineCompiler.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/Intel-DetermineCompiler.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/IntelLLVM-DetermineCompiler.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/LCC-C-DetermineCompiler.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/LCC-CXX-DetermineCompiler.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/MSVC-DetermineCompiler.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/NVHPC-DetermineCompiler.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/NVIDIA-DetermineCompiler.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/OpenWatcom-DetermineCompiler.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/OrangeC-DetermineCompiler.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/PGI-DetermineCompiler.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/PathScale-DetermineCompiler.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/SCO-DetermineCompiler.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/SDCC-C-DetermineCompiler.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/SunPro-C-DetermineCompiler.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/SunPro-CXX-DetermineCompiler.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/TI-DetermineCompiler.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/TIClang-DetermineCompiler.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/Tasking-DetermineCompiler.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/TinyCC-C-DetermineCompiler.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/VisualAge-C-DetermineCompiler.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/VisualAge-CXX-DetermineCompiler.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/Watcom-DetermineCompiler.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/XL-C-DetermineCompiler.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/XL-CXX-DetermineCompiler.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/XLClang-C-DetermineCompiler.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/XLClang-CXX-DetermineCompiler.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/zOS-C-DetermineCompiler.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/zOS-CXX-DetermineCompiler.cmake C$:/msys64/mingw64/share/cmake/Modules/FindDoxygen.cmake C$:/msys64/mingw64/share/cmake/Modules/FindPackageHandleStandardArgs.cmake C$:/msys64/mingw64/share/cmake/Modules/FindPackageMessage.cmake C$:/msys64/mingw64/share/cmake/Modules/FindThreads.cmake C$:/msys64/mingw64/share/cmake/Modules/FindVulkan.cmake C$:/msys64/mingw64/share/cmake/Modules/GNUInstallDirs.cmake C$:/msys64/mingw64/share/cmake/Modules/Internal/CMakeCLinkerInformation.cmake C$:/msys64/mingw64/share/cmake/Modules/Internal/CMakeCXXLinkerInformation.cmake C$:/msys64/mingw64/share/cmake/Modules/Internal/CMakeCommonLinkerInformation.cmake C$:/msys64/mingw64/share/cmake/Modules/Internal/CMakeDetermineLinkerId.cmake C$:/msys64/mingw64/share/cmake/Modules/Internal/CheckSourceCompiles.cmake C$:/msys64/mingw64/share/cmake/Modules/Internal/FeatureTesting.cmake C$:/msys64/mingw64/share/cmake/Modules/Linker/GNU-C.cmake C$:/msys64/mingw64/share/cmake/Modules/Linker/GNU-CXX.cmake C$:/msys64/mingw64/share/cmake/Modules/Linker/GNU.cmake C$:/msys64/mingw64/share/cmake/Modules/Platform/Linker/GNU.cmake C$:/msys64/mingw64/share/cmake/Modules/Platform/Linker/Windows-GNU-C.cmake C$:/msys64/mingw64/share/cmake/Modules/Platform/Linker/Windows-GNU-CXX.cmake C$:/msys64/mingw64/share/cmake/Modules/Platform/Linker/Windows-GNU.cmake C$:/msys64/mingw64/share/cmake/Modules/Platform/Windows-Determine-CXX.cmake C$:/msys64/mingw64/share/cmake/Modules/Platform/Windows-GNU-C-ABI.cmake C$:/msys64/mingw64/share/cmake/Modules/Platform/Windows-GNU-C.cmake C$:/msys64/mingw64/share/cmake/Modules/Platform/Windows-GNU-CXX-ABI.cmake C$:/msys64/mingw64/share/cmake/Modules/Platform/Windows-GNU-CXX.cmake C$:/msys64/mingw64/share/cmake/Modules/Platform/Windows-GNU.cmake C$:/msys64/mingw64/share/cmake/Modules/Platform/Windows-Initialize.cmake C$:/msys64/mingw64/share/cmake/Modules/Platform/Windows-windres.cmake C$:/msys64/mingw64/share/cmake/Modules/Platform/Windows.cmake C$:/msys64/mingw64/share/cmake/Modules/Platform/WindowsPaths.cmake C$:/msys64/mingw64/share/cmake/Modules/WriteBasicConfigVersionFile.cmake CMakeCache.txt CMakeFiles/3.31.5/CMakeCCompiler.cmake CMakeFiles/3.31.5/CMakeCXXCompiler.cmake CMakeFiles/3.31.5/CMakeRCCompiler.cmake CMakeFiles/3.31.5/CMakeSystem.cmake: phony
+build C$:/Users/donle/OneDrive/Desktop/Particulas/CMakeLists.txt C$:/Users/donle/OneDrive/Desktop/Particulas/src/CMakeLists.txt C$:/msys64/mingw64/share/cmake/Modules/BasicConfigVersion-SameMajorVersion.cmake.in C$:/msys64/mingw64/share/cmake/Modules/CMakeCCompiler.cmake.in C$:/msys64/mingw64/share/cmake/Modules/CMakeCCompilerABI.c C$:/msys64/mingw64/share/cmake/Modules/CMakeCInformation.cmake C$:/msys64/mingw64/share/cmake/Modules/CMakeCXXCompiler.cmake.in C$:/msys64/mingw64/share/cmake/Modules/CMakeCXXCompilerABI.cpp C$:/msys64/mingw64/share/cmake/Modules/CMakeCXXInformation.cmake C$:/msys64/mingw64/share/cmake/Modules/CMakeCommonLanguageInclude.cmake C$:/msys64/mingw64/share/cmake/Modules/CMakeCompilerIdDetection.cmake C$:/msys64/mingw64/share/cmake/Modules/CMakeDependentOption.cmake C$:/msys64/mingw64/share/cmake/Modules/CMakeDetermineCCompiler.cmake C$:/msys64/mingw64/share/cmake/Modules/CMakeDetermineCXXCompiler.cmake C$:/msys64/mingw64/share/cmake/Modules/CMakeDetermineCompiler.cmake C$:/msys64/mingw64/share/cmake/Modules/CMakeDetermineCompilerABI.cmake C$:/msys64/mingw64/share/cmake/Modules/CMakeDetermineCompilerId.cmake C$:/msys64/mingw64/share/cmake/Modules/CMakeDetermineCompilerSupport.cmake C$:/msys64/mingw64/share/cmake/Modules/CMakeDetermineRCCompiler.cmake C$:/msys64/mingw64/share/cmake/Modules/CMakeDetermineSystem.cmake C$:/msys64/mingw64/share/cmake/Modules/CMakeFindBinUtils.cmake C$:/msys64/mingw64/share/cmake/Modules/CMakeGenericSystem.cmake C$:/msys64/mingw64/share/cmake/Modules/CMakeInitializeConfigs.cmake C$:/msys64/mingw64/share/cmake/Modules/CMakeLanguageInformation.cmake C$:/msys64/mingw64/share/cmake/Modules/CMakeNinjaFindMake.cmake C$:/msys64/mingw64/share/cmake/Modules/CMakePackageConfigHelpers.cmake C$:/msys64/mingw64/share/cmake/Modules/CMakeParseImplicitIncludeInfo.cmake C$:/msys64/mingw64/share/cmake/Modules/CMakeParseImplicitLinkInfo.cmake C$:/msys64/mingw64/share/cmake/Modules/CMakeParseLibraryArchitecture.cmake C$:/msys64/mingw64/share/cmake/Modules/CMakeRCCompiler.cmake.in C$:/msys64/mingw64/share/cmake/Modules/CMakeRCInformation.cmake C$:/msys64/mingw64/share/cmake/Modules/CMakeSystem.cmake.in C$:/msys64/mingw64/share/cmake/Modules/CMakeSystemSpecificInformation.cmake C$:/msys64/mingw64/share/cmake/Modules/CMakeSystemSpecificInitialize.cmake C$:/msys64/mingw64/share/cmake/Modules/CMakeTestCCompiler.cmake C$:/msys64/mingw64/share/cmake/Modules/CMakeTestCXXCompiler.cmake C$:/msys64/mingw64/share/cmake/Modules/CMakeTestCompilerCommon.cmake C$:/msys64/mingw64/share/cmake/Modules/CMakeTestRCCompiler.cmake C$:/msys64/mingw64/share/cmake/Modules/CheckCSourceCompiles.cmake C$:/msys64/mingw64/share/cmake/Modules/CheckIncludeFile.cmake C$:/msys64/mingw64/share/cmake/Modules/CheckLibraryExists.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/ADSP-DetermineCompiler.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/ARMCC-DetermineCompiler.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/ARMClang-DetermineCompiler.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/AppleClang-DetermineCompiler.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/Borland-DetermineCompiler.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/Bruce-C-DetermineCompiler.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/CMakeCommonCompilerMacros.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/Clang-DetermineCompiler.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/Clang-DetermineCompilerInternal.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/Compaq-C-DetermineCompiler.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/Compaq-CXX-DetermineCompiler.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/Cray-DetermineCompiler.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/CrayClang-DetermineCompiler.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/Embarcadero-DetermineCompiler.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/Fujitsu-DetermineCompiler.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/FujitsuClang-DetermineCompiler.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/GHS-DetermineCompiler.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/GNU-C-DetermineCompiler.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/GNU-C.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/GNU-CXX-DetermineCompiler.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/GNU-CXX.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/GNU-FindBinUtils.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/GNU.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/HP-C-DetermineCompiler.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/HP-CXX-DetermineCompiler.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/IAR-DetermineCompiler.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/IBMCPP-C-DetermineVersionInternal.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/IBMCPP-CXX-DetermineVersionInternal.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/IBMClang-C-DetermineCompiler.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/IBMClang-CXX-DetermineCompiler.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/Intel-DetermineCompiler.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/IntelLLVM-DetermineCompiler.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/LCC-C-DetermineCompiler.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/LCC-CXX-DetermineCompiler.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/MSVC-DetermineCompiler.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/NVHPC-DetermineCompiler.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/NVIDIA-DetermineCompiler.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/OpenWatcom-DetermineCompiler.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/OrangeC-DetermineCompiler.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/PGI-DetermineCompiler.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/PathScale-DetermineCompiler.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/SCO-DetermineCompiler.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/SDCC-C-DetermineCompiler.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/SunPro-C-DetermineCompiler.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/SunPro-CXX-DetermineCompiler.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/TI-DetermineCompiler.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/TIClang-DetermineCompiler.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/Tasking-DetermineCompiler.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/TinyCC-C-DetermineCompiler.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/VisualAge-C-DetermineCompiler.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/VisualAge-CXX-DetermineCompiler.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/Watcom-DetermineCompiler.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/XL-C-DetermineCompiler.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/XL-CXX-DetermineCompiler.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/XLClang-C-DetermineCompiler.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/XLClang-CXX-DetermineCompiler.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/zOS-C-DetermineCompiler.cmake C$:/msys64/mingw64/share/cmake/Modules/Compiler/zOS-CXX-DetermineCompiler.cmake C$:/msys64/mingw64/share/cmake/Modules/ExternalProject/shared_internal_commands.cmake C$:/msys64/mingw64/share/cmake/Modules/FetchContent.cmake C$:/msys64/mingw64/share/cmake/Modules/FetchContent/CMakeLists.cmake.in C$:/msys64/mingw64/share/cmake/Modules/FindDoxygen.cmake C$:/msys64/mingw64/share/cmake/Modules/FindGit.cmake C$:/msys64/mingw64/share/cmake/Modules/FindPackageHandleStandardArgs.cmake C$:/msys64/mingw64/share/cmake/Modules/FindPackageMessage.cmake C$:/msys64/mingw64/share/cmake/Modules/FindThreads.cmake C$:/msys64/mingw64/share/cmake/Modules/FindVulkan.cmake C$:/msys64/mingw64/share/cmake/Modules/GNUInstallDirs.cmake C$:/msys64/mingw64/share/cmake/Modules/Internal/CMakeCLinkerInformation.cmake C$:/msys64/mingw64/share/cmake/Modules/Internal/CMakeCXXLinkerInformation.cmake C$:/msys64/mingw64/share/cmake/Modules/Internal/CMakeCommonLinkerInformation.cmake C$:/msys64/mingw64/share/cmake/Modules/Internal/CMakeDetermineLinkerId.cmake C$:/msys64/mingw64/share/cmake/Modules/Internal/CheckSourceCompiles.cmake C$:/msys64/mingw64/share/cmake/Modules/Internal/FeatureTesting.cmake C$:/msys64/mingw64/share/cmake/Modules/Linker/GNU-C.cmake C$:/msys64/mingw64/share/cmake/Modules/Linker/GNU-CXX.cmake C$:/msys64/mingw64/share/cmake/Modules/Linker/GNU.cmake C$:/msys64/mingw64/share/cmake/Modules/Platform/Linker/GNU.cmake C$:/msys64/mingw64/share/cmake/Modules/Platform/Linker/Windows-GNU-C.cmake C$:/msys64/mingw64/share/cmake/Modules/Platform/Linker/Windows-GNU-CXX.cmake C$:/msys64/mingw64/share/cmake/Modules/Platform/Linker/Windows-GNU.cmake C$:/msys64/mingw64/share/cmake/Modules/Platform/Windows-Determine-CXX.cmake C$:/msys64/mingw64/share/cmake/Modules/Platform/Windows-GNU-C-ABI.cmake C$:/msys64/mingw64/share/cmake/Modules/Platform/Windows-GNU-C.cmake C$:/msys64/mingw64/share/cmake/Modules/Platform/Windows-GNU-CXX-ABI.cmake C$:/msys64/mingw64/share/cmake/Modules/Platform/Windows-GNU-CXX.cmake C$:/msys64/mingw64/share/cmake/Modules/Platform/Windows-GNU.cmake C$:/msys64/mingw64/share/cmake/Modules/Platform/Windows-Initialize.cmake C$:/msys64/mingw64/share/cmake/Modules/Platform/Windows-windres.cmake C$:/msys64/mingw64/share/cmake/Modules/Platform/Windows.cmake C$:/msys64/mingw64/share/cmake/Modules/Platform/WindowsPaths.cmake C$:/msys64/mingw64/share/cmake/Modules/WriteBasicConfigVersionFile.cmake CMakeCache.txt CMakeFiles/3.31.5/CMakeCCompiler.cmake CMakeFiles/3.31.5/CMakeCXXCompiler.cmake CMakeFiles/3.31.5/CMakeRCCompiler.cmake CMakeFiles/3.31.5/CMakeSystem.cmake _deps/glfw-src/CMakeLists.txt _deps/glfw-src/CMake/cmake_uninstall.cmake.in _deps/glfw-src/CMake/glfw3.pc.in _deps/glfw-src/CMake/glfw3Config.cmake.in _deps/glfw-src/docs/CMakeLists.txt _deps/glfw-src/src/CMakeLists.txt _deps/glm-src/CMakeLists.txt _deps/glm-src/glm/CMakeLists.txt: phony
 
 
 #############################################
