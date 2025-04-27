@@ -19,8 +19,7 @@ jobs:
 
     # 2. Instalar dependencias básicas (CMake, Ninja, Git, build-essentials suelen estar, pero aseguramos)
     - name: Install build dependencies
-      run: sudo apt-get update && sudo apt-get install -y build-essential cmake ninja-build git libxrandr-dev libxinerama-dev libxcursor-dev libxi-dev libx11-dev
-
+      run: sudo apt-get update && sudo apt-get install -y build-essential cmake ninja-build git libxrandr-dev libxinerama-dev libxcursor-dev libxi-dev libx11-dev wayland-protocols
     # 3. Instalar Vulkan SDK (Descargando desde LunarG)
     #    Ajusta la versión del SDK si es necesario
     - name: Install Vulkan SDK and dependencies via Apt
