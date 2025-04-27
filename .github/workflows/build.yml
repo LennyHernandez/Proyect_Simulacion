@@ -35,7 +35,8 @@ jobs:
               vulkan-tools \
               libvulkan-dev \
               vulkan-utility-libraries-dev \
-              spirv-tools
+              spirv-tools \
+              glslang-tools
       shell: bash # Asegúrate de que usa bash (es el default en ubuntu-latest)
     # 4. Configurar el proyecto con CMake
     - name: Configure CMake
