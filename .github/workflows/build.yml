@@ -13,6 +13,16 @@ jobs:
     runs-on: ubuntu-latest # Usar la última imagen estable de Ubuntu
 
     steps:
+# -- GLFW --
+    - name: Set up GLFW dependency
+      run: |
+        cmake -P /opt/hostedtoolcache/vcpkg/v0.20240716.1/scripts/buildsystems/vcpkg.cmake \
+              -DVCPKG_TARGET_TRIPLET=x64-linux \
+              -DVCPKG_ROOT=/opt/hostedtoolcache/vcpkg/v0.20240716.1
+        vcpkg install glfw3 --triplet x64-linux
+      if: runner.os == 'Linux'
+      shell: bash
+
     # 1. Descargar el código del repositorio
     - name: Checkout repository
       uses: actions/checkout@v4
