@@ -24,6 +24,14 @@ jobs:
             build-essential cmake ninja-build git \
             libxrandr-dev libxinerama-dev libxcursor-dev libxi-dev libx11-dev \
             wayland-protocols   
+
+    - name: Configure environment
+      run: |
+            export PATH=$PATH:/usr/bin
+          
+    - name: Configure project with CMake
+      run: |
+            cmake -B build -S . -G Ninja -DCMAKE_BUILD_TYPE=Release
     # 3. Instalar Vulkan SDK (Descargando desde LunarG)
     #    Ajusta la versión del SDK si es necesario
     - name: Install Vulkan SDK and dependencies via Apt
