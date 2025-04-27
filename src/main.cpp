@@ -51,7 +51,7 @@
 const uint32_t WINDOW_WIDTH = 1920;
 const uint32_t WINDOW_HEIGHT = 1080;
 const int PARTICLE_COUNT = 10000;
-const std::string APP_VERSION = "1.0-OOP_Metrics";
+const std::string APP_VERSION = "1.0-OOP_FrameRenderTime"; 
 // --- Aplicación Principal ---
 class ParticleSimulationApp {
 public:
@@ -110,7 +110,7 @@ private:
     // uint32_t currentFrame_ = 0; // No necesario si usamos getter de Sync
 
     // --- Miembros NUEVOS para Métricas ---
-    std::vector<float> frameTimesMs_;
+    std::vector<double> frameRenderTimesSeconds_; // <-- Guardar en segundos (double para precisión)
     std::chrono::time_point<std::chrono::system_clock> runStartTime_;
     std::string gpuName_ = "Unknown";
     bool metricsSaved_ = false;
@@ -158,35 +158,45 @@ private:
     void mainLoop() {
         std::cout << "Starting Main Loop..." << std::endl;
         runStartTime_ = std::chrono::system_clock::now(); // <-- Guardar hora inicio para archivo/metadata
-        auto lastTime = std::chrono::high_resolution_clock::now();
-        frameTimesMs_.reserve(3600); // <-- Reservar espacio
+        auto lastFrameEndTime = std::chrono::high_resolution_clock::now(); // Tiempo al final del frame anterior
+        frameRenderTimesSeconds_.reserve(3600);// <-- Reservar espacio
 
         while (window_ && !window_->shouldClose()) {
             window_->pollEvents();
-            auto currentTime = std::chrono::high_resolution_clock::now();
-            // Usar high_resolution_clock para deltaTime también es más preciso
-            float deltaTime = std::chrono::duration<float>(currentTime - lastTime).count();
-            lastTime = currentTime;
+
+            // Calcular deltaTime para la simulación basado en el tiempo *entre* frames
+            auto currentFrameStartTime = std::chrono::high_resolution_clock::now();
+            float deltaTime = std::chrono::duration<float>(currentFrameStartTime - lastFrameEndTime).count();
             deltaTime = std::min(deltaTime, 0.1f); // Clamp
 
-            // --- NUEVO: Registrar Métrica ---
-            if (deltaTime > 1e-6f) { // Evitar valores inválidos
-                frameTimesMs_.push_back(deltaTime * 1000.0f); // Guardar en ms
-            }
-            // --------------------------------
-
+            // Actualizar simulación ANTES de medir el renderizado
             if (particleSystem_ && deltaTime > 0.0f) {
                  particleSystem_->update(deltaTime);
             }
-            drawFrame();
+
+            // --- Medir y Registrar el Tiempo de drawFrame ---
+            auto renderStartTime = std::chrono::high_resolution_clock::now();
+            drawFrame(); // Ejecutar renderizado
+            auto renderEndTime = std::chrono::high_resolution_clock::now();
+            double renderDurationSeconds = std::chrono::duration<double>(renderEndTime - renderStartTime).count();
+            if (renderDurationSeconds > 1e-9) { // Evitar valores cero o negativos
+                frameRenderTimesSeconds_.push_back(renderDurationSeconds); // Guardar en segundos
+            }
+            // ----------------------------------------------------
+
+            lastFrameEndTime = renderEndTime; // Actualizar tiempo final para el siguiente deltaTime
         }
         std::cout << "Exiting Main Loop." << std::endl;
         if(device_) { vkDeviceWaitIdle(device_->getLogicalDevice()); std::cout << "GPU Idle." << std::endl; }
     }
+
     // --- Limpieza ---
     void cleanup() {
          std::cout << "Starting Cleanup..." << std::endl;
          if(device_) { vkDeviceWaitIdle(device_->getLogicalDevice()); }
+
+           // --- Guardar métricas ANTES de destruir todo ---
+        saveMetricsToFile(); //
 
         cleanupSwapchainRelated();
 
@@ -201,6 +211,9 @@ private:
             commandBuffers_.clear();
         }
         if (commandPool_) { std::cout << "Cleaning up Command Pool..." << std::endl; commandPool_.reset(); } // <-- Usar .reset()
+
+        if (pipeline_) { std::cout << "Cleaning up Pipeline..." << std::endl; pipeline_.reset(); } // Añadir limpieza pipeline explícita
+        if (renderPass_) { std::cout << "Cleaning up Render Pass..." << std::endl; renderPass_.reset(); }
 
         if(device_) { std::cout << "Cleaning up Logical Device..." << std::endl; device_.reset(); }
 
@@ -222,10 +235,11 @@ private:
         else { glfwTerminate(); }
         std::cout << "Cleanup Finished." << std::endl;
 
-            // --- Guardar métricas si no se han guardado ---
-            if (!metricsSaved_ && !frameTimesMs_.empty()) {
+            /* --- Guardar métricas si no se han guardado ---
+            if (!metricsSaved_ && !frameTimesSeconds_.empty()) {
                 saveMetricsToFile();
             }
+               */
     }
 
 
@@ -474,10 +488,10 @@ private:
     void saveMetricsToFile() {
         std::cout << "[Metrics] Entering saveMetricsToFile(). "
                   << "metricsSaved_ = " << std::boolalpha << metricsSaved_
-                  << ", frameTimesMs_.empty() = " << std::boolalpha << frameTimesMs_.empty()
-                  << ", frameTimesMs_.size() = " << frameTimesMs_.size() << std::endl;
+                  << ", frameRenderTimesSeconds_.empty() = " << std::boolalpha <<frameRenderTimesSeconds_.empty();
+                //  << ", frameTimesSeconds_.size() = " << frameTimesSeconds_.size() << std::endl;
     
-        if (metricsSaved_ || frameTimesMs_.empty()) {
+         if (metricsSaved_ || frameRenderTimesSeconds_.empty()) {
             std::cout << "[Metrics] Skipping: " << (metricsSaved_ ? "Metrics already saved." : "No frame times recorded.") << std::endl;
             return; // Salir si ya se guardó o no hay datos
         }
@@ -521,17 +535,17 @@ private:
                     << "# GPU: " << gpuName_ << "\n"
                     << "# Requested Particle Count: " << PARTICLE_COUNT << "\n" 
                     << "# Actual Particle Count: " << (particleSystem_ ? std::to_string(particleSystem_->getParticleCount()) : "N/A") << "\n"
-                    << "# Frame Count Recorded: " << frameTimesMs_.size() << "\n\n" 
-                    << "FrameTime_ms\n";
+                    << "# Frame Count Recorded: " << frameRenderTimesSeconds_.size() << "\n\n"
+                    << "FrameRenderTime_s\n";
     
-            outFile << std::fixed << std::setprecision(4);
-            for (float frameTime : frameTimesMs_) {
+            outFile << std::fixed << std::setprecision(20);
+            for (float frameTime :  frameRenderTimesSeconds_) {
                 outFile << frameTime << "\n";
             }
     
             outFile.close();
             metricsSaved_ = true;
-            std::cout << "[Metrics] Metrics saved successfully (" << frameTimesMs_.size() << " frames)." << std::endl;
+            std::cout << "[Metrics] Metrics saved successfully (" <<  frameRenderTimesSeconds_.size() << " frames)." << std::endl;
     
         } catch (const std::filesystem::filesystem_error& fs_err) {
             std::cerr << "[Metrics] Filesystem error: " << fs_err.what() << " Path1: " << fs_err.path1().string() << " Path2: " << fs_err.path2().string() << std::endl;

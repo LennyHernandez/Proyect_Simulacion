@@ -1,0 +1,46 @@
+# Carpetas y archivos de Build
+build/
+Build/
+/build/
+
+_build/
+[Bb]uild/
+[Bb]in/
+[Ll]ib/
+*.o
+*.obj
+*.exe
+*.dll
+*.a
+*.lib
+*.so
+*.dylib
+*.pdb
+*.ilk
+
+# Archivos generados por CMake/Compiladores
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+compile_commands.json
+Makefile
+*.make
+
+# Archivos generados por IDEs (Opcional pero bueno)
+.vscode/
+.idea/
+*.suo
+*.user
+*.sln.docstates
+
+# Dependencias descargadas por FetchContent
+_deps/ # O la carpeta que use FetchContent
+
+# Salida de Métricas
+metrics_output/
+
+# Otros archivos temporales o específicos del sistema
+*.swp
+*~
+.DS_Store
+Thumbs.db
