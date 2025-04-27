@@ -7,50 +7,59 @@ on:
   workflow_dispatch: # Permite ejecutarlo manualmente desde la pestaña Actions
 
 jobs:
+  # --- Job para Linux (Ubuntu) ---
   build-linux:
     name: Build on Ubuntu
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-latest # Usar la última imagen estable de Ubuntu
 
     steps:
-    - name: Install build dependencies
-      run: |
-        sudo apt-get update && sudo apt-get install -y \
-        build-essential cmake ninja-build git \
-        libxrandr-dev libxinerama-dev libxcursor-dev libxi-dev libx11-dev \
-        wayland-protocols wayland-dev
+    # 1. Descargar el código del repositorio
     - name: Checkout repository
       uses: actions/checkout@v4
 
-    - name: Install Vulkan SDK and dependencies via Apt
+    # 2. Instalar dependencias básicas (CMake, Ninja, Git, build-essentials suelen estar, pero aseguramos)
+    - name: Install build dependencies
       run: |
-        sudo apt-get update -y
-        sudo apt-get install -y --no-install-recommends \
-        vulkan-tools \
-        libvulkan-dev \
-        vulkan-utility-libraries-dev \
-        spirv-tools
-      shell: bash
-
+            sudo apt-get update && sudo apt-get install -y \
+            build-essential cmake ninja-build git \
+            libxrandr-dev libxinerama-dev libxcursor-dev libxi-dev libx11-dev \
+            wayland-protocols wayland-scanner    # 3. Instalar Vulkan SDK (Descargando desde LunarG)
+    #    Ajusta la versión del SDK si es necesario
+    - name: Install Vulkan SDK and dependencies via Apt
+      # 'run: |' debe estar 2 espacios más adentro que '- name:'
+      run: |
+              sudo apt-get update -y
+              sudo apt-get install -y --no-install-recommends \
+              vulkan-tools \
+              libvulkan-dev \
+              vulkan-utility-libraries-dev \
+              spirv-tools
+      shell: bash # Asegúrate de que usa bash (es el default en ubuntu-latest)
+    # 4. Configurar el proyecto con CMake
     - name: Configure CMake
       run: cmake -B build -S . -G Ninja -DCMAKE_BUILD_TYPE=Release
+      # Asegúrate que VULKAN_SDK está en el entorno
       env:
         VULKAN_SDK: ${{ env.VULKAN_SDK }}
 
+    # 5. Compilar el proyecto con Ninja
     - name: Build project
       run: cmake --build build --config Release --parallel
 
+    # 6. Crear paquete de artefactos
     - name: Package artifact
       run: |
         mkdir -p artifact/shaders
-        cp build/src/ParticleSimulation artifact/ParticleSimulation
-        cp build/shaders/*.spv artifact/shaders/
+        cp build/src/ParticleSimulation artifact/ParticleSimulation # Copiar ejecutable
+        cp build/shaders/*.spv artifact/shaders/ # Copiar shaders compilados
       shell: bash
 
+    # 7. Subir el artefacto
     - name: Upload Linux artifact
       uses: actions/upload-artifact@v4
       with:
-        name: ParticleSimulation-Linux
-        path: artifact/
+        name: ParticleSimulation-Linux # Nombre del artefacto
+        path: artifact/ # Carpeta a subir
 
   # --- Job para Windows (MSVC por defecto) ---
   build-windows:
