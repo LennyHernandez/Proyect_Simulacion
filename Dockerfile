@@ -42,8 +42,7 @@ WORKDIR /tmp/vulkan_install
 # Descargar e instalar el Vulkan SDK (con comandos actualizados para .tar.xz)
 RUN echo "Downloading Vulkan SDK ${VULKAN_SDK_VERSION} from ${VULKAN_SDK_URL}" && \
     wget --progress=bar:force:noscroll -O vulkansdk.tar.xz ${VULKAN_SDK_URL} && \
-    RUN mkdir /vulkan_sdk && \ # <-- Add RUN here
-    # Usar tar -xJf para descomprimir .tar.xz
+    RUN mkdir /vulkan_sdk && \  # <-- Incorrect placement of RUN
     tar -xJf vulkansdk.tar.xz --strip-components=1 -C /vulkan_sdk && \
     rm vulkansdk.tar.xz && \
     cd / && rm -rf /tmp/vulkan_install
