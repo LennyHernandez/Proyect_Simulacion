@@ -15,6 +15,8 @@ ENV DEBIAN_FRONTEND=noninteractive
 
 # Instalar dependencias básicas y de compilación
 # Añadir 'xz-utils' necesario para descomprimir .tar.xz
+
+# Instalar dependencias básicas y de compilación
 RUN apt-get update && \
     apt-get install -y --no-install-recommends \
     build-essential \
@@ -23,15 +25,14 @@ RUN apt-get update && \
     git \
     wget \
     tar \
-    xz-utils \ # <-- AÑADIDO para .tar.xz
-    # Dependencias comunes de X11 para GLFW en Linux
+    # Dependencias comunes de X11 para GLFW en Linux (incluso si no se muestra)
     libx11-dev \
     libxcursor-dev \
     libxrandr-dev \
     libxinerama-dev \
     libxi-dev \
     libxxf86vm-dev \
-    # Limpiar caché de apt
+    # Limpiar caché de apt para reducir tamaño
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
