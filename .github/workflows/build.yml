@@ -1,115 +1,56 @@
-name: Build Project
+name: C++ CI Build with Docker
 
-# Disparadores: Ejecutar en push a la rama main o manualmente
 on:
   push:
-    branches: [ "main" ]
-  workflow_dispatch: # Permite ejecutarlo manualmente desde la pestaña Actions
+    branches: [ "main", "master" ] # O las ramas que uses
+  pull_request:
+    branches: [ "main", "master" ]
 
 jobs:
-  # --- Job para Linux (Ubuntu) ---
-  build-linux:
-    name: Build on Ubuntu
-    runs-on: ubuntu-latest # Usar la última imagen estable de Ubuntu
+  build-linux: # Nombre del Job
+    runs-on: ubuntu-latest # Usar un runner Linux de GitHub
 
     steps:
-    # 1. Descargar el código del repositorio
-    - name: Checkout repository
-      uses: actions/checkout@v4
+    # 1. Clonar tu repositorio
+    - uses: actions/checkout@v4
+      # NO necesitas submodules si usas FetchContent dentro de CMake
+      # with:
+      #   submodules: 'recursive'
 
-    # 2. Instalar dependencias básicas (CMake, Ninja, Git, build-essentials suelen estar, pero aseguramos)
-    - name: Install build dependencies
+    # 2. Construir la imagen Docker desde tu Dockerfile
+    - name: Build Docker image
+      run: docker build -t particle-sim-builder:latest .
+      # El '.' indica que busque el Dockerfile en la raíz del repo
+
+    # 3. Ejecutar la configuración y compilación DENTRO del contenedor
+    - name: Configure and Build inside Docker
       run: |
-            sudo apt-get update && sudo apt-get install -y \
-            build-essential cmake ninja-build git \
-            libxrandr-dev libxinerama-dev libxcursor-dev libxi-dev libx11-dev \
-            wayland-protocols wayland-scanner++-dev
+        # Correr el contenedor:
+        # --rm: Elimina el contenedor al terminar
+        # -v: Monta el directorio actual (workspace de Actions) en /app dentro del contenedor
+        # particle-sim-builder:latest: El nombre de la imagen que construimos
+        # /bin/bash -c "..." : Ejecuta los siguientes comandos dentro del contenedor
+        docker run --rm -v "${{ github.workspace }}":/app particle-sim-builder:latest /bin/bash -c " \
+          set -ex && \
+          echo '--- Running inside Docker ---' && \
+          ls -la && \
+          echo 'VULKAN_SDK=$VULKAN_SDK' && \
+          echo 'PATH=$PATH' && \
+          echo '--- Configuring CMake ---' && \
+          cmake -S . -B build -G Ninja -DCMAKE_BUILD_TYPE=Release && \
+          echo '--- Building with Ninja ---' && \
+          cmake --build build --config Release -- -v && \
+          echo '--- Build finished ---' && \
+          ls -la build/src \
+        "
+      # Nota: Se eliminó -DGLFW_BUILD_WAYLAND=OFF porque ya no es necesario si
+      # las dependencias X11 están en la imagen Docker y GLFW las detecta.
+      # Si tuvieras problemas, podrías volver a añadirlo aquí.
 
-    # 3. Instalar Vulkan SDK (Descargando desde LunarG)
-    #    Ajusta la versión del SDK si es necesario
-    - name: Install Vulkan SDK and dependencies via Apt
-      # 'run: |' debe estar 2 espacios más adentro que '- name:'
-      run: |
-              sudo apt-get update -y
-              sudo apt-get install -y --no-install-recommends \
-              vulkan-tools \
-              libvulkan-dev \
-              vulkan-utility-libraries-dev \
-              spirv-tools \
-              glslang-tools
-      shell: bash # Asegúrate de que usa bash (es el default en ubuntu-latest)
-    # 4. Configurar el proyecto con CMake
-    - name: Configure CMake
-      run: cmake -B build -S . -G Ninja -DCMAKE_BUILD_TYPE=Release
-        cmake -S ${{ github.workspace }} 
-              -B build 
-              -G Ninja 
-              -DCMAKE_BUILD_TYPE=Release 
-              -DGLFW_BUILD_WAYLAND=OFF 
-
-    # 5. Compilar el proyecto con Ninja
-    - name: Build project
-      run: cmake --build build --config Release --parallel
-
-    # 6. Crear paquete de artefactos
-    - name: Package artifact
-      run: |
-        mkdir -p artifact/shaders
-        cp build/src/ParticleSimulation artifact/ParticleSimulation # Copiar ejecutable
-        cp build/shaders/*.spv artifact/shaders/ # Copiar shaders compilados
-      shell: bash
-
-    # 7. Subir el artefacto
-    - name: Upload Linux artifact
+    # 4. (Opcional) Subir el ejecutable como artefacto
+    - name: Upload Artifact
       uses: actions/upload-artifact@v4
       with:
-        name: ParticleSimulation-Linux # Nombre del artefacto
-        path: artifact/ # Carpeta a subir
-
-  # --- Job para Windows (MSVC por defecto) ---
-  build-windows:
-    name: Build on Windows
-    runs-on: windows-latest # Usar la última imagen estable de Windows
-
-    steps:
-    # 1. Descargar el código
-    - name: Checkout repository
-      uses: actions/checkout@v4
-
-    # 2. Instalar Vulkan SDK (Descargando y ejecutando instalador silencioso)
-    #    Ajusta la versión del SDK
-    - name: Install Vulkan SDK
-      run: |
-        Invoke-WebRequest -Uri "https://sdk.lunarg.com/sdk/download/1.3.268.0/windows/VulkanSDK-1.3.268.0-Installer.exe" -OutFile "vulkansdk.exe"
-        Start-Process -FilePath ".\vulkansdk.exe" -ArgumentList "/S" -Wait # Instalación silenciosa
-        # Añadir variables de entorno para los siguientes pasos
-        echo "VULKAN_SDK=${env:ProgramFiles}/VulkanSDK/1.3.268.0" >> $env:GITHUB_ENV
-        echo "${env:ProgramFiles}/VulkanSDK/1.3.268.0/Bin" >> $env:GITHUB_PATH
-      shell: pwsh
-
-    # 3. Configurar el proyecto con CMake (usará generador de Visual Studio por defecto)
-    - name: Configure CMake
-      run: cmake -B build -S . -DCMAKE_BUILD_TYPE=Release
-      env:
-        VULKAN_SDK: ${{ env.VULKAN_SDK }}
-
-    # 4. Compilar el proyecto
-    - name: Build project
-      run: cmake --build build --config Release --parallel
-
-    # 5. Crear paquete de artefactos
-    #    Nota: La ruta del ejecutable puede variar (build/src/Release/...)
-    - name: Package artifact
-      run: |
-        mkdir artifact
-        mkdir artifact/shaders
-        Copy-Item -Path "build/src/Release/ParticleSimulation.exe" -Destination "artifact/" # Ajusta 'Release' si es necesario
-        Copy-Item -Path "build/shaders/*.spv" -Destination "artifact/shaders/"
-      shell: pwsh
-
-    # 6. Subir el artefacto
-    - name: Upload Windows artifact
-      uses: actions/upload-artifact@v4
-      with:
-        name: ParticleSimulation-Windows # Nombre del artefacto
-        path: artifact/ # Carpeta a subir
+        name: particle-simulation-linux-x64
+        path: build/src/ParticleSimulation # Ajusta la ruta si es necesario
+        if-no-files-found: error # Falla si el ejecutable no se encuentra
