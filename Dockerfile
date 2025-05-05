@@ -28,6 +28,8 @@ RUN apt-get update && \
     libxinerama-dev \
     libxi-dev \
     libxxf86vm-dev \
+    pkg-config \  
+    libudev-dev \ 
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
