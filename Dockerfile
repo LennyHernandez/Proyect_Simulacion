@@ -34,9 +34,9 @@ RUN apt-get update && \
 # Crear directorio temporal
 WORKDIR /tmp/vulkan_install
 
-# Descargar e instalar el Vulkan SDK (CORREGIDO - Todo en un solo RUN)
+# Descargar e instalar el Vulkan SDK (Añadido --no-check-certificate)
 RUN echo "Downloading Vulkan SDK ${VULKAN_SDK_VERSION} from ${VULKAN_SDK_URL}" && \
-    wget --progress=bar:force:noscroll -O vulkansdk.tar.xz ${VULKAN_SDK_URL} && \
+    wget --no-check-certificate --progress=bar:force:noscroll -O vulkansdk.tar.xz ${VULKAN_SDK_URL} && \ 
     echo "Creating directory /vulkan_sdk" && \
     mkdir /vulkan_sdk && \
     echo "Extracting SDK..." && \
@@ -45,7 +45,6 @@ RUN echo "Downloading Vulkan SDK ${VULKAN_SDK_VERSION} from ${VULKAN_SDK_URL}" &
     rm vulkansdk.tar.xz && \
     cd / && rm -rf /tmp/vulkan_install && \
     echo "Vulkan SDK installed."
-
 # Configurar variables de entorno
 ENV VULKAN_SDK=/vulkan_sdk/x86_64
 ENV PATH="${VULKAN_SDK}/bin:${PATH}"
