@@ -1,19 +1,20 @@
 # Usar una imagen base de Ubuntu LTS razonablemente reciente
 FROM ubuntu:22.04
 
-# Argumento para la versión del SDK de Vulkan (ajusta según necesites)
-ARG VULKAN_SDK_VERSION="1.3.296.0"
-# URL de descarga (verifica si cambia en el sitio de LunarG para futuras versiones)
-ARG VULKAN_SDK_URL="https://sdk.lunarg.com/sdk/download/${VULKAN_SDK_VERSION}/linux/vulkansdk-linux-x86_64-${VULKAN_SDK_VERSION}.tar.gz"
+# --- NUEVA VERSIÓN DEL SDK ---
+ARG VULKAN_SDK_VERSION="1.4.309.0"
+# --- URL ACTUALIZADA (con versión y formato .tar.xz) ---
+ARG VULKAN_SDK_URL="https://sdk.lunarg.com/sdk/download/${VULKAN_SDK_VERSION}/linux/vulkansdk-linux-x86_64-${VULKAN_SDK_VERSION}.tar.xz"
 
 # Etiqueta para identificar la imagen
-LABEL maintainer="Tu Nombre <Lenny >"
+LABEL maintainer="Tu Nombre <tu_email@example.com>"
 LABEL description="Build environment for Particle Simulation with Vulkan SDK ${VULKAN_SDK_VERSION}"
 
 # Evitar prompts interactivos durante apt-get install
 ENV DEBIAN_FRONTEND=noninteractive
 
 # Instalar dependencias básicas y de compilación
+# Añadir 'xz-utils' necesario para descomprimir .tar.xz
 RUN apt-get update && \
     apt-get install -y --no-install-recommends \
     build-essential \
@@ -22,44 +23,38 @@ RUN apt-get update && \
     git \
     wget \
     tar \
-    # Dependencias comunes de X11 para GLFW en Linux (incluso si no se muestra)
+    xz-utils \ # <-- AÑADIDO para .tar.xz
+    # Dependencias comunes de X11 para GLFW en Linux
     libx11-dev \
     libxcursor-dev \
     libxrandr-dev \
     libxinerama-dev \
     libxi-dev \
     libxxf86vm-dev \
-    # Limpiar caché de apt para reducir tamaño
+    # Limpiar caché de apt
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
-# Crear directorio temporal para descargar/instalar SDK
+# Crear directorio temporal
 WORKDIR /tmp/vulkan_install
 
-# Descargar e instalar el Vulkan SDK
+# Descargar e instalar el Vulkan SDK (con comandos actualizados para .tar.xz)
 RUN echo "Downloading Vulkan SDK ${VULKAN_SDK_VERSION} from ${VULKAN_SDK_URL}" && \
-    wget --progress=bar:force:noscroll -O vulkansdk.tar.gz ${VULKAN_SDK_URL} && \
-    # Crear directorio destino para el SDK
+    wget --progress=bar:force:noscroll -O vulkansdk.tar.xz ${VULKAN_SDK_URL} && \ # <-- Cambiado a .tar.xz
     mkdir /vulkan_sdk && \
-    # Extraer el SDK al directorio destino
-    tar -xzf vulkansdk.tar.gz --strip-components=1 -C /vulkan_sdk && \
-    # Limpiar el directorio temporal
-    rm vulkansdk.tar.gz && \
-    # Opcional: Ejecutar el script de setup del SDK si es necesario (generalmente no para build)
-    # cd /vulkan_sdk && ./vulkansdk --accept-licenses --default-answer --confirm-command install && \
+    # Usar tar -xJf para descomprimir .tar.xz
+    tar -xJf vulkansdk.tar.xz --strip-components=1 -C /vulkan_sdk && \ # <-- Cambiado comando tar
+    rm vulkansdk.tar.xz && \ # <-- Cambiado archivo a borrar
     cd / && rm -rf /tmp/vulkan_install
 
-# Configurar variables de entorno para que CMake/compilador encuentren el SDK
+# Configurar variables de entorno (sin cambios)
 ENV VULKAN_SDK=/vulkan_sdk/x86_64
 ENV PATH="${VULKAN_SDK}/bin:${PATH}"
 ENV LD_LIBRARY_PATH="${VULKAN_SDK}/lib:${LD_LIBRARY_PATH}"
 ENV VK_LAYER_PATH="${VULKAN_SDK}/etc/vulkan/explicit_layer.d"
 
-# Establecer directorio de trabajo para el código de la aplicación
+# Establecer directorio de trabajo
 WORKDIR /app
-
-# (Opcional) Establecer un punto de entrada por defecto si corres el contenedor interactivamente
-# ENTRYPOINT ["/bin/bash"]
 
 # Mensaje final
 CMD echo "Vulkan SDK ${VULKAN_SDK_VERSION} build environment ready. Mount your source code to /app and run build commands."
