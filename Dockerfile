@@ -1,60 +1,65 @@
-# Usar una imagen base de Ubuntu LTS razonablemente reciente
 FROM ubuntu:22.04
 
-# --- SDK VERSION ---
-ARG VULKAN_SDK_VERSION="1.4.309.0"
-ARG VULKAN_SDK_URL="https://sdk.lunarg.com/sdk/download/${VULKAN_SDK_VERSION}/linux/vulkansdk-linux-x86_64-${VULKAN_SDK_VERSION}.tar.xz"
-
-# Etiqueta
-LABEL maintainer="Tu Nombre <tu_email@example.com>"
-LABEL description="Build environment for Particle Simulation with Vulkan SDK ${VULKAN_SDK_VERSION}"
-
-# Evitar prompts
-ENV DEBIAN_FRONTEND=noninteractive
-
-# Instalar dependencias
+# 1. Instalar dependencias básicas (optimizado)
 RUN apt-get update && \
-    apt-get install -y --no-install-recommends \
+    DEBIAN_FRONTEND=noninteractive apt-get install -y \
     build-essential \
     cmake \
     ninja-build \
     git \
-    wget \
-    tar \
-    xz-utils \
+    pkg-config \
+    doxygen \
+    libboost-all-dev \
+    libglfw3-dev \
     libx11-dev \
-    libxcursor-dev \
+    libgl1-mesa-dev \
     libxrandr-dev \
-    libxinerama-dev \
     libxi-dev \
-    libxxf86vm-dev \
-    pkg-config \  
-    libudev-dev \ 
-    && apt-get clean \
-    && rm -rf /var/lib/apt/lists/*
+    libxcursor-dev \
+    vulkan-tools \
+    libvulkan-dev \
+    glslang-tools \
+    libxinerama-dev \
+    libxext-dev \
+    libwayland-dev \
+    libwayland-bin \
+    libxkbcommon-dev \
+    wayland-protocols \
+    extra-cmake-modules \
+    wget && \
+    rm -rf /var/lib/apt/lists/*
 
-# Crear directorio temporal
-WORKDIR /tmp/vulkan_install
+# 2. Instalar Vulkan SDK (versión ligera)
+RUN wget -qO- https://sdk.lunarg.com/sdk/download/1.4.309.0/linux/vulkansdk-linux-x86_64-1.4.309.0.tar.xz | \
+    tar -xJ -C /opt --strip-components=1 && \
+    /opt/vulkansdk --default-answer --accept-licenses --disable-updates
 
-# Descargar e instalar el Vulkan SDK (Añadido --no-check-certificate)
-RUN echo "Downloading Vulkan SDK ${VULKAN_SDK_VERSION} from ${VULKAN_SDK_URL}" && \
-    wget --no-check-certificate --progress=bar:force:noscroll -O vulkansdk.tar.xz ${VULKAN_SDK_URL} && \ 
-    echo "Creating directory /vulkan_sdk" && \
-    mkdir /vulkan_sdk && \
-    echo "Extracting SDK..." && \
-    tar -xJf vulkansdk.tar.xz --strip-components=1 -C /vulkan_sdk && \
-    echo "Cleaning up..." && \
-    rm vulkansdk.tar.xz && \
-    cd / && rm -rf /tmp/vulkan_install && \
-    echo "Vulkan SDK installed."
-# Configurar variables de entorno
-ENV VULKAN_SDK=/vulkan_sdk/x86_64
-ENV PATH="${VULKAN_SDK}/bin:${PATH}"
-ENV LD_LIBRARY_PATH="${VULKAN_SDK}/lib:${LD_LIBRARY_PATH}"
-ENV VK_LAYER_PATH="${VULKAN_SDK}/etc/vulkan/explicit_layer.d"
+# 3. Configurar entorno (simplificado)
+ENV VULKAN_SDK=/opt/x86_64
+ENV PATH="$VULKAN_SDK/bin:$PATH"
+ENV LD_LIBRARY_PATH=/opt/x86_64/lib:/usr/local/lib
+ENV VK_LAYER_PATH="$VULKAN_SDK/etc/vulkan/explicit_layer.d"
 
-# Establecer directorio de trabajo
+# 4. Sistema de shaders (2 opciones)
 WORKDIR /app
 
-# Mensaje final
-CMD echo "Vulkan SDK ${VULKAN_SDK_VERSION} build environment ready. Mount source code to /app."
+# Opción A: Usar shaders precompilados desde host (recomendado)
+COPY Shaders/*.spv ./Shaders/
+
+# Opción B: Compilar shaders durante el build (alternativa)
+COPY Shaders/*.vert Shaders/*.frag ./Shaders/
+RUN glslc Shaders/*.vert -o Shaders/vert.spv && \
+    glslc Shaders/*.frag -o Shaders/frag.spv
+# 5. Copiar solo lo necesario (mejor práctica)
+COPY CMakeLists.txt .
+COPY src/ ./src/
+
+# 6. Construcción del proyecto (con verificación)
+RUN cmake -Bbuild -G Ninja \
+    -DCMAKE_BUILD_TYPE=Release \
+    -DSHADER_DIR=/app/Shaders && \
+    cmake --build build --verbose
+    
+
+# 7. Runtime optimizado (multi-stage opcional)
+CMD ["./build/src/ParticleSimulation"]

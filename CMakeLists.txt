@@ -45,7 +45,6 @@ message(STATUS "GLM available. Source: ${glm_SOURCE_DIR}")
 find_program(GLSLC_EXECUTABLE NAMES glslc HINTS "$ENV{VULKAN_SDK}/Bin" "$ENV{VULKAN_SDK}/bin" 
 PATHS
         /usr/bin # Ruta común del sistema en Linux
-        # Puedes añadir más rutas del sistema si es necesario
     REQUIRED # Sigue siendo requerido
     DOC "Path to the GLSL to SPIR-V compiler (glslc)"
 )
