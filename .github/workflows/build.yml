@@ -1,56 +1,30 @@
-name: C++ CI Build with Docker
+name: Build and Push Docker Image to Docker Hub
 
 on:
   push:
-    branches: [ "main", "master" ] # O las ramas que uses
-  pull_request:
-    branches: [ "main", "master" ]
+    branches:
+      - main
 
 jobs:
-  build-linux: # Nombre del Job
-    runs-on: ubuntu-latest # Usar un runner Linux de GitHub
+  build-and-push:
+    runs-on: ubuntu-latest
 
     steps:
-    # 1. Clonar tu repositorio
-    - uses: actions/checkout@v4
-      # NO necesitas submodules si usas FetchContent dentro de CMake
-      # with:
-      #   submodules: 'recursive'
+    - name: Checkout code
+      uses: actions/checkout@v3
 
-    # 2. Construir la imagen Docker desde tu Dockerfile
-    - name: Build Docker image
-      run: docker build -t particle-sim-builder:latest .
-      # El '.' indica que busque el Dockerfile en la raíz del repo
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v3
 
-    # 3. Ejecutar la configuración y compilación DENTRO del contenedor
-    - name: Configure and Build inside Docker
-      run: |
-        # Correr el contenedor:
-        # --rm: Elimina el contenedor al terminar
-        # -v: Monta el directorio actual (workspace de Actions) en /app dentro del contenedor
-        # particle-sim-builder:latest: El nombre de la imagen que construimos
-        # /bin/bash -c "..." : Ejecuta los siguientes comandos dentro del contenedor
-        docker run --rm -v "${{ github.workspace }}":/app particle-sim-builder:latest /bin/bash -c " \
-          set -ex && \
-          echo '--- Running inside Docker ---' && \
-          ls -la && \
-          echo 'VULKAN_SDK=$VULKAN_SDK' && \
-          echo 'PATH=$PATH' && \
-          echo '--- Configuring CMake ---' && \
-          cmake -S . -B build -G Ninja -DCMAKE_BUILD_TYPE=Release && \
-          echo '--- Building with Ninja ---' && \
-          cmake --build build --config Release -- -v && \
-          echo '--- Build finished ---' && \
-          ls -la build/src \
-        "
-      # Nota: Se eliminó -DGLFW_BUILD_WAYLAND=OFF porque ya no es necesario si
-      # las dependencias X11 están en la imagen Docker y GLFW las detecta.
-      # Si tuvieras problemas, podrías volver a añadirlo aquí.
-
-    # 4. (Opcional) Subir el ejecutable como artefacto
-    - name: Upload Artifact
-      uses: actions/upload-artifact@v4
+    - name: Login to Docker Hub
+      uses: docker/login-action@v3
       with:
-        name: particle-simulation-linux-x64
-        path: build/src/ParticleSimulation # Ajusta la ruta si es necesario
-        if-no-files-found: error # Falla si el ejecutable no se encuentra
+        username: ${{ secrets.DOCKER_USERNAME }}
+        password: ${{ secrets.DOCKER_PASSWORD }}
+
+    - name: Build and Push Docker image
+      uses: docker/build-push-action@v5
+      with:
+        context: .
+        push: true
+        tags: lenny1116/simulador-particulas:latest
