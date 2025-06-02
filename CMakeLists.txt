@@ -42,7 +42,12 @@ FetchContent_MakeAvailable(glm)
 message(STATUS "GLM available. Source: ${glm_SOURCE_DIR}")
 
 # --- Encuentra GLSLc ---
-find_program(GLSLC_EXECUTABLE NAMES glslc HINTS "$ENV{VULKAN_SDK}/Bin" "$ENV{VULKAN_SDK}/bin" /usr/bin REQUIRED DOC "...")
+find_program(GLSLC_EXECUTABLE NAMES glslc HINTS "$ENV{VULKAN_SDK}/Bin" "$ENV{VULKAN_SDK}/bin" 
+PATHS
+        /usr/bin # Ruta común del sistema en Linux
+    REQUIRED # Sigue siendo requerido
+    DOC "Path to the GLSL to SPIR-V compiler (glslc)"
+)
 message(STATUS "Found glslc compiler: ${GLSLC_EXECUTABLE}")
 
 # --- Compilar Shaders ---
